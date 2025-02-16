@@ -1,15 +1,14 @@
 #include "FaceRecognition/faceRecognition.h"
 #include "ImageProcessing/imageProcessing.h"
+
 #include <filesystem>
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include <spdlog/spdlog.h>
 #include <string>
 #include <vector>
 
-#include <spdlog/spdlog.h>
-
 using namespace spdlog;
-
 using namespace cv;
 using namespace std;
 namespace fs = std::filesystem;

@@ -65,21 +65,101 @@ CMAKE_BINARY_DIR = /Users/vasili/Desktop/Tests/Face_opencv/build
 # The main recursive "all" target.
 all: CMakeFiles/FaceID.dir/all
 all: external/spdlog/all
+all: external/eigen/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/FaceID.dir/codegen
 codegen: external/spdlog/codegen
+codegen: external/eigen/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
 preinstall: external/spdlog/preinstall
+preinstall: external/eigen/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/FaceID.dir/clean
 clean: external/spdlog/clean
+clean: external/eigen/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory external/eigen
+
+# Recursive "all" directory target.
+external/eigen/all: external/eigen/unsupported/all
+.PHONY : external/eigen/all
+
+# Recursive "codegen" directory target.
+external/eigen/codegen: external/eigen/unsupported/codegen
+.PHONY : external/eigen/codegen
+
+# Recursive "preinstall" directory target.
+external/eigen/preinstall: external/eigen/unsupported/preinstall
+.PHONY : external/eigen/preinstall
+
+# Recursive "clean" directory target.
+external/eigen/clean: external/eigen/unsupported/clean
+.PHONY : external/eigen/clean
+
+#=============================================================================
+# Directory level rules for directory external/eigen/unsupported
+
+# Recursive "all" directory target.
+external/eigen/unsupported/all: external/eigen/unsupported/Eigen/all
+.PHONY : external/eigen/unsupported/all
+
+# Recursive "codegen" directory target.
+external/eigen/unsupported/codegen: external/eigen/unsupported/Eigen/codegen
+.PHONY : external/eigen/unsupported/codegen
+
+# Recursive "preinstall" directory target.
+external/eigen/unsupported/preinstall: external/eigen/unsupported/Eigen/preinstall
+.PHONY : external/eigen/unsupported/preinstall
+
+# Recursive "clean" directory target.
+external/eigen/unsupported/clean: external/eigen/unsupported/Eigen/clean
+.PHONY : external/eigen/unsupported/clean
+
+#=============================================================================
+# Directory level rules for directory external/eigen/unsupported/Eigen
+
+# Recursive "all" directory target.
+external/eigen/unsupported/Eigen/all: external/eigen/unsupported/Eigen/CXX11/all
+.PHONY : external/eigen/unsupported/Eigen/all
+
+# Recursive "codegen" directory target.
+external/eigen/unsupported/Eigen/codegen: external/eigen/unsupported/Eigen/CXX11/codegen
+.PHONY : external/eigen/unsupported/Eigen/codegen
+
+# Recursive "preinstall" directory target.
+external/eigen/unsupported/Eigen/preinstall: external/eigen/unsupported/Eigen/CXX11/preinstall
+.PHONY : external/eigen/unsupported/Eigen/preinstall
+
+# Recursive "clean" directory target.
+external/eigen/unsupported/Eigen/clean: external/eigen/unsupported/Eigen/CXX11/clean
+.PHONY : external/eigen/unsupported/Eigen/clean
+
+#=============================================================================
+# Directory level rules for directory external/eigen/unsupported/Eigen/CXX11
+
+# Recursive "all" directory target.
+external/eigen/unsupported/Eigen/CXX11/all:
+.PHONY : external/eigen/unsupported/Eigen/CXX11/all
+
+# Recursive "codegen" directory target.
+external/eigen/unsupported/Eigen/CXX11/codegen:
+.PHONY : external/eigen/unsupported/Eigen/CXX11/codegen
+
+# Recursive "preinstall" directory target.
+external/eigen/unsupported/Eigen/CXX11/preinstall:
+.PHONY : external/eigen/unsupported/Eigen/CXX11/preinstall
+
+# Recursive "clean" directory target.
+external/eigen/unsupported/Eigen/CXX11/clean:
+.PHONY : external/eigen/unsupported/Eigen/CXX11/clean
 
 #=============================================================================
 # Directory level rules for directory external/spdlog

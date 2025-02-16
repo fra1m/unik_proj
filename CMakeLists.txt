@@ -20,8 +20,8 @@ target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 add_subdirectory(external/spdlog)
 target_link_libraries(${PROJECT_NAME} spdlog)
 
-# add_subdirectory(external/dlib)
-# target_link_libraries(${PROJECT_NAME} dlib)
+add_subdirectory(external/eigen)
+target_link_libraries(${PROJECT_NAME} eigen)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/)
 

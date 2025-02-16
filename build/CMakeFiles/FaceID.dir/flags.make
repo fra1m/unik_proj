@@ -4,7 +4,7 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = -DSPDLOG_COMPILED_LIB
 
-CXX_INCLUDES = -I/Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include -isystem /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4
+CXX_INCLUDES = -I/Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include -I/Users/vasili/Desktop/Tests/Face_opencv/external/eigen -isystem /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4
 
 CXX_FLAGSarm64 = -O3 -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
 

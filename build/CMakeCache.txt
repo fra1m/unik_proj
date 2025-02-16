@@ -14,6 +14,10 @@
 # EXTERNAL cache entries
 ########################
 
+//The directory relative to CMAKE_INSTALL_PREFIX where Eigen3Config.cmake
+// is installed
+CMAKEPACKAGE_INSTALL_DIR:PATH=share/eigen3/cmake
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
@@ -275,6 +279,46 @@ CMAKE_TAPI:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/tapi
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Toggles the building of the Eigen Blas library
+EIGEN_BUILD_BLAS:BOOL=OFF
+
+//Build benchmark suite
+EIGEN_BUILD_BTL:BOOL=OFF
+
+//Enables the creation of EigenConfig.cmake and related files
+EIGEN_BUILD_CMAKE_PACKAGE:BOOL=OFF
+
+//Toggles the building of the Eigen demos
+EIGEN_BUILD_DEMOS:BOOL=OFF
+
+//Enable creation of Eigen documentation
+EIGEN_BUILD_DOC:BOOL=OFF
+
+//Toggles the building of the included Eigen LAPACK library
+EIGEN_BUILD_LAPACK:BOOL=OFF
+
+//Build pkg-config .pc file for Eigen
+EIGEN_BUILD_PKGCONFIG:BOOL=OFF
+
+//Build sparse benchmark suite
+EIGEN_BUILD_SPBENCH:BOOL=OFF
+
+//Enable creation of Eigen tests.
+EIGEN_BUILD_TESTING:BOOL=OFF
+
+//Leaves tests in the all target, needed by ctest for automatic
+// building.
+EIGEN_LEAVE_TEST_IN_ALL_TARGET:BOOL=OFF
+
+//Value Computed by CMake
+Eigen3_BINARY_DIR:STATIC=/Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen
+
+//Value Computed by CMake
+Eigen3_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+Eigen3_SOURCE_DIR:STATIC=/Users/vasili/Desktop/Tests/Face_opencv/external/eigen
+
 //Value Computed by CMake
 FaceID_BINARY_DIR:STATIC=/Users/vasili/Desktop/Tests/Face_opencv/build
 
@@ -284,8 +328,16 @@ FaceID_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 FaceID_SOURCE_DIR:STATIC=/Users/vasili/Desktop/Tests/Face_opencv
 
+//The directory relative to CMAKE_INSTALL_PREFIX where Eigen header
+// files are installed
+INCLUDE_INSTALL_DIR:PATH=include/eigen3
+
 //The directory containing a CMake configuration file for OpenCV.
 OpenCV_DIR:PATH=/opt/homebrew/lib/cmake/opencv4
+
+//The directory relative to CMAKE_INSTALL_PREFIX where eigen3.pc
+// is installed
+PKGCONFIG_INSTALL_DIR:PATH=share/pkgconfig
 
 //Build all artifacts
 SPDLOG_BUILD_ALL:BOOL=OFF
@@ -521,7 +573,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

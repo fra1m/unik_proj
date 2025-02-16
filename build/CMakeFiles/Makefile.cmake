@@ -11,6 +11,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.31.5/CMakeCCompiler.cmake"
   "CMakeFiles/3.31.5/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.31.5/CMakeSystem.cmake"
+  "/Users/vasili/Desktop/Tests/Face_opencv/external/eigen/CMakeLists.txt"
+  "/Users/vasili/Desktop/Tests/Face_opencv/external/eigen/unsupported/CMakeLists.txt"
+  "/Users/vasili/Desktop/Tests/Face_opencv/external/eigen/unsupported/Eigen/CMakeLists.txt"
+  "/Users/vasili/Desktop/Tests/Face_opencv/external/eigen/unsupported/Eigen/CXX11/CMakeLists.txt"
   "/Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/CMakeLists.txt"
   "/Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/cmake/ide.cmake"
   "/Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/cmake/utils.cmake"
@@ -26,6 +30,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCompilerIdDetection.cmake"
+  "/opt/homebrew/share/cmake/Modules/CMakeDependentOption.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompiler.cmake"
@@ -151,6 +156,10 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/3.31.5/CMakeCXXCompiler.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "external/spdlog/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "external/eigen/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "external/eigen/unsupported/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "external/eigen/unsupported/Eigen/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "external/eigen/unsupported/Eigen/CXX11/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:

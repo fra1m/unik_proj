@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /Users/vasili/Desktop/Tests/Face_opencv/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen/unsupported//CMakeFiles/progress.marks
+	cd /Users/vasili/Desktop/Tests/Face_opencv/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/eigen/unsupported/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /Users/vasili/Desktop/Tests/Face_opencv/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/eigen/unsupported/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,116 +148,18 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/vasili/Desktop/Tests/Face_opencv/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/eigen/unsupported/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/vasili/Desktop/Tests/Face_opencv/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/eigen/unsupported/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/vasili/Desktop/Tests/Face_opencv/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-#=============================================================================
-# Target rules for targets named FaceID
-
-# Build rule for target.
-FaceID: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FaceID
-.PHONY : FaceID
-
-# fast build rule for target.
-FaceID/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/build
-.PHONY : FaceID/fast
-
-#=============================================================================
-# Target rules for targets named spdlog
-
-# Build rule for target.
-spdlog: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 spdlog
-.PHONY : spdlog
-
-# fast build rule for target.
-spdlog/fast:
-	$(MAKE) $(MAKESILENT) -f external/spdlog/CMakeFiles/spdlog.dir/build.make external/spdlog/CMakeFiles/spdlog.dir/build
-.PHONY : spdlog/fast
-
-src/FaceRecognition/faceRecognition.o: src/FaceRecognition/faceRecognition.cpp.o
-.PHONY : src/FaceRecognition/faceRecognition.o
-
-# target to build an object file
-src/FaceRecognition/faceRecognition.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o
-.PHONY : src/FaceRecognition/faceRecognition.cpp.o
-
-src/FaceRecognition/faceRecognition.i: src/FaceRecognition/faceRecognition.cpp.i
-.PHONY : src/FaceRecognition/faceRecognition.i
-
-# target to preprocess a source file
-src/FaceRecognition/faceRecognition.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.i
-.PHONY : src/FaceRecognition/faceRecognition.cpp.i
-
-src/FaceRecognition/faceRecognition.s: src/FaceRecognition/faceRecognition.cpp.s
-.PHONY : src/FaceRecognition/faceRecognition.s
-
-# target to generate assembly for a file
-src/FaceRecognition/faceRecognition.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.s
-.PHONY : src/FaceRecognition/faceRecognition.cpp.s
-
-src/ImageProcessing/imageProcessing.o: src/ImageProcessing/imageProcessing.cpp.o
-.PHONY : src/ImageProcessing/imageProcessing.o
-
-# target to build an object file
-src/ImageProcessing/imageProcessing.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.o
-.PHONY : src/ImageProcessing/imageProcessing.cpp.o
-
-src/ImageProcessing/imageProcessing.i: src/ImageProcessing/imageProcessing.cpp.i
-.PHONY : src/ImageProcessing/imageProcessing.i
-
-# target to preprocess a source file
-src/ImageProcessing/imageProcessing.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.i
-.PHONY : src/ImageProcessing/imageProcessing.cpp.i
-
-src/ImageProcessing/imageProcessing.s: src/ImageProcessing/imageProcessing.cpp.s
-.PHONY : src/ImageProcessing/imageProcessing.s
-
-# target to generate assembly for a file
-src/ImageProcessing/imageProcessing.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.s
-.PHONY : src/ImageProcessing/imageProcessing.cpp.s
-
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
-
-# target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
-
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
-
-# target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
-
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
-
-# target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -271,17 +173,6 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... FaceID"
-	@echo "... spdlog"
-	@echo "... src/FaceRecognition/faceRecognition.o"
-	@echo "... src/FaceRecognition/faceRecognition.i"
-	@echo "... src/FaceRecognition/faceRecognition.s"
-	@echo "... src/ImageProcessing/imageProcessing.o"
-	@echo "... src/ImageProcessing/imageProcessing.i"
-	@echo "... src/ImageProcessing/imageProcessing.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
 .PHONY : help
 
 
@@ -293,6 +184,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/vasili/Desktop/Tests/Face_opencv/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
