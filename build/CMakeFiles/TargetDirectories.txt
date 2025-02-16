@@ -1,0 +1,6 @@
+/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles/FaceID.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles/edit_cache.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles/rebuild_cache.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/spdlog/CMakeFiles/spdlog.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/spdlog/CMakeFiles/edit_cache.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/spdlog/CMakeFiles/rebuild_cache.dir
