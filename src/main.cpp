@@ -18,7 +18,7 @@ int main() {
   faceRecognition.loadSVM("face_svm.yml"); // Загрузка обученной SVM модели
 
   // Инициализация камеры
-  cv::VideoCapture cap(0);
+  cv::VideoCapture cap(1);
   if (!cap.isOpened()) {
     std::cerr << "Error: Unable to access camera!" << std::endl;
     return -1;
