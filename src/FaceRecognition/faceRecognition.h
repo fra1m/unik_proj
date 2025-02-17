@@ -1,28 +1,26 @@
 #pragma once
-
-#include <opencv2/face.hpp>
+#include <filesystem>
+#include <opencv2/dnn.hpp>
+#include <opencv2/ml.hpp>
 #include <opencv2/opencv.hpp>
+#include <spdlog/spdlog.h>
 #include <string>
-
-using namespace cv;
-using namespace std;
 
 class FaceRecognition {
 public:
-  // Конструктор и деструктор
-  FaceRecognition(const string &cascadePath, const string &trainerPath);
-  ~FaceRecognition();
+  FaceRecognition(const std::string &modelConfig,
+                  const std::string &modelWeights);
+  bool detectFace(cv::Mat &frame);
+  void train(const std::string &positivePath, const std::string &negativePath);
+  int predict(const cv::Mat &face);
+  cv::Rect getLastFaceRegion();
+  void loadSVM(const std::string &svmPath);
 
-  // Загрузка модели
-  bool loadModel(const string &trainerPath);
-
-  // Обучение модели (если нужно)
-  void trainModel(const vector<Mat> &images, const vector<int> &labels);
-
-  // Детектирование и распознавание лица
-  bool detectAndRecognize(Mat &frame);
+  bool isMyFace(const cv::Mat &face);
 
 private:
-  CascadeClassifier faceCascade;
-  Ptr<face::FaceRecognizer> faceRecognizer;
+  cv::dnn::Net net;
+  cv::Rect faceRegion;
+  const float CONFIDENCE_THRESHOLD = 0.5;
+  cv::Ptr<cv::ml::SVM> svm;
 };
