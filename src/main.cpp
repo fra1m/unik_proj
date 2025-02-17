@@ -1,125 +1,125 @@
 #include "FaceRecognition/faceRecognition.h"
 #include "ImageProcessing/imageProcessing.h"
-
-#include <filesystem>
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include <spdlog/spdlog.h>
-#include <string>
-#include <vector>
-
-using namespace spdlog;
-using namespace cv;
-using namespace std;
-namespace fs = std::filesystem;
 
 int main() {
-  // Открываем камеру
-  VideoCapture cap(0);
+  // Загрузка модели
+  std::string modelConfig = "../resources/dnn/deploy.prototxt";
+  std::string modelWeights =
+      "../resources/dnn/res10_300x300_ssd_iter_140000.caffemodel";
+
+  spdlog::info("Loading model: {}", modelConfig);
+  spdlog::info("Loading weights: {}", modelWeights);
+
+  // Создание объекта для распознавания лиц
+  FaceRecognition faceRecognition(modelConfig, modelWeights);
+  faceRecognition.loadSVM("face_svm.yml"); // Загрузка обученной SVM модели
+
+  // Инициализация камеры
+  cv::VideoCapture cap(1);
   if (!cap.isOpened()) {
-    cout << "Error: Unable to access camera!" << endl;
+    std::cerr << "Error: Unable to access camera!" << std::endl;
     return -1;
   }
 
-  info("[INFO::Main]");
-
-  // Путь к XML-файлу каскадного классификатора
-  string faceCascadePath =
-      "../resources/haarcascades/haarcascade_frontalface_default.xml";
-
-  // Путь к обученной модели
-  string trainerPath =
-      "data/me/trainer.yml"; // Путь к обученной модели распознавания лиц
-
-  // Инициализируем объект для распознавания лиц
-  FaceRecognition faceRecognition(faceCascadePath, trainerPath);
-
   int counter = 0;
-  Mat frame;
+  cv::Mat frame;
 
-  vector<Mat> images;
-  vector<int> labels;
+  std::cout << "Нажимайте 's' для сохранения изображения с лицом." << std::endl;
+  std::cout << "Нажмите 't' для тренировки модели." << std::endl;
+  std::cout << "Нажмите 'q' для выхода." << std::endl;
 
-  // Главное меню
-  cout << "Нажимайте 's' для сохранения изображения с лицом. Нажмите 't' для "
-          "тренировки модели."
-       << endl;
-  cout << "Нажмите 'q' для выхода." << endl;
+  int stableCount = 0;                // Счетчик стабильных кадров
+  const int STABLE_THRESHOLD = 5;     // Порог стабилизации, например 5 кадров
+  std::string lastStableText = "BAD"; // Последнее стабильное предсказание
 
-  // Проверяем, существует ли файл с моделью (trainer.yml)
-  if (!fs::exists(trainerPath)) {
-    cout << "Model not found! Training new model..." << endl;
-    // Если модель не найдена, тренируем ее
-    while (true) {
-      cap >> frame; // Захватываем кадр с камеры
-      if (frame.empty())
-        break;
-
-      // Проверяем нажатие клавиш
-      char key = waitKey(1); // Получаем нажатую клавишу
-
-      if (key == 's') {
-        // Сохранение изображения с лицом
-        cout << "Saving image..." << endl;
-        string folder = "data/me"; // Поменяй на "data/others" для других людей
-        ImageProcessing::saveFaceImage(frame, folder, counter);
-        // Добавляем изображение в список для тренировки
-        Mat gray;
-        cvtColor(frame, gray, COLOR_BGR2GRAY);
-        images.push_back(gray);
-        labels.push_back(0); // Метка для вашего лица
-      }
-
-      if (key == 't' && !images.empty()) {
-        // Тренировка модели
-        cout << "Training model..." << endl;
-        faceRecognition.trainModel(images, labels); // Обучаем модель
-        break; // После тренировки выходим из цикла
-      }
-
-      if (key == 'q') {
-        break; // Выход по 'q'
-      }
-
-      // Показываем кадр с надписью
-      imshow("Frame", frame);
-    }
-  } else {
-    // Если файл найден, загружаем модель
-    cout << "Model found! Loading..." << endl;
-    faceRecognition.loadModel(trainerPath); // Передаем путь к модели
-  }
-
-  // Продолжаем распознавание лиц, если модель загружена
   while (true) {
-    cap >> frame; // Захватываем кадр с камеры
-    if (frame.empty())
+    cap >> frame;
+    if (frame.empty()) {
+      std::cerr << "Error: Empty frame captured!" << std::endl;
       break;
+    }
 
-    // Распознаем лицо на изображении
-    bool isFaceDetected = faceRecognition.detectAndRecognize(frame);
+    bool isFaceDetected = faceRecognition.detectFace(frame);
+    std::string text =
+        lastStableText; // По умолчанию текст = последнее стабильное значение
 
-    // Отображаем результаты
+    // Добавим проверку на чужое лицо
     if (isFaceDetected) {
-      putText(frame, "GOOD", Point(20, 50), FONT_HERSHEY_SIMPLEX, 1,
-              Scalar(0, 255, 0), 2);
+      cv::Rect faceRegion = faceRecognition.getLastFaceRegion();
+      if (faceRegion.area() > 0) {
+        cv::Mat faceROI = frame(faceRegion).clone();
+        int prediction = faceRecognition.predict(faceROI);
+
+        std::string currentText = "BAD"; // Начнем с BAD, если это чужое лицо
+
+        if (faceRecognition.isMyFace(faceROI)) {
+          currentText = "GOOD"; // Если это ваше лицо
+        }
+
+        if (currentText != lastStableText) {
+          // Если лицо изменилось
+          stableCount = 0;              // Сбросить счетчик
+          lastStableText = currentText; // Обновить стабильный текст сразу
+          spdlog::info("Face changed, setting text to {}", currentText);
+        }
+
+        // Обновить счетчик стабильности
+        if (currentText == lastStableText) {
+          stableCount++;
+          if (stableCount >= STABLE_THRESHOLD) {
+            spdlog::info(
+                "stableCount reached threshold: {}, updating lastStableText",
+                stableCount);
+            lastStableText = currentText;
+            stableCount = 0; // Сбросить счетчик после обновления
+          }
+        }
+      }
     } else {
-      putText(frame, "BAD", Point(20, 50), FONT_HERSHEY_SIMPLEX, 1,
-              Scalar(0, 0, 255), 2);
+      // Лицо не обнаружено, обновить на NO FACES
+      if (lastStableText != "NO FACES") {
+        lastStableText = "NO FACES";
+        spdlog::info("No face detected, updating text to: NO FACES");
+      }
+      stableCount = 0; // Сбросить счетчик, так как лицо исчезло
     }
 
-    // Показываем кадр с результатами
-    imshow("Frame", frame);
+    // Добавляем текст на изображение
+    cv::putText(frame, lastStableText, cv::Point(50, 50),
+                cv::FONT_HERSHEY_SIMPLEX, 1,
+                (lastStableText == "GOOD")
+                    ? cv::Scalar(0, 255, 0)
+                    : (lastStableText == "NO FACES" ? cv::Scalar(255, 255, 0)
+                                                    : cv::Scalar(0, 0, 255)),
+                2);
 
-    // Проверяем нажатие клавиш
-    char key = waitKey(1); // Получаем нажатую клавишу
-    if (key == 'q') {
-      break; // Выход по 'q'
+    cv::imshow("Face Recognition", frame);
+
+    // Обработка клавиш
+    char key = cv::waitKey(1);
+
+    if (key == 's') {
+      if (isFaceDetected) {
+        ImageProcessing::saveFaceImage(frame, "data/not_me", counter);
+        spdlog::info("Face image saved.");
+      } else {
+        spdlog::warn("No face detected, skipping save.");
+      }
     }
+
+    if (key == 't') {
+      faceRecognition.train("data/me", "data/not_me");
+      spdlog::info("Training completed.");
+    }
+
+    if (key == 'q')
+      break;
   }
 
-  cap.release();       // Освобождаем ресурсы камеры
-  destroyAllWindows(); // Закрываем все окна OpenCV
-
+  cap.release();
+  cv::destroyAllWindows();
   return 0;
 }

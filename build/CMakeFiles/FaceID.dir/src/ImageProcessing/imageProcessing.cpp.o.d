@@ -1035,4 +1035,27 @@ CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/spdlog.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/common.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/null_mutex.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/tweakme.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/fmt/fmt.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/fmt/bundled/core.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/fmt/bundled/format.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/fmt/bundled/base.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/registry.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/periodic_worker.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/condition_variable \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/thread \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/formatter.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/this_thread.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/thread.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/synchronous_factory.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/logger.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/backtracer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/circular_q.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cassert \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/log_msg_buffer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/log_msg.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/version.h

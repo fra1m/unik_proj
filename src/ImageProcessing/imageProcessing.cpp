@@ -2,26 +2,32 @@
 #include <filesystem>
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include <spdlog/spdlog.h>
 
 namespace fs = std::filesystem;
 
-void ImageProcessing::saveFaceImage(const cv::Mat &frame,
+bool ImageProcessing::saveFaceImage(const cv::Mat &frame,
                                     const std::string &folder, int &counter) {
-  // Создаем папку, если ее нет.
   fs::create_directories(folder);
+  std::string path = folder + "/" + std::to_string(counter) + ".jpg";
 
-  // Генерируем путь к файлу, добавляем индекс для предотвращения перезаписи
-  std::string path;
   do {
     path = folder + "/" + std::to_string(counter) + ".jpg";
     counter++; // Увеличиваем счетчик для следующего файла
   } while (
       fs::exists(path)); // Проверяем, существует ли уже файл с таким именем
 
-  // Сохраняем изображение в файл.
   if (cv::imwrite(path, frame)) {
-    std::cout << "Saved: " << path << std::endl;
+    spdlog::info("Saved: {}", path);
+    counter++;
+    return true;
   } else {
-    std::cerr << "Error saving image: " << path << std::endl;
+    spdlog::error("Error saving image: {}", path);
+    return false;
   }
+}
+
+void ImageProcessing::displayImage(const cv::Mat &frame) {
+  cv::imshow("Detected Faces", frame);
+  cv::waitKey(1);
 }
