@@ -2152,4 +2152,5 @@ CMakeFiles/FaceID.dir/src/main.cpp.o: \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/log_msg_buffer.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/log_msg.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/version.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/src/ImageProcessing/imageProcessing.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix.h

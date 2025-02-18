@@ -7409,6 +7409,7 @@ CMakeFiles/FaceID.dir/src/main.cpp.o: /Users/vasili/Desktop/Tests/Face_opencv/sr
   /Users/vasili/Desktop/Tests/Face_opencv/src/FaceEmbedding/faceEmbedding.h \
   /Users/vasili/Desktop/Tests/Face_opencv/src/FaceEmbedding/faceEmbedding.h \
   /Users/vasili/Desktop/Tests/Face_opencv/src/FaceRecognition/faceRecognition.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/src/ImageProcessing/imageProcessing.h \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/imgproc/segmentation.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/calib3d.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core.hpp \

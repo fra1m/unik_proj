@@ -1,77 +1,134 @@
 #include "FaceEmbedding/faceEmbedding.h"
 #include "FaceRecognition/faceRecognition.h"
+#include "ImageProcessing/imageProcessing.h"
+#include <chrono>
 #include <dlib/matrix.h>
 #include <opencv2/opencv.hpp>
 #include <spdlog/spdlog.h>
-
-// Функция для преобразования dlib::matrix<float, 0, 1> в cv::Mat
-inline cv::Mat dlibMatrixToCvMat(const dlib::matrix<float, 0, 1> &dlibMat) {
-  cv::Mat cvMat(1, dlibMat.size(), CV_32F); // Создаем однострочную матрицу
-  for (long i = 0; i < dlibMat.size(); ++i) {
-    cvMat.at<float>(0, i) = dlibMat(i); // Копируем данные
-  }
-  return cvMat;
-}
+#include <thread>
 
 int main() {
-  // Путь к модели dlib
+  // Инициализация faceEmbedding и faceRecognition
   const std::string model_path =
       "bin/resources/dlib/dlib_face_recognition_resnet_model_v1.dat";
   FaceEmbedding faceEmbedding(model_path);
-
-  // Пути к данным для обучения
-  const std::string positivePath = "data/me";
-  const std::string negativePath = "data/not_me";
-
-  // Инициализация FaceRecognition
   FaceRecognition faceRecognition(
       "../resources/dnn/deploy.prototxt",
       "../resources/dnn/res10_300x300_ssd_iter_140000.caffemodel",
       faceEmbedding);
 
-  // Открываем видеопоток с вебкамеры
+  // Настройка видеозахвата
   cv::VideoCapture cap(0);
+  cap.set(cv::CAP_PROP_FRAME_WIDTH, 1280);
+  cap.set(cv::CAP_PROP_FRAME_HEIGHT, 720);
+  cap.set(cv::CAP_PROP_BUFFERSIZE, 1);
   if (!cap.isOpened()) {
     spdlog::error("Ошибка при открытии камеры!");
     return -1;
   }
 
-  std::string displayText;
+  // Переменные для управления состоянием
+  int processFrameInterval = 1;
+  int frameCount = 0;
+  std::string displayText = "NO FACE";
+  bool showLandmarks = false; // Флаг для отображения ключевых точек
 
   while (true) {
     cv::Mat frame;
     cap >> frame;
-
-    // Зеркальное отражение кадра для более естественного отображения
-    cv::flip(frame, frame, 1);
-
-    // Детекция лиц и отрисовка прямоугольников
-    cv::Mat detection_frame = frame.clone();
-    bool face_detected = faceRecognition.detectFace(detection_frame);
-
-    // Только если лицо обнаружено, делаем классификацию
-    if (face_detected) {
-      // Получаем эмбеддинги лиц
-      auto descriptors = faceEmbedding.getFaceDescriptor(frame);
-
-      for (const auto &desc : descriptors) {
-        cv::Mat embedding = dlibMatrixToCvMat(desc);
-        if (faceRecognition.isMyFace(embedding)) {
-          displayText = "GOOD";
-          // Рисуем зеленый прямоугольник для "своего" лица
-          cv::rectangle(frame, faceRecognition.getLastFaceRegion(),
-                        cv::Scalar(0, 255, 0), 2);
-        } else {
-          displayText = "BAD";
-          // Рисуем красный прямоугольник для "чужого" лица
-          cv::rectangle(frame, faceRecognition.getLastFaceRegion(),
-                        cv::Scalar(0, 0, 255), 2);
-        }
-      }
-    } else {
-      displayText = "NO FACES";
+    if (frame.empty()) {
+      spdlog::error("Empty frame captured!");
+      break;
     }
 
+    cv::flip(frame, frame, 1);
+
+    // Обработка клавиш
+    char key = cv::waitKey(1);
+    switch (key) {
+    case 't': { // Обучение модели
+      try {
+        faceRecognition.train("data/me", "data/not_me");
+        faceRecognition.loadSVM("face_svm.yml");
+        spdlog::info("Модель успешно обучена и загружена.");
+      } catch (const std::exception &e) {
+        spdlog::error("Ошибка при обучении модели: {}", e.what());
+      }
+      break;
+    }
+    case 'q': { // Выход
+      cap.release();
+      cv::destroyAllWindows();
+      return 0;
+    }
+    case 's': { // Сохранение изображения
+      ImageProcessing::saveFaceImage(frame, "data/not_me", frameCount);
+      break;
+    }
+    case 'm': { // Переключение отображения ключевых точек
+      showLandmarks = !showLandmarks;
+      spdlog::info("Отображение ключевых точек: {}",
+                   showLandmarks ? "ВКЛ" : "ВЫКЛ");
+      break;
+    }
+    default:
+      break; // Игнорируем другие клавиши
+    }
+
+    // Основная обработка кадра
+    if (frameCount % processFrameInterval == 0) {
+      bool face_detected = faceRecognition.detectFace(frame);
+      if (face_detected) {
+        cv::Rect faceRegion = faceRecognition.getLastFaceRegion();
+        if (faceRegion.area() > 0) {
+          cv::Mat faceROI = frame(faceRegion).clone();
+          int prediction = faceRecognition.predict(faceROI);
+          displayText = (prediction == 1) ? "GOOD" : "BAD";
+        } else {
+          displayText = "NO FACE";
+        }
+      } else {
+        displayText = "NO FACE";
+      }
+    }
+
+    // Отрисовка ключевых точек, если включено
+    if (showLandmarks) {
+      auto facesData = faceEmbedding.getFaceData(frame);
+      for (const auto &faceData : facesData) {
+        // Все ключевые точки
+        for (const auto &point : faceData.landmarks) {
+          cv::circle(frame, cv::Point(point.x(), point.y()), 2,
+                     cv::Scalar(0, 255, 255), -1);
+        }
+
+        // Глаза
+        for (int i = 36; i <= 47; ++i) {
+          cv::circle(
+              frame,
+              cv::Point(faceData.landmarks[i].x(), faceData.landmarks[i].y()),
+              2, cv::Scalar(255, 0, 0), -1);
+        }
+
+        // Нос
+        for (int i = 27; i <= 35; ++i) {
+          cv::circle(
+              frame,
+              cv::Point(faceData.landmarks[i].x(), faceData.landmarks[i].y()),
+              2, cv::Scalar(0, 0, 255), -1);
+        }
+
+        // Рот
+        for (int i = 48; i <= 67; ++i) {
+          cv::circle(
+              frame,
+              cv::Point(faceData.landmarks[i].x(), faceData.landmarks[i].y()),
+              2, cv::Scalar(0, 255, 0), -1);
+        }
+      }
+    }
+
+    // Накладываем текст на изображение
     cv::putText(frame, displayText, cv::Point(50, 50), cv::FONT_HERSHEY_SIMPLEX,
                 1,
                 (displayText == "GOOD")
@@ -80,25 +137,13 @@ int main() {
                                                 : cv::Scalar(0, 0, 255)),
                 2);
 
-    // Отображаем изображение с вебкамеры
+    // Отображение кадра
     cv::imshow("Webcam", frame);
 
-    // Обработка нажатия клавиш
-    char key = cv::waitKey(1);
-    if (key == 't') { // Если нажата клавиша 't'
-      try {
-        // Обучение модели
-        faceRecognition.train(negativePath, positivePath);
-        // Загрузка обученной SVM модели
-        faceRecognition.loadSVM("face_svm.yml");
-        spdlog::info("Модель успешно обучена и загружена.");
-      } catch (const std::exception &e) {
-        spdlog::error("Ошибка при обучении модели: {}", e.what());
-      }
-    } else if (key == 'q') { // Выход при нажатии на клавишу 'q'
-      break;
-    }
+    frameCount++;
   }
 
+  cap.release();
+  cv::destroyAllWindows();
   return 0;
 }

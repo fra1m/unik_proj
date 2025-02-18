@@ -60,6 +60,11 @@ public:
     FaceEmbedding(const std::string &model_path);
     std::vector<dlib::matrix<float, 0, 1>> getFaceDescriptor(const cv::Mat &frame);
 
+        struct FaceData {
+        dlib::matrix<float,0,1> embedding;
+        std::vector<dlib::point> landmarks;
+    };
+    std::vector<FaceData> getFaceData(const cv::Mat& frame);
 private:
     dlib::frontal_face_detector detector;
     dlib::shape_predictor sp;

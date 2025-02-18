@@ -95,3 +95,30 @@ FaceEmbedding::getFaceDescriptor(const cv::Mat &frame) {
 
   return face_descriptors;
 }
+
+std::vector<FaceEmbedding::FaceData>
+FaceEmbedding::getFaceData(const cv::Mat &frame) {
+  std::vector<FaceData> result;
+
+  dlib::cv_image<dlib::bgr_pixel> dlibImg(frame);
+  auto faces = detector(dlibImg);
+
+  for (const auto &face : faces) {
+    FaceData data;
+    dlib::full_object_detection shape = sp(dlibImg, face);
+
+    // Сохраняем ключевые точки
+    for (unsigned i = 0; i < shape.num_parts(); ++i) {
+      data.landmarks.push_back(shape.part(i));
+    }
+
+    // Получаем эмбеддинг
+    dlib::matrix<dlib::rgb_pixel> face_chip;
+    dlib::extract_image_chip(
+        dlibImg, dlib::get_face_chip_details(shape, 150, 0.25), face_chip);
+    data.embedding = net(face_chip);
+
+    result.push_back(data);
+  }
+  return result;
+}
