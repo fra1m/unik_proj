@@ -22,6 +22,8 @@ public:
 
   bool isMyFace(const cv::Mat &face);
 
+  std::vector<cv::Rect> detectFaces(cv::Mat &frame);
+
 private:
   cv::dnn::Net net;
   cv::Rect faceRegion;

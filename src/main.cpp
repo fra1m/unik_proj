@@ -75,21 +75,34 @@ int main() {
       break; // Игнорируем другие клавиши
     }
 
-    // Основная обработка кадра
-    if (frameCount % processFrameInterval == 0) {
-      bool face_detected = faceRecognition.detectFace(frame);
-      if (face_detected) {
-        cv::Rect faceRegion = faceRecognition.getLastFaceRegion();
-        if (faceRegion.area() > 0) {
-          cv::Mat faceROI = frame(faceRegion).clone();
-          int prediction = faceRecognition.predict(faceROI);
-          displayText = (prediction == 1) ? "GOOD" : "BAD";
-        } else {
-          displayText = "NO FACE";
-        }
-      } else {
-        displayText = "NO FACE";
-      }
+    auto faceRects = faceRecognition.detectFaces(frame);
+    std::vector<bool> predictions;
+
+    // Обработка каждого лица
+    for (const auto &rect : faceRects) {
+      cv::Mat faceROI = frame(rect).clone();
+
+      // Классификация
+      int prediction = faceRecognition.predict(faceROI);
+      predictions.push_back(prediction == 1);
+
+      // Рисуем рамку
+      cv::Scalar color =
+          prediction == 1 ? cv::Scalar(0, 255, 0) : cv::Scalar(0, 0, 255);
+      cv::rectangle(frame, rect, color, 2);
+
+      // Рисуем текст рядом с лицом
+      std::string label = prediction == 1 ? "GOOD" : "BAD";
+      int baseline = 0;
+      cv::Size textSize =
+          cv::getTextSize(label, cv::FONT_HERSHEY_SIMPLEX, 0.7, 2, &baseline);
+
+      cv::Point textOrg(rect.x + 10, rect.y - textSize.height - 5);
+      if (textOrg.y < 20)
+        textOrg.y = rect.y + 20; // Если лицо в верхней части
+
+      cv::putText(frame, label, textOrg, cv::FONT_HERSHEY_SIMPLEX, 0.7, color,
+                  2);
     }
 
     // Отрисовка ключевых точек, если включено
@@ -127,15 +140,6 @@ int main() {
         }
       }
     }
-
-    // Накладываем текст на изображение
-    cv::putText(frame, displayText, cv::Point(50, 50), cv::FONT_HERSHEY_SIMPLEX,
-                1,
-                (displayText == "GOOD")
-                    ? cv::Scalar(0, 255, 0)
-                    : (displayText == "NO FACE" ? cv::Scalar(255, 255, 0)
-                                                : cv::Scalar(0, 0, 255)),
-                2);
 
     // Отображение кадра
     cv::imshow("Webcam", frame);

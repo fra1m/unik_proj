@@ -237,3 +237,42 @@ bool FaceRecognition::isMyFace(const cv::Mat &face_embedding) {
   const float threshold = 0.0f; // Может потребовать настройки
   return results.at<float>(0) > threshold;
 }
+
+std::vector<cv::Rect> FaceRecognition::detectFaces(cv::Mat &frame) {
+  std::vector<cv::Rect> faces;
+
+  if (frame.empty()) {
+    spdlog::error("Empty frame received!");
+    return faces;
+  }
+
+  cv::Mat color_frame;
+  if (frame.channels() == 1) {
+    cv::cvtColor(frame, color_frame, cv::COLOR_GRAY2BGR);
+  } else {
+    color_frame = frame.clone();
+  }
+
+  cv::Mat blob = cv::dnn::blobFromImage(color_frame, 1.0, cv::Size(300, 300),
+                                        cv::Scalar(104.0, 177.0, 123.0), true,
+                                        false, CV_32F);
+
+  net.setInput(blob);
+  cv::Mat detections = net.forward();
+
+  cv::Mat detectionMat(detections.size[2], detections.size[3], CV_32F,
+                       detections.ptr<float>());
+
+  for (int i = 0; i < detectionMat.rows; i++) {
+    float confidence = detectionMat.at<float>(i, 2);
+    if (confidence > CONFIDENCE_THRESHOLD) {
+      int x1 = static_cast<int>(detectionMat.at<float>(i, 3) * frame.cols);
+      int y1 = static_cast<int>(detectionMat.at<float>(i, 4) * frame.rows);
+      int x2 = static_cast<int>(detectionMat.at<float>(i, 5) * frame.cols);
+      int y2 = static_cast<int>(detectionMat.at<float>(i, 6) * frame.rows);
+      faces.emplace_back(x1, y1, x2 - x1, y2 - y1);
+    }
+  }
+
+  return faces;
+}
