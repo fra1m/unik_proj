@@ -12,6 +12,8 @@ public:
   FaceRecognition(const std::string &modelConfig,
                   const std::string &modelWeights,
                   FaceEmbedding &faceEmbedding);
+  ~FaceRecognition();
+
   bool detectFace(cv::Mat &frame);
   void train(const std::string &positivePath, const std::string &negativePath);
   int predict(const cv::Mat &face);

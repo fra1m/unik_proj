@@ -23,10 +23,21 @@ cv::Mat dlibMatrixToCvMat(const dlib::matrix<float, 0, 1> &dlibMat) {
 FaceRecognition::FaceRecognition(const std::string &modelConfig,
                                  const std::string &modelWeights,
                                  FaceEmbedding &faceEmbedding)
-    : faceEmbedding(faceEmbedding) {
+    : faceEmbedding(faceEmbedding) { // Загрузка детектора лиц
   net = cv::dnn::readNetFromCaffe(modelConfig, modelWeights);
-  if (net.empty()) {
-    std::cerr << "Ошибка загрузки модели!" << std::endl;
+
+  // Пытаемся загрузить SVM при инициализации
+  const std::string default_model_path = "face_svm.yml";
+  if (std::filesystem::exists(default_model_path)) {
+    loadSVM(default_model_path);
+    spdlog::info("Автоматически загружена сохраненная модель");
+  }
+}
+
+FaceRecognition::~FaceRecognition() {
+  if (!svm->empty()) {
+    svm->save("face_svm.yml");
+    spdlog::info("Модель автоматически сохранена при выходе");
   }
 }
 
