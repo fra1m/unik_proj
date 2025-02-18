@@ -36,6 +36,8 @@ int main() {
     return -1;
   }
 
+  std::string displayText;
+
   while (true) {
     cv::Mat frame;
     cap >> frame;
@@ -55,18 +57,28 @@ int main() {
       for (const auto &desc : descriptors) {
         cv::Mat embedding = dlibMatrixToCvMat(desc);
         if (faceRecognition.isMyFace(embedding)) {
-          spdlog::info("Good - мое лицо");
+          displayText = "GOOD";
           // Рисуем зеленый прямоугольник для "своего" лица
           cv::rectangle(frame, faceRecognition.getLastFaceRegion(),
                         cv::Scalar(0, 255, 0), 2);
         } else {
-          spdlog::info("Bad - чужое лицо");
+          displayText = "BAD";
           // Рисуем красный прямоугольник для "чужого" лица
           cv::rectangle(frame, faceRecognition.getLastFaceRegion(),
                         cv::Scalar(0, 0, 255), 2);
         }
       }
+    } else {
+      displayText = "NO FACES";
     }
+
+    cv::putText(frame, displayText, cv::Point(50, 50), cv::FONT_HERSHEY_SIMPLEX,
+                1,
+                (displayText == "GOOD")
+                    ? cv::Scalar(0, 255, 0)
+                    : (displayText == "NO FACE" ? cv::Scalar(255, 255, 0)
+                                                : cv::Scalar(0, 0, 255)),
+                2);
 
     // Отображаем изображение с вебкамеры
     cv::imshow("Webcam", frame);
