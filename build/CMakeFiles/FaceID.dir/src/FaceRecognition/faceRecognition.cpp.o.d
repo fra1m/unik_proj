@@ -1,41 +1,102 @@
 CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Users/vasili/Desktop/Tests/Face_opencv/src/FaceRecognition/faceRecognition.cpp \
   /Users/vasili/Desktop/Tests/Face_opencv/src/FaceRecognition/faceRecognition.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
+  /Users/vasili/Desktop/Tests/Face_opencv/src/FaceRecognition/../FaceEmbedding/faceEmbedding.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/tensor.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/tensor_abstract.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstring \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__assert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__config_site \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__verbose_abort \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__availability \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/time_point.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/duration.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/ordering.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/enable_if.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_same.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_constant_evaluated.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/string.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/cdefs.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_symbol_aliasing.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_posix_availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityVersions.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityInternal.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityInternalLegacy.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_size_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_null.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_rsize_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int8_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int16_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int32_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int64_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int8_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int16_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int32_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int64_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_intptr_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_uintptr_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_errno_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_ssize_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/strings.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_exp.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../algs.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/max.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/comp.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/integral_constant.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/three_way_comparable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/common_comparison_category.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstddef \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_integral.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/predicate_traits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/comp_ref_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/declval.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/max_element.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator_traits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/arithmetic.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_floating_point.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_cv.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_const.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_volatile.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_integral.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_signed.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_arithmetic.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_signed_integer.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unsigned_integer.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/convertible_to.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_convertible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_array.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstddef \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/enable_if.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/version \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/__stddef_max_align_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_reference_with.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/convertible_to.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_convertible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_array.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_function.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_const.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_reference.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_void.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_same.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_reference.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/declval.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/destructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_destructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_destructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_all_extents.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_scalar.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_enum.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_pointer.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_function_pointer.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_null_pointer.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_pointer.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/copyable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_reference_with.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/same_as.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/common_reference.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/common_type.h \
@@ -53,236 +114,65 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/copy_cvref.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_lvalue_reference.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_rvalue_reference.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/equality_comparable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/boolean_testable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/forward.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_const_lvalue_ref.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/totally_ordered.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_floating_point.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_arithmetic.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_signed.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__undef_macros \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/type_traits \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/hash.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/aligned_storage.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/nat.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/type_list.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/aligned_union.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/alignment_of.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/apply_cv.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_volatile.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/can_extract_key.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/pair.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_const_ref.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/conjunction.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/dependent_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/disjunction.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/extent.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/has_unique_object_representation.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_all_extents.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/has_virtual_destructor.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/invoke.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_base_of.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_core_convertible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_function_pointer.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_object_pointer.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_reference_wrapper.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_abstract.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_aggregate.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_bounded_array.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_callable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_char_like_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_standard_layout.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivial.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_class.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_compound.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_fundamental.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_null_pointer.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_constant_evaluated.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_copy_assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_copy_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_default_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_destructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_empty.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_enum.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_final.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_implicitly_default_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_literal_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_pointer.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_move_assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_move_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_convertible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/lazy.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_copy_assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_copy_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_default_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_destructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_scalar.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_pointer.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_move_assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_move_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_object.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_union.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_pod.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_polymorphic.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_scoped_enum.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/underlying_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_specialization.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_swappable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copy_assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copy_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copyable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdint \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdint.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/stdint.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int8_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int16_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int32_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int64_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint8_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint16_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint32_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint64_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/cdefs.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_symbol_aliasing.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_posix_availability.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_intptr_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int8_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int16_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int32_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int64_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_uintptr_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_intmax_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uintmax_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_default_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_destructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_move_assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_move_constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unbounded_array.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unsigned.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_signed.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_unsigned.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/maybe_const.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/negation.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/rank.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_pointer.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/result_of.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/invoke.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/type_identity.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/unwrap_ref.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/climits \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/limits.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/limits.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/_limits.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/syslimits.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/file_clock.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/system_clock.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctime \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/time.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityVersions.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityInternal.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/AvailabilityInternalLegacy.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_clock_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_null.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_size_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_time_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_timespec.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/replace.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/replace_copy.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/hash.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/unary_function.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/sfinae_helpers.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/tuple.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/make_tuple_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/array.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_element.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_indices.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/integer_sequence.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_size.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_like_ext.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/move.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/pair.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/synth_three_way.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/different_from.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/get.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/copyable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/assignable.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/constructible.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/destructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/forward.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/movable.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/swappable.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/class_or_enum.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_class.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_union.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/extent.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_move_assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_move_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_constructible.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/exchange.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/move.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_copy_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__undef_macros \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/swap.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/subrange.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/pair_like.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_like.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/piecewise_construct.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstring \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/string.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_rsize_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_errno_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_ssize_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/strings.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/back_insert_iterator.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator_traits.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/arithmetic.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_signed_integer.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unsigned_integer.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_move_assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_move_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_swappable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/nat.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_object.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/equality_comparable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/boolean_testable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/totally_ordered.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/pair.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/incrementable_traits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_primary_template.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_valid_expansion.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_signed.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/apply_cv.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_volatile.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/type_list.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/readable_traits.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/addressof.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/max.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/comp.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/predicate_traits.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/comp_ref_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/max_element.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/disjunction.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/initializer_list \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/min.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/min_element.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/identity.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/invoke.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/invoke.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_base_of.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_core_convertible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_member_object_pointer.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_reference_wrapper.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_callable.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/find.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unwrap_iter.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/pointer_traits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/addressof.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/conjunction.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__string/constexpr_c_functions.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/construct_at.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/access.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/voidify.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/new \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/exception.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/alignment_of.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdlib \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/stdlib.h \
@@ -303,6 +193,15 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_sigset_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_uid_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/resource.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdint.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/stdint.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint8_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint16_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint32_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint64_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_intmax_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uintmax_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_timeval.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/endian.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/endian.h \
@@ -323,7 +222,61 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/exception_ptr.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/nested_exception.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_final.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_polymorphic.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/type_traits \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/hash.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/aligned_storage.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/aligned_union.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/can_extract_key.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_const_ref.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/dependent_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/has_unique_object_representation.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/has_virtual_destructor.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_abstract.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_aggregate.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_bounded_array.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_char_like_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_standard_layout.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivial.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_compound.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_fundamental.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_copy_assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_default_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_empty.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_implicitly_default_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_literal_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_convertible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/lazy.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_copy_assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_copy_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_default_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_pod.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_scoped_enum.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/underlying_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_specialization.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copy_assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copy_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copyable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdint \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_default_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_destructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_move_assignable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_move_constructible.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unbounded_array.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unsigned.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_unsigned.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/maybe_const.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/negation.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/rank.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_pointer.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/result_of.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/type_identity.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/unwrap_ref.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/datasizeof.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_always_bitcastable.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_equality_comparable.h \
@@ -355,9 +308,37 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_seek_set.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_ctermid.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_off_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/time.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_clock_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_time_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_timespec.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/find_if.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove_if.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/enable_insertable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/hash.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/unary_function.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/sfinae_helpers.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/tuple.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/make_tuple_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/array.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_element.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_indices.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/integer_sequence.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_size.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_like_ext.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/pair.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/common_comparison_category.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/ordering.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/synth_three_way.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/three_way_comparable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/different_from.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/get.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/subrange.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/pair_like.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_like.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/piecewise_construct.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/string.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/memory_resource.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ios/fpos.h \
@@ -392,6 +373,7 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/convert_to_integral.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/unreachable.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iter_swap.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/next.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/prev.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/segmented_iterator.h \
@@ -454,6 +436,14 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__string/extern_template_lists.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_allocator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/noexcept_move_assign_container.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/climits \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/limits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/limits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/limits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/_limits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/syslimits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string_view \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/string_view.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/bounded_iter.h \
@@ -553,9 +543,14 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/is_always_lock_free.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/memory_order.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/duration.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/high_resolution_clock.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/steady_clock.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/time_point.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/system_clock.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctime \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__threading_support \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/convert_to_timespec.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h \
@@ -717,6 +712,8 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unique_copy.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_upper_bound.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove_copy.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/replace.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/replace_copy.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/replace_copy_if.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/replace_if.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h \
@@ -742,6 +739,7 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/concepts \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_with.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/back_insert_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/common_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/variant \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__variant/monostate.h \
@@ -768,7 +766,11 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/weak_result_type.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator_destructor.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/uses_allocator_construction.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/platform.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/windows_magic.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/config.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__system_error/error_code.h \
@@ -834,16 +836,19 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_nl_item.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__locale_dir/locale_base_api/bsd_locale_defaults.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdarg \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/dnn.hpp \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cassert \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/stack_trace.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/noncopyable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/enable_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/numeric_constants.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager_stateless/memory_manager_stateless_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/type_traits.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../is_kind.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/vector \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/formatter.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/format_fwd.h \
@@ -870,40 +875,32 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/temp_value.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__split_buffer \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cvdef.h \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/hal/interface.h \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/base.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/opencv_modules.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cvstd.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/neon_utils.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/vsx_utils.hpp \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/assert.h \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/check.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/traits.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/matx.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/saturate.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/fast_math.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/matx.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/types.hpp \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cfloat \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/float.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/float.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/float.h \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/mat.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/bufferpool.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/mat.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/persistence.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/operations.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cvstd.inl.hpp \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/complex \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/utility.hpp \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_fwd.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_exp_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/algs.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iomanip \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/fstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/file_clock.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/u8path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/list \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/binary_negate.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/bind.h \
@@ -930,9 +927,252 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/pointer_to_unary_function.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/unary_negate.h \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/optim.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/ovx.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/async.hpp \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/forward_list \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/complex \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/map \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tree \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/set \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/unordered_set \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/interfaces/enumerable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/interfaces/map_pair.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/unicode.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/unicode/unicode.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/unicode/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/unicode/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/unicode/unicode_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/byte_orderer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/byte_orderer/byte_orderer_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/byte_orderer/byte_orderer_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/byte_orderer/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/byte_orderer/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/float_details.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/vectorstream.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/vectorstream/vectorstream.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/vectorstream/vectorstream_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/vectorstream/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/vectorstream/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/vectorstream/unserialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/vectorstream/unserialize_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/vectorstream/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../enable_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../memory_manager.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/memory_manager_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/memory_manager_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/memory_manager_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/memory_manager_kernel_3.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../binary_search_tree/binary_search_tree_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../binary_search_tree/binary_search_tree_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../binary_search_tree/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../binary_search_tree/../interfaces/map_pair.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../binary_search_tree/../interfaces/enumerable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../binary_search_tree/../interfaces/remover.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../binary_search_tree/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_data_layout.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_data_layout_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_assign_fwd.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_op.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_utilities.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_utilities_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../stl_checked.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/stl_checked/std_vector_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/stl_checked/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/stl_checked/std_vector_c_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/stl_checked/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/stl_checked/../is_kind.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../std_allocator.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_expressions.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_math_functions.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_math_functions_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../general_hash/random_hashing.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../general_hash/random_hashing_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../general_hash/murmur_hash3.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../general_hash/murmur_hash3_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../general_hash/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_mat.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_mat_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../array2d.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/array2d_kernel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/array2d_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../interfaces/enumerable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/rectangle.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/rectangle_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/vector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/vector_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../matrix/matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/generic_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/serialize_pixel_overloads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/array2d_generic_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../image_processing/generic_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../array.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/array_kernel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/array_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/../interfaces/enumerable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/../sort.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/../is_kind.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/array_tools.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array/array_tools_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../image_processing/generic_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_subexp.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_subexp_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../geometry/rectangle.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_assign.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_default_mul.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_conj_trans.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_la.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_la_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../sparse_vector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sparse_vector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sparse_vector_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/edge_list_graphs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/edge_list_graphs_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../string.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/string/string.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/string/string_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/string/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/string/../error.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/string/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/string/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/string/../enable_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../rand.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/rand/rand_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/rand/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/rand/rand_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/rand/mersenne_twister.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/rand/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/rand/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/rand/../is_kind.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/rand/../string.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/sample_pair.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/sample_pair_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/ordered_sample_pair.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/ordered_sample_pair_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_line_search.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_line_search_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_lu.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_trsm.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/fortran_id.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/cblas_constants.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/getrf.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_qr.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/geqrf.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/ormqr.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_cholesky.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/potrf.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_eigenvalue.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/geev.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/syev.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/syevr.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/pbtrf.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/gesdd.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/lapack/gesvd.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/threads_kernel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../platform.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/posix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/threads_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/threads_kernel_abstract.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/time.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_timeval64.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_select.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/threads_kernel_shared.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/auto_mutex_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/rmutex_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/rmutex_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/read_write_mutex_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/read_write_mutex_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/auto_mutex_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../binary_search_tree.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/binary_search_tree/binary_search_tree_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/binary_search_tree/binary_search_tree_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/binary_search_tree/binary_search_tree_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager/../binary_search_tree/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../member_function_pointer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/member_function_pointer/member_function_pointer_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/member_function_pointer/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/member_function_pointer/member_function_pointer_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/member_function_pointer/../enable_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/member_function_pointer/make_mfp.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/member_function_pointer/make_mfp_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../memory_manager.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../queue.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/queue_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/queue_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/../interfaces/enumerable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/../interfaces/remover.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/queue_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/queue_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/queue_sort_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/queue_sort_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/queue/../sort.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../set.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/set_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/set_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/../interfaces/enumerable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/../interfaces/remover.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/set_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/binary_search_tree.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/set_compare_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set/set_compare_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../test_for_odr_violations.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/auto_unlock_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/auto_unlock_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/create_new_thread_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/create_new_thread_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/multithreaded_object_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/multithreaded_object_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/rsignaler_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/rsignaler_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../map.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/map/map_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/map/map_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/map/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/map/../interfaces/enumerable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/map/../interfaces/map_pair.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/map/../interfaces/remover.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/map/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/map/map_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/map/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/threaded_object_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/threaded_object_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/thread_specific_data_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/thread_specific_data_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/thread_function_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/thread_function_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/thread_pool_extension.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/thread \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/formatter.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/this_thread.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/thread.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/chrono \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/calendar.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/convert_to_tm.h \
@@ -949,17 +1189,733 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month_day.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month_weekday.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/literals.h \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/../dnn/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/dict.hpp \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/map \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tree \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/layer.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/dnn.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/utils/../dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/ml.hpp \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
-  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/ml/ml.inl.hpp \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/thread_pool_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../bound_function_pointer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/bound_function_pointer/bound_function_pointer_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/bound_function_pointer/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/bound_function_pointer/../member_function_pointer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/bound_function_pointer/bound_function_pointer_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../array.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/parallel_for_extension.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/parallel_for_extension_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/../console_progress_indicator.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/async.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/threads/async_abstract.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/symmetric_matrix_cache.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/symmetric_matrix_cache_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_conv.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_conv_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_fft.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_fft_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../hash.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/general_hash/hash.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../general_hash/hash_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../general_hash/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/general_hash/random_hashing.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/general_hash/count_bits.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../math.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/math/bessel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/math/details/bessel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/math/details/../../numeric_constants.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/math/details/../../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/math/windows.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../fft/fft.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../fft/fft_size.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/accumulate.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/adjacent_difference.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/exclusive_scan.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/gcd_lcm.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/inclusive_scan.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/inner_product.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/iota.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/midpoint.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/partial_sum.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/pstl_reduce.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/transform_exclusive_scan.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/transform_inclusive_scan.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../fft/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../fft/../hash.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../fft/fft_stl.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_read_from_istream.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_generic_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/matrix_blas_bindings.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/cudnn_dlibapi.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/operation_mode.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/gpu_data.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/gpu_data_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/cuda_errors.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/../error.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/../byte_orderer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/../any.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/any.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/any_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/storage.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/typeindex \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/any_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/any_decision_function.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/any_decision_function_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/any_function.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/../functional.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/utility.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/any_function_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/any/any_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/input.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/input_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../array2d.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../image_processing.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/scan_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../rand.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../array2d.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/spatial_filtering.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/spatial_filtering_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../array2d.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../geometry/border_enumerator.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/border_enumerator_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../simd.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/simd/simd4f.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/simd/simd_check.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_neon.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/arm_bf16.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/simd/simd4i.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/simd/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/simd/simd8f.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/simd/simd8i.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/assign_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/assign_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../statistics.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/statistics.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/statistics_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/../sparse_vector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/dpca.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/dpca_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/random_subset_selector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/random_subset_selector_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/../rand.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/../string.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/../matrix/matrix_mat.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/image_feature_sampling.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/image_feature_sampling_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/../statistics.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/sammon.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/sammon_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/cca.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/cca_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/average_precision.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/average_precision_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/vector_normalizer_frobmetric.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/vector_normalizer_frobmetric_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/../optimization.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/optimization.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_search_strategies.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_search_strategies_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/../sequence.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/sequence_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/sequence_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/../interfaces/enumerable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/../interfaces/remover.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/sequence_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/sequence_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/sequence_compare_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/sequence_compare_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/sequence_sort_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/sequence_sort_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/sequence_sort_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sequence/../sort.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_stop_strategies.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_stop_strategies_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/optimization_bobyqa.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_bobyqa_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/optimization_solve_qp_using_smo.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_solve_qp_using_smo_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/../unordered_pair.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/optimization_solve_qp2_using_smo.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_solve_qp2_using_smo_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/optimization_solve_qp3_using_smo.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_solve_qp3_using_smo_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/optimization_oca.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_oca_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_solve_qp_using_smo.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/optimization_trust_region.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_trust_region_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/optimization_least_squares.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_trust_region.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/optimization_least_squares_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/max_cost_assignment.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/max_cost_assignment_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/max_sum_submatrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/max_sum_submatrix_abstract.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/queue \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/../geometry.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/geometry/rectangle.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/geometry/drectangle.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/drectangle_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/geometry/vector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/geometry/border_enumerator.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/geometry/point_transforms.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/point_transforms_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../matrix/matrix_la.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../optimization/optimization.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/drectangle.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/geometry/line.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/line_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../numeric_constants.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/geometry/polygon.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/polygon_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/find_max_factor_graph_nmplp.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/find_max_factor_graph_nmplp_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/../hash.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/find_max_factor_graph_viterbi.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/find_max_factor_graph_viterbi_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/../array2d.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/find_max_parse_cky.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/find_max_parse_cky_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/optimization/isotonic_regression.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix/../optimization/isotonic_regression_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/lda.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/lda_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/thresholding.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/thresholding_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/equalize_histogram.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/equalize_histogram_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../enable_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/scan_image_pyramid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_image_pyramid_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../geometry.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/full_object_detection.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/full_object_detection_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_processing/generic_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/detection_template_tools.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/detection_template_tools_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/object_detector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/object_detector_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/box_overlap_testing.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/box_overlap_testing_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/box_overlap_testing.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/scan_image_pyramid_tools.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_image_pyramid_tools_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../statistics.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/setup_hashed_features.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/setup_hashed_features_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_image_pyramid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_image_boxes.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_image_boxes_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_processing/full_object_detection.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/assign_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/equalize_histogram.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/morphological_operations.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/morphological_operations_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/spatial_filtering.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/thresholding.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/edge_detector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/edge_detector_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../geometry.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/build_separable_poly_filters.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/surf.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/surf_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/hessian_pyramid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/hessian_pyramid_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../image_transforms/integral_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/integral_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../noncopyable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../array.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../array2d.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../noncopyable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../stl_checked.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/draw.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/draw_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/fonts.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/fonts_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../unicode.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../array.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../array2d.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/integral_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/image_pyramid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/image_pyramid_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/hough_transform.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/hough_transform_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_processing/generic_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/label_connected_blobs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/label_connected_blobs_abstract.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stack \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/colormaps.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/colormaps_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../hash.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/segment_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/segment_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../disjoint_subsets.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/disjoint_subsets/disjoint_subsets.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/disjoint_subsets/disjoint_subsets_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/disjoint_subsets/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/disjoint_subsets/disjoint_subsets_sized.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/disjoint_subsets/disjoint_subsets_sized_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../set.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/interpolation.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/interpolation_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/image_pyramid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_processing/full_object_detection.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../rand.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/fhog.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/fhog_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../array.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/draw.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/interpolation.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/lbp.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/lbp_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/random_color_transform.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/random_color_transform_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_transforms/random_cropper.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/random_cropper_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../lsh.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/projection_hash.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/projection_hash_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/../rand.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/create_random_projection_hash.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/create_random_projection_hash_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/../statistics.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/../svm.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_rank_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_rank_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/ranking_tools.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/ranking_tools_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../statistics.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../optimization.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/function.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/function_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../rand.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/kernel_matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/kernel_matrix_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/kernel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sparse_kernel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sparse_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../std_allocator.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../enable_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_nu_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_nu_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../optimization/optimization_solve_qp2_using_smo.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/krls.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/krls_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/rls.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/rls_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/kcentroid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/kcentroid_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/kcentroid_overloads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/kkmeans.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../matrix/matrix_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../array.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/kkmeans_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../noncopyable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/feature_ranking.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/feature_ranking_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/rbf_network.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/rbf_network_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/linearly_independent_subset_finder.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/linearly_independent_subset_finder_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../is_kind.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../string.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/reduced.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/reduced_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/rvm.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/rvm_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/pegasos.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/pegasos_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/null_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/null_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/roc_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/roc_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/empirical_kernel_map.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/empirical_kernel_map_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_c_linear_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_c_linear_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_c_linear_dcd_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_c_linear_dcd_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_c_ekm_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_c_ekm_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/simplify_linear_decision_function.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/simplify_linear_decision_function_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/krr_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/rr_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/rr_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/krr_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sort_basis_vectors.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sort_basis_vectors_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_c_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_c_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../optimization/optimization_solve_qp3_using_smo.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_one_class_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_one_class_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svr_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svr_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/one_vs_one_decision_function.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/one_vs_one_decision_function_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../type_safe_union.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/type_safe_union/type_safe_union_kernel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/type_safe_union/type_safe_union_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/type_safe_union/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/type_safe_union/../type_traits.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/type_safe_union/../overloaded.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../any.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../unordered_pair.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/null_df.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/multiclass_tools.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/multiclass_tools_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_multiclass_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_multiclass_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_regression_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_regression_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_object_detection_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_object_detection_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../geometry.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../image_processing/full_object_detection.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../image_processing/box_overlap_testing.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_sequence_labeler.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_sequence_labeler_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_sequence_segmenter.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_sequence_segmenter_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sequence_segmenter.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sequence_segmenter_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sequence_labeler.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/sequence_labeler_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../optimization/find_max_factor_graph_viterbi.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_assignment_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/cross_validate_assignment_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/one_vs_all_decision_function.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/one_vs_all_decision_function_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/structural_svm_problem.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/structural_svm_problem_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../optimization/optimization_oca.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/assignment_function.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/assignment_function_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../optimization/max_cost_assignment.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/track_association_function.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/track_association_function_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/active_learning.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/active_learning_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svr_linear_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svr_linear_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/auto.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/auto_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_multiclass_linear_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/svm_multiclass_linear_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/structural_svm_problem_threaded.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/structural_svm_problem_threaded_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../misc_api.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/misc_api/posix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/misc_api/misc_api_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/misc_api/misc_api_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/misc_api/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/misc_api/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/misc_api/misc_api_shared.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/misc_api/../noncopyable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/hashes.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/hashes_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lsh/../hash.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_keypoint.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_keypoint/surf.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_keypoint/hessian_pyramid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_keypoint/hog.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/hog_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../geometry.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_keypoint/poly_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/poly_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_keypoint/fine_hog_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/fine_hog_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/hog.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_keypoint/hashed_feature_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../lsh/projection_hash.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/hashed_feature_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/../statistics.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_keypoint/nearest_neighbor_feature_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/nearest_neighbor_feature_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_keypoint/binned_vector_feature_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../image_keypoint/binned_vector_feature_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/scan_image_boxes.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/scan_image_custom.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_image_custom_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/remove_unobtainable_rectangles.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/remove_unobtainable_rectangles_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_image_custom.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_fhog_pyramid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/scan_fhog_pyramid_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../array.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/object_detector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../svm/structural_object_detection_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/structural_object_detection_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/structural_svm_object_detection_problem.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/structural_svm_object_detection_problem_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../image_processing/object_detector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/scan_fhog_pyramid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/shape_predictor.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/shape_predictor_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/shape_predictor_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/shape_predictor_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/shape_predictor.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../console_progress_indicator.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../data_io/image_dataset_metadata.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../data_io/../geometry.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/correlation_tracker.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/correlation_tracker_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../cuda/tensor_tools.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/cublas_dlibapi.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/cusolver_dlibapi.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/curand_dlibapi.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/cpu_dlib.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/../geometry/rectangle.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/../dnn/utilities.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../cuda/tensor.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/utilities_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../geometry.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/cuda_dlib.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/../rand.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/../test_for_odr_violations.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/layers.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/layers_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/core.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/core_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../statistics.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../rand.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../metaprogramming.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/constexpr_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/overloaded.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/functional.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../utility.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../constexpr_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../string.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../vectorstream.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/utilities.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../cuda/operation_mode.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/loss.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/loss_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../image_processing/box_overlap_testing.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../image_processing/full_object_detection.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../svm/ranking_tools.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/solvers.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/solvers_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../pipe.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/pipe/pipe_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/pipe/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/pipe/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/pipe/pipe_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../cuda/cuda_dlib.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../statistics/running_gradient.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/statistics/running_gradient_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../dir_nav.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/posix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/dir_nav_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/dir_nav_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/../algs.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/dirent.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/dirent.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libgen.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/unistd.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/unistd.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_posix_vdisable.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/select.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_uuid_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/gethostuuid.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/stat.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_s_ifmt.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_filesec_t.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/../stl_checked.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/../enable_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/../queue.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/dir_nav_extensions.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/dir_nav_extensions_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/../dir_nav.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dir_nav/../string.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../md5.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/md5/md5_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/md5/md5_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/md5/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/cuda/tensor_tools.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/validation.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../svm/cross_validate_object_detection_trainer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/../svm/cross_validate_object_detection_trainer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/visitors.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/dnn/visitors_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_processing/frontal_face_detector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/frontal_face_detector_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_processing/object_detector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_processing/scan_fhog_pyramid.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../compress_stream.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/compress_stream/compress_stream_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/compress_stream/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/compress_stream/compress_stream_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/compress_stream/compress_stream_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/compress_stream/compress_stream_kernel_3.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/compress_stream/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/conditioning_class.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/conditioning_class/conditioning_class_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/conditioning_class/conditioning_class_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/conditioning_class/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/conditioning_class/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/conditioning_class/conditioning_class_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/conditioning_class/conditioning_class_kernel_3.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/conditioning_class/conditioning_class_kernel_4.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/conditioning_class/conditioning_class_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/memory_manager.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder/entropy_encoder_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder/entropy_encoder_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder/entropy_encoder_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder/entropy_encoder_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder/entropy_decoder_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder/entropy_decoder_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder/entropy_decoder_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder/entropy_decoder_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/entropy_encoder_model_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/entropy_encoder_model_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/entropy_encoder_model_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/entropy_encoder_model_kernel_3.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/entropy_encoder_model_kernel_4.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/entropy_encoder_model_kernel_5.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/entropy_encoder_model_kernel_6.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_encoder_model/entropy_encoder_model_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/sliding_buffer_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/sliding_buffer_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/../interfaces/enumerable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/../serialize.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/sliding_buffer_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/circular_buffer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/circular_buffer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/sliding_buffer/../matrix/matrix_mat.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model/entropy_decoder_model_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model/entropy_decoder_model_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model/entropy_decoder_model_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model/entropy_decoder_model_kernel_3.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model/entropy_decoder_model_kernel_4.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model/entropy_decoder_model_kernel_5.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/entropy_decoder_model/entropy_decoder_model_kernel_6.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lz77_buffer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lz77_buffer/lz77_buffer_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lz77_buffer/lz77_buffer_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lz77_buffer/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lz77_buffer/lz77_buffer_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lz77_buffer/lz77_buffer_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lz77_buffer/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lzp_buffer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lzp_buffer/lzp_buffer_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lzp_buffer/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lzp_buffer/lzp_buffer_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lzp_buffer/lzp_buffer_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lzp_buffer/lzp_buffer_kernel_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/lzp_buffer/../assert.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/crc32.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/crc32/crc32_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/crc32/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/crc32/crc32_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../base64.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/base64/base64_kernel_1.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/base64/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/base64/base64_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv/cv_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv/../image_processing/generic_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv/../matrix/matrix_mat.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv/cv_image_abstract.h \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/core.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cvdef.h \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/hal/interface.h \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/base.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/opencv_modules.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cvstd.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/neon_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/check.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/traits.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/matx.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/saturate.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/fast_math.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/matx.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/types.hpp \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cfloat \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/float.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/float.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/float.h \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/mat.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/bufferpool.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/mat.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/persistence.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/operations.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/utility.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/optim.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/ovx.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/types_c.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv/to_open_cv.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv/to_open_cv_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/opencv/../matrix/matrix.h \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/opencv.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/calib3d.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/features2d.hpp \
@@ -970,6 +1926,15 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/utils/logger.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/utils/logger.defines.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/utils/logtag.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/async.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/../dnn/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/dict.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/layer.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/dnn/utils/../dnn.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann/flann_base.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann/general.h \
@@ -979,7 +1944,6 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann/saving.h \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann/nn_index.h \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann/result_set.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/set \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann/all_indices.h \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann/kdtree_index.h \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann/dynamic_bitset.h \
@@ -1005,6 +1969,8 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/videoio.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/imgproc.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/./imgproc/segmentation.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/ml.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/ml/ml.inl.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/objdetect.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
@@ -1025,10 +1991,7 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/stitching/detail/matchers.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/stitching/detail/util.hpp \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/list \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/queue \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/stitching/detail/camera.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
@@ -1036,6 +1999,140 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/video.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/video/tracking.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/video/background_segm.hpp \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/modularity_clustering.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/modularity_clustering_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/../sparse_vector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/../graph_utils/edge_list_graphs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/../rand.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/chinese_whispers.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/chinese_whispers_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/spectral_cluster.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/spectral_cluster_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/../svm/kkmeans.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/bottom_up_cluster.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/bottom_up_cluster_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/../disjoint_subsets.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/clustering/../graph_utils.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/graph_utils/graph_utils.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/graph_utils_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../is_kind.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../enable_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../set.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../memory_manager.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../set_utils.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set_utils/set_utils.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set_utils/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/set_utils/set_utils_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/graph_utils/edge_list_graphs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/graph_utils/function_objects.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/function_objects_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/svm/../graph_utils/../svm/sparse_vector.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_widgets.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_widgets/widgets.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/widgets_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/drawable.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/drawable_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../gui_core.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_core/xlib.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_core/gui_core_kernel_2.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_core/gui_core_kernel_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_core/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_core/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_core/../geometry/rectangle.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_core/../binary_search_tree.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_core/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/gui_core/../unicode.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../set.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../binary_search_tree.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/canvas_drawing.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/canvas_drawing_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../image_transforms/assign_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../geometry.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../timer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/timer/timer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/timer/../threads.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/timer/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/timer/../misc_api.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/timer/timer_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/timer/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/timer/../binary_search_tree.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/timer/timer_heavy.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/base_widgets.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/base_widgets_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../member_function_pointer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../map.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/style.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/style_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../any.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../sequence.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../dir_nav.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../queue.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../string.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../misc_api.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../image_processing/full_object_detection.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/array2d/../geometry/../image_processing/../image_transforms/../gui_widgets/../geometry/line.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_io.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/image_loader.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/image_loader_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/dng_shared.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../pixel.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../entropy_decoder_model.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../entropy_decoder.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../uintn.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_transforms/assign_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../vectorstream.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/png_loader.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/png_loader_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../type_traits.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../test_for_odr_violations.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../dir_nav.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/jpeg_loader.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/jpeg_loader_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/webp_loader.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/webp_loader_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/load_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/load_image_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../string.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/jxl_loader.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/jxl_loader_abstract.h \
+  /opt/homebrew/include/gif_lib.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdbool.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdbool.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_saver/image_saver.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/image_saver_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../algs.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../byte_orderer.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../entropy_encoder.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../entropy_encoder_model.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../dir_nav.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../float_details.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../vectorstream.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../matrix/matrix_exp.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../image_transforms/assign_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_saver/save_png.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/save_png_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/image_saver.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../array2d.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_saver/save_jpeg.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/save_jpeg_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../enable_if.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../matrix.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/../image_processing/generic_image.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_saver/save_webp.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/save_webp_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_saver/save_jxl.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/image_loader/../image_saver/save_jxl_abstract.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/string.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/spdlog.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/common.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/null_mutex.h \
@@ -1047,15 +2144,11 @@ CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o: \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/registry.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/periodic_worker.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/condition_variable \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/thread \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/formatter.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/this_thread.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/thread.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/synchronous_factory.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/logger.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/backtracer.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/circular_q.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cassert \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/log_msg_buffer.h \
   /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/details/log_msg.h \
-  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/version.h
+  /Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include/spdlog/version.h \
+  /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/../dlib/matrix.h

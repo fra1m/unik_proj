@@ -11,6 +11,8 @@ add_executable(${PROJECT_NAME}
                 src/FaceRecognition/faceRecognition.h
                 src/ImageProcessing/imageProcessing.cpp
                 src/ImageProcessing/imageProcessing.h
+                src/FaceEmbedding/faceEmbedding.h
+                src/FaceEmbedding/faceEmbedding.cpp
                 )
 
 set(OpenCV_DIR ${CMAKE_SOURCE_DIR}/external/opencv/build/install/lib/cmake/opencv4) 
@@ -22,6 +24,9 @@ target_link_libraries(${PROJECT_NAME} spdlog)
 
 add_subdirectory(external/eigen)
 target_link_libraries(${PROJECT_NAME} eigen)
+
+add_subdirectory(external/dlib)
+target_link_libraries(${PROJECT_NAME} dlib)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/)
 

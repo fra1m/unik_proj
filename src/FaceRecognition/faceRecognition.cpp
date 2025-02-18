@@ -1,4 +1,7 @@
 #include "faceRecognition.h"
+#include "../FaceEmbedding/faceEmbedding.h"
+
+#include <dlib/matrix.h>
 #include <filesystem>
 #include <iostream>
 #include <opencv2/dnn.hpp>
@@ -7,14 +10,34 @@
 #include <spdlog/spdlog.h>
 
 cv::Rect lastFaceRegion; // Глобальная переменная для хранения координат
-
 cv::Rect FaceRecognition::getLastFaceRegion() { return faceRegion; }
 
+cv::Mat dlibMatrixToCvMat(const dlib::matrix<float, 0, 1> &dlibMat) {
+  cv::Mat cvMat(1, dlibMat.size(), CV_32F); // Создаем однострочную матрицу
+  for (long i = 0; i < dlibMat.size(); ++i) {
+    cvMat.at<float>(0, i) = dlibMat(i); // Копируем данные
+  }
+  return cvMat;
+}
+
 FaceRecognition::FaceRecognition(const std::string &modelConfig,
-                                 const std::string &modelWeights) {
+                                 const std::string &modelWeights,
+                                 FaceEmbedding &faceEmbedding)
+    : faceEmbedding(faceEmbedding) { // Загрузка детектора лиц
   net = cv::dnn::readNetFromCaffe(modelConfig, modelWeights);
-  if (net.empty()) {
-    std::cerr << "Ошибка загрузки модели!" << std::endl;
+
+  // Пытаемся загрузить SVM при инициализации
+  const std::string default_model_path = "face_svm.yml";
+  if (std::filesystem::exists(default_model_path)) {
+    loadSVM(default_model_path);
+    spdlog::info("Автоматически загружена сохраненная модель");
+  }
+}
+
+FaceRecognition::~FaceRecognition() {
+  if (!svm->empty()) {
+    svm->save("face_svm.yml");
+    spdlog::info("Модель автоматически сохранена при выходе");
   }
 }
 
@@ -24,9 +47,18 @@ bool FaceRecognition::detectFace(cv::Mat &frame) {
     return false;
   }
 
-  cv::Mat blob =
-      cv::dnn::blobFromImage(frame, 1.0, cv::Size(300, 300),
-                             cv::Scalar(104.0, 177.0, 123.0), false, false);
+  cv::Mat color_frame;
+  if (frame.channels() == 1) {
+    cv::cvtColor(frame, color_frame, cv::COLOR_GRAY2BGR);
+  } else {
+    color_frame = frame.clone();
+  }
+
+  cv::Mat blob = cv::dnn::blobFromImage(color_frame, 1.0, cv::Size(300, 300),
+                                        cv::Scalar(104.0, 177.0, 123.0),
+                                        true, // swapRB = true
+                                        false, CV_32F);
+
   net.setInput(blob);
   cv::Mat detections = net.forward();
 
@@ -59,63 +91,88 @@ bool FaceRecognition::detectFace(cv::Mat &frame) {
 
 void FaceRecognition::train(const std::string &positivePath,
                             const std::string &negativePath) {
+  spdlog::info(
+      "Начало обучения модели с использованием изображений из: {} и {}",
+      positivePath, negativePath);
 
-  spdlog::info("Starting training using images from: {} and {}", positivePath,
-               negativePath);
-
-  std::vector<cv::Mat> images;
+  std::vector<cv::Mat> embeddings;
   std::vector<int> labels;
 
-  // Загружаем положительные примеры (твои фото)
+  // Загрузка положительных примеров
   for (const auto &entry : std::filesystem::directory_iterator(positivePath)) {
     cv::Mat img = cv::imread(entry.path().string(), cv::IMREAD_COLOR);
-    if (img.empty())
+    if (img.channels() == 1) {
+      cv::cvtColor(img, img, cv::COLOR_GRAY2BGR);
+    }
+    if (img.empty()) {
+      spdlog::warn("Не удалось загрузить изображение: {}",
+                   entry.path().string());
       continue;
-    cv::resize(img, img, cv::Size(300, 300));
-    images.push_back(img);
-    labels.push_back(1);
+    }
+
+    // Получаем эмбеддинг через FaceEmbedding
+    auto descriptors = faceEmbedding.getFaceDescriptor(img);
+    if (descriptors.empty()) {
+      spdlog::warn("Не удалось извлечь эмбеддинг для: {}",
+                   entry.path().string());
+      continue;
+    }
+
+    cv::Mat embedding = dlibMatrixToCvMat(descriptors[0]);
+    embeddings.push_back(embedding);
+    labels.push_back(1); // Метка "Я"
   }
 
-  // Загружаем отрицательные примеры (другие люди)
+  // Загрузка отрицательных примеров
   for (const auto &entry : std::filesystem::directory_iterator(negativePath)) {
-    cv::Mat img = cv::imread(entry.path().string(), cv::IMREAD_COLOR);
-    if (img.empty())
+    cv::Mat img = cv::imread(entry.path().string());
+    if (img.empty()) {
+      spdlog::warn("Не удалось загрузить изображение: {}",
+                   entry.path().string());
       continue;
-    cv::resize(img, img, cv::Size(300, 300));
-    images.push_back(img);
+    }
+
+    auto descriptors = faceEmbedding.getFaceDescriptor(img);
+    if (descriptors.empty()) {
+      spdlog::warn("Не удалось извлечь эмбеддинг для: {}",
+                   entry.path().string());
+      continue;
+    }
+
+    cv::Mat embedding = dlibMatrixToCvMat(descriptors[0]);
+    embeddings.push_back(embedding);
     labels.push_back(0); // Метка "Не я"
   }
 
-  if (images.size() < 2) {
-    spdlog::error("Not enough training images! Need at least two classes.");
+  if (embeddings.empty()) {
+    spdlog::error("Нет данных для обучения!");
     return;
   }
 
-  // Преобразование изображений в признаки
+  // Создание матрицы признаков
   cv::Mat trainingData;
-  for (const auto &img : images) {
-    cv::Mat blob = cv::dnn::blobFromImage(
-        img, 1.0, cv::Size(300, 300), cv::Scalar(104, 177, 123), false, false);
-    net.setInput(blob);
-    cv::Mat features = net.forward();
-    features = features.reshape(1, 1);
-    trainingData.push_back(features);
-
-    spdlog::info("Размерность признаков при обучении: {} x {}", features.rows,
-                 features.cols);
+  for (const auto &embedding : embeddings) {
+    cv::Mat normEmbedding;
+    // Нормализуем эмбеддинг
+    cv::normalize(embedding, normEmbedding, 1.0, 0, cv::NORM_L2);
+    trainingData.push_back(normEmbedding);
   }
-
   trainingData.convertTo(trainingData, CV_32F);
+
   cv::Mat labelsMat(labels.size(), 1, CV_32SC1, labels.data());
 
   // Создание и обучение SVM
   auto svm = cv::ml::SVM::create();
   svm->setType(cv::ml::SVM::C_SVC);
   svm->setKernel(cv::ml::SVM::LINEAR);
-  svm->train(trainingData, cv::ml::ROW_SAMPLE, labelsMat);
-  svm->save("face_svm.yml");
 
-  spdlog::info("Training completed. Model saved to face_svm.yml");
+  try {
+    svm->train(trainingData, cv::ml::ROW_SAMPLE, labelsMat);
+    svm->save("face_svm.yml");
+    spdlog::info("Обучение завершено. Модель сохранена.");
+  } catch (const cv::Exception &e) {
+    spdlog::error("Ошибка обучения SVM: {}", e.what());
+  }
 }
 
 int FaceRecognition::predict(const cv::Mat &face) {
@@ -128,27 +185,24 @@ int FaceRecognition::predict(const cv::Mat &face) {
     return -1;
   }
 
-  // Преобразование изображения в нужный формат
-  cv::Mat face_resized;
-  cv::resize(face, face_resized, cv::Size(300, 300));
-
-  // Используем ту же нейросеть для извлечения признаков, что и в train()
-  cv::Mat blob =
-      cv::dnn::blobFromImage(face_resized, 1.0, cv::Size(300, 300),
-                             cv::Scalar(104, 177, 123), false, false);
-  net.setInput(blob);
-  cv::Mat features = net.forward();
-  features = features.reshape(1, 1);
-  features.convertTo(features, CV_32F);
-
-  if (features.cols != svm->getVarCount()) {
-    spdlog::error("Размерность features ({}) не совпадает с var_count ({}).",
-                  features.cols, svm->getVarCount());
+  // Получаем эмбеддинг через FaceEmbedding (как при обучении)
+  auto descriptors = faceEmbedding.getFaceDescriptor(face);
+  if (descriptors.empty()) {
+    spdlog::error("Не удалось извлечь эмбеддинг для предсказания");
     return -1;
   }
 
-  // Предсказание SVM
-  float response = svm->predict(features);
+  cv::Mat embedding = dlibMatrixToCvMat(descriptors[0]);
+  // Применяем L2-нормализацию
+  cv::normalize(embedding, embedding, 1.0, 0, cv::NORM_L2);
+
+  if (embedding.cols != svm->getVarCount()) {
+    spdlog::error("Размерность эмбеддинга ({}) не совпадает с SVM ({})",
+                  embedding.cols, svm->getVarCount());
+    return -1;
+  }
+
+  float response = svm->predict(embedding);
   return (response > 0) ? 1 : 0;
 }
 
@@ -161,9 +215,64 @@ void FaceRecognition::loadSVM(const std::string &svmPath) {
   }
 }
 
-bool FaceRecognition::isMyFace(const cv::Mat &face) {
-  int prediction = predict(face);
-  spdlog::info("Face prediction: {}",
-               prediction); // Логируем результат предсказания
-  return prediction == 1;   // Предсказание 1 означает, что это ваше лицо
+bool FaceRecognition::isMyFace(const cv::Mat &face_embedding) {
+  if (svm.empty()) {
+    spdlog::error("SVM модель не загружена!");
+    return false;
+  }
+
+  // Проверка размерности эмбеддинга
+  if (face_embedding.cols != svm->getVarCount()) {
+    spdlog::error("Несоответствие размерности: эмбеддинг {} vs SVM {}",
+                  face_embedding.cols, svm->getVarCount());
+    return false;
+  }
+
+  // Прогноз с получением расстояния до разделяющей гиперплоскости
+  cv::Mat results;
+  float response =
+      svm->predict(face_embedding, results, cv::ml::StatModel::RAW_OUTPUT);
+
+  // Для бинарной классификации используем порог
+  const float threshold = 0.0f; // Может потребовать настройки
+  return results.at<float>(0) > threshold;
+}
+
+std::vector<cv::Rect> FaceRecognition::detectFaces(cv::Mat &frame) {
+  std::vector<cv::Rect> faces;
+
+  if (frame.empty()) {
+    spdlog::error("Empty frame received!");
+    return faces;
+  }
+
+  cv::Mat color_frame;
+  if (frame.channels() == 1) {
+    cv::cvtColor(frame, color_frame, cv::COLOR_GRAY2BGR);
+  } else {
+    color_frame = frame.clone();
+  }
+
+  cv::Mat blob = cv::dnn::blobFromImage(color_frame, 1.0, cv::Size(300, 300),
+                                        cv::Scalar(104.0, 177.0, 123.0), true,
+                                        false, CV_32F);
+
+  net.setInput(blob);
+  cv::Mat detections = net.forward();
+
+  cv::Mat detectionMat(detections.size[2], detections.size[3], CV_32F,
+                       detections.ptr<float>());
+
+  for (int i = 0; i < detectionMat.rows; i++) {
+    float confidence = detectionMat.at<float>(i, 2);
+    if (confidence > CONFIDENCE_THRESHOLD) {
+      int x1 = static_cast<int>(detectionMat.at<float>(i, 3) * frame.cols);
+      int y1 = static_cast<int>(detectionMat.at<float>(i, 4) * frame.rows);
+      int x2 = static_cast<int>(detectionMat.at<float>(i, 5) * frame.cols);
+      int y2 = static_cast<int>(detectionMat.at<float>(i, 6) * frame.rows);
+      faces.emplace_back(x1, y1, x2 - x1, y2 - y1);
+    }
+  }
+
+  return faces;
 }

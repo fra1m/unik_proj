@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o"
+  "CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o.d"
   "CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o"
   "CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o.d"
   "CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.o"

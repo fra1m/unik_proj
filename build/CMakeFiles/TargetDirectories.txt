@@ -36,3 +36,16 @@
 /Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen/unsupported/Eigen/CXX11/CMakeFiles/install.dir
 /Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen/unsupported/Eigen/CXX11/CMakeFiles/install/local.dir
 /Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen/unsupported/Eigen/CXX11/CMakeFiles/install/strip.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/CMakeFiles/edit_cache.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/CMakeFiles/rebuild_cache.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/CMakeFiles/list_install_components.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/CMakeFiles/install.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/CMakeFiles/install/local.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/CMakeFiles/install/strip.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/CMakeFiles/dlib.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/CMakeFiles/edit_cache.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/CMakeFiles/rebuild_cache.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/CMakeFiles/list_install_components.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/CMakeFiles/install.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/CMakeFiles/install/local.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/CMakeFiles/install/strip.dir

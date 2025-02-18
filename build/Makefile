@@ -187,6 +187,43 @@ spdlog/fast:
 	$(MAKE) $(MAKESILENT) -f external/spdlog/CMakeFiles/spdlog.dir/build.make external/spdlog/CMakeFiles/spdlog.dir/build
 .PHONY : spdlog/fast
 
+#=============================================================================
+# Target rules for targets named dlib
+
+# Build rule for target.
+dlib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dlib
+.PHONY : dlib
+
+# fast build rule for target.
+dlib/fast:
+	$(MAKE) $(MAKESILENT) -f external/dlib/dlib/CMakeFiles/dlib.dir/build.make external/dlib/dlib/CMakeFiles/dlib.dir/build
+.PHONY : dlib/fast
+
+src/FaceEmbedding/faceEmbedding.o: src/FaceEmbedding/faceEmbedding.cpp.o
+.PHONY : src/FaceEmbedding/faceEmbedding.o
+
+# target to build an object file
+src/FaceEmbedding/faceEmbedding.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o
+.PHONY : src/FaceEmbedding/faceEmbedding.cpp.o
+
+src/FaceEmbedding/faceEmbedding.i: src/FaceEmbedding/faceEmbedding.cpp.i
+.PHONY : src/FaceEmbedding/faceEmbedding.i
+
+# target to preprocess a source file
+src/FaceEmbedding/faceEmbedding.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.i
+.PHONY : src/FaceEmbedding/faceEmbedding.cpp.i
+
+src/FaceEmbedding/faceEmbedding.s: src/FaceEmbedding/faceEmbedding.cpp.s
+.PHONY : src/FaceEmbedding/faceEmbedding.s
+
+# target to generate assembly for a file
+src/FaceEmbedding/faceEmbedding.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.s
+.PHONY : src/FaceEmbedding/faceEmbedding.cpp.s
+
 src/FaceRecognition/faceRecognition.o: src/FaceRecognition/faceRecognition.cpp.o
 .PHONY : src/FaceRecognition/faceRecognition.o
 
@@ -272,7 +309,11 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... FaceID"
+	@echo "... dlib"
 	@echo "... spdlog"
+	@echo "... src/FaceEmbedding/faceEmbedding.o"
+	@echo "... src/FaceEmbedding/faceEmbedding.i"
+	@echo "... src/FaceEmbedding/faceEmbedding.s"
 	@echo "... src/FaceRecognition/faceRecognition.o"
 	@echo "... src/FaceRecognition/faceRecognition.i"
 	@echo "... src/FaceRecognition/faceRecognition.s"
