@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/vasili/Desktop/Tests/Face_opencv/src/FaceEmbedding/faceEmbedding.cpp" "CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o" "gcc" "CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o.d"
   "/Users/vasili/Desktop/Tests/Face_opencv/src/FaceRecognition/faceRecognition.cpp" "CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o" "gcc" "CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o.d"
   "/Users/vasili/Desktop/Tests/Face_opencv/src/ImageProcessing/imageProcessing.cpp" "CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.o" "gcc" "CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.o.d"
   "/Users/vasili/Desktop/Tests/Face_opencv/src/main.cpp" "CMakeFiles/FaceID.dir/src/main.cpp.o" "gcc" "CMakeFiles/FaceID.dir/src/main.cpp.o.d"

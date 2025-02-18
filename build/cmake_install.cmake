@@ -41,6 +41,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/Users/vasili/Desktop/Tests/Face_opencv/build/external/spdlog/cmake_install.cmake")
   include("/Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen/cmake_install.cmake")
+  include("/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/cmake_install.cmake")
 
 endif()
 

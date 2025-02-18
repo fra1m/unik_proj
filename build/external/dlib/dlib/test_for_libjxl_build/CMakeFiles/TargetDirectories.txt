@@ -1,0 +1,3 @@
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjxl_build/CMakeFiles/libjxl_test.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjxl_build/CMakeFiles/edit_cache.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjxl_build/CMakeFiles/rebuild_cache.dir

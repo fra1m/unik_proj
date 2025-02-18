@@ -114,11 +114,26 @@ CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vasili/Desktop/Tests/Face_opencv/src/ImageProcessing/imageProcessing.cpp -o CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.s
 
+CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o: CMakeFiles/FaceID.dir/flags.make
+CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o: /Users/vasili/Desktop/Tests/Face_opencv/src/FaceEmbedding/faceEmbedding.cpp
+CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o: CMakeFiles/FaceID.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o -MF CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o.d -o CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o -c /Users/vasili/Desktop/Tests/Face_opencv/src/FaceEmbedding/faceEmbedding.cpp
+
+CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vasili/Desktop/Tests/Face_opencv/src/FaceEmbedding/faceEmbedding.cpp > CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.i
+
+CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vasili/Desktop/Tests/Face_opencv/src/FaceEmbedding/faceEmbedding.cpp -o CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.s
+
 # Object files for target FaceID
 FaceID_OBJECTS = \
 "CMakeFiles/FaceID.dir/src/main.cpp.o" \
 "CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o" \
-"CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.o"
+"CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.o" \
+"CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o"
 
 # External object files for target FaceID
 FaceID_EXTERNAL_OBJECTS =
@@ -126,6 +141,7 @@ FaceID_EXTERNAL_OBJECTS =
 bin/FaceID: CMakeFiles/FaceID.dir/src/main.cpp.o
 bin/FaceID: CMakeFiles/FaceID.dir/src/FaceRecognition/faceRecognition.cpp.o
 bin/FaceID: CMakeFiles/FaceID.dir/src/ImageProcessing/imageProcessing.cpp.o
+bin/FaceID: CMakeFiles/FaceID.dir/src/FaceEmbedding/faceEmbedding.cpp.o
 bin/FaceID: CMakeFiles/FaceID.dir/build.make
 bin/FaceID: /opt/homebrew/lib/libopencv_gapi.4.11.0.dylib
 bin/FaceID: /opt/homebrew/lib/libopencv_stitching.4.11.0.dylib
@@ -164,6 +180,7 @@ bin/FaceID: /opt/homebrew/lib/libopencv_xfeatures2d.4.11.0.dylib
 bin/FaceID: /opt/homebrew/lib/libopencv_xobjdetect.4.11.0.dylib
 bin/FaceID: /opt/homebrew/lib/libopencv_xphoto.4.11.0.dylib
 bin/FaceID: external/spdlog/libspdlog.a
+bin/FaceID: external/dlib/dlib/libdlib.a
 bin/FaceID: /opt/homebrew/lib/libopencv_shape.4.11.0.dylib
 bin/FaceID: /opt/homebrew/lib/libopencv_highgui.4.11.0.dylib
 bin/FaceID: /opt/homebrew/lib/libopencv_datasets.4.11.0.dylib
@@ -184,8 +201,24 @@ bin/FaceID: /opt/homebrew/lib/libopencv_flann.4.11.0.dylib
 bin/FaceID: /opt/homebrew/lib/libopencv_photo.4.11.0.dylib
 bin/FaceID: /opt/homebrew/lib/libopencv_imgproc.4.11.0.dylib
 bin/FaceID: /opt/homebrew/lib/libopencv_core.4.11.0.dylib
+bin/FaceID: /opt/homebrew/lib/libX11.dylib
+bin/FaceID: /opt/homebrew/lib/libXext.dylib
+bin/FaceID: /opt/homebrew/lib/libgif.dylib
+bin/FaceID: /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/lib/libcblas.tbd
+bin/FaceID: /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/lib/liblapack.tbd
+bin/FaceID: /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/lib/libsqlite3.tbd
+bin/FaceID: /opt/homebrew/Cellar/ffmpeg/7.1_4/lib/libavdevice.dylib
+bin/FaceID: /opt/homebrew/Cellar/ffmpeg/7.1_4/lib/libavfilter.dylib
+bin/FaceID: /opt/homebrew/Cellar/ffmpeg/7.1_4/lib/libavformat.dylib
+bin/FaceID: /opt/homebrew/Cellar/ffmpeg/7.1_4/lib/libavcodec.dylib
+bin/FaceID: /opt/homebrew/Cellar/ffmpeg/7.1_4/lib/libswresample.dylib
+bin/FaceID: /opt/homebrew/Cellar/ffmpeg/7.1_4/lib/libswscale.dylib
+bin/FaceID: /opt/homebrew/Cellar/ffmpeg/7.1_4/lib/libavutil.dylib
+bin/FaceID: /opt/homebrew/lib/libpng.dylib
+bin/FaceID: /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/lib/libz.tbd
+bin/FaceID: /opt/homebrew/lib/libjpeg.dylib
 bin/FaceID: CMakeFiles/FaceID.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable bin/FaceID"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable bin/FaceID"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FaceID.dir/link.txt --verbose=$(VERBOSE)
 	/opt/homebrew/bin/cmake -E copy_directory /Users/vasili/Desktop/Tests/Face_opencv/resources /Users/vasili/Desktop/Tests/Face_opencv/build/bin/resources
 
