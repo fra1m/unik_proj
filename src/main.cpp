@@ -12,6 +12,8 @@
 #include <spdlog/spdlog.h>
 
 namespace {
+constexpr float kRingStartAngle = -static_cast<float>(CV_PI) / 2.0f;
+
 cv::Rect pickLargestFace(const std::vector<cv::Rect> &faces) {
   if (faces.empty()) {
     return {};
@@ -27,6 +29,43 @@ void drawOverlayLine(cv::Mat &frame, const std::string &text, int &line) {
   cv::putText(frame, text, cv::Point(x, y), cv::FONT_HERSHEY_SIMPLEX, 0.6,
               cv::Scalar(255, 255, 255), 2);
   line++;
+}
+
+void updateHintText(
+    const std::string &raw, std::string &shown, std::string &pending,
+    int &pendingFrames, std::chrono::steady_clock::time_point &lastChange,
+    int stableFrames, std::chrono::milliseconds minHold) {
+  const auto now = std::chrono::steady_clock::now();
+
+  if (raw.empty()) {
+    if (!shown.empty() && now - lastChange >= minHold) {
+      shown.clear();
+      lastChange = now;
+    }
+    pending.clear();
+    pendingFrames = 0;
+    return;
+  }
+
+  if (raw == shown) {
+    pending.clear();
+    pendingFrames = 0;
+    return;
+  }
+
+  if (raw == pending) {
+    pendingFrames++;
+  } else {
+    pending = raw;
+    pendingFrames = 1;
+  }
+
+  if (pendingFrames >= stableFrames && now - lastChange >= minHold) {
+    shown = raw;
+    pending.clear();
+    pendingFrames = 0;
+    lastChange = now;
+  }
 }
 
 dlib::matrix<float, 0, 1>
@@ -102,6 +141,15 @@ struct PoseEstimate {
   int slot = -1;
   float magnitude = 0.0f;
   float angle = 0.0f;
+  float yawNorm = 0.0f;
+  float pitchNorm = 0.0f;
+  bool valid = false;
+};
+
+struct HeadPose {
+  float yaw = 0.0f;
+  float pitch = 0.0f;
+  float roll = 0.0f;
   bool valid = false;
 };
 
@@ -125,6 +173,77 @@ cv::Point2f meanPoints(const std::vector<dlib::point> &pts, int start,
   return cv::Point2f(sumX / count, sumY / count);
 }
 
+HeadPose estimateHeadPose(const FaceEmbedding::FaceData &data,
+                          const cv::Size &frameSize) {
+  HeadPose pose;
+  if (data.landmarks.size() < 68) {
+    return pose;
+  }
+
+  const std::vector<cv::Point3f> modelPoints = {
+      {0.0f, 0.0f, 0.0f},       // Nose tip
+      {0.0f, -330.0f, -65.0f},  // Chin
+      {-225.0f, 170.0f, -135.0f}, // Left eye left corner
+      {225.0f, 170.0f, -135.0f},  // Right eye right corner
+      {-150.0f, -150.0f, -125.0f}, // Left mouth corner
+      {150.0f, -150.0f, -125.0f}   // Right mouth corner
+  };
+
+  const std::vector<cv::Point2f> imagePoints = {
+      toPoint(data.landmarks[30]), // Nose tip
+      toPoint(data.landmarks[8]),  // Chin
+      toPoint(data.landmarks[36]), // Left eye left corner
+      toPoint(data.landmarks[45]), // Right eye right corner
+      toPoint(data.landmarks[48]), // Left mouth corner
+      toPoint(data.landmarks[54])  // Right mouth corner
+  };
+
+  const double focalLength = static_cast<double>(frameSize.width);
+  const cv::Point2d center(frameSize.width / 2.0, frameSize.height / 2.0);
+  const cv::Mat cameraMatrix =
+      (cv::Mat_<double>(3, 3) << focalLength, 0.0, center.x, 0.0, focalLength,
+       center.y, 0.0, 0.0, 1.0);
+  const cv::Mat distCoeffs = cv::Mat::zeros(4, 1, CV_64F);
+
+  cv::Mat rvec;
+  cv::Mat tvec;
+  if (!cv::solvePnP(modelPoints, imagePoints, cameraMatrix, distCoeffs, rvec,
+                    tvec, false, cv::SOLVEPNP_ITERATIVE)) {
+    return pose;
+  }
+
+  cv::Mat rotMat;
+  cv::Rodrigues(rvec, rotMat);
+  const double r00 = rotMat.at<double>(0, 0);
+  const double r10 = rotMat.at<double>(1, 0);
+  const double r11 = rotMat.at<double>(1, 1);
+  const double r12 = rotMat.at<double>(1, 2);
+  const double r20 = rotMat.at<double>(2, 0);
+  const double r21 = rotMat.at<double>(2, 1);
+  const double r22 = rotMat.at<double>(2, 2);
+
+  const double sy = std::sqrt(r00 * r00 + r10 * r10);
+  double x = 0.0;
+  double y = 0.0;
+  double z = 0.0;
+  if (sy < 1e-6) {
+    x = std::atan2(-r12, r11);
+    y = std::atan2(-r20, sy);
+    z = 0.0;
+  } else {
+    x = std::atan2(r21, r22);
+    y = std::atan2(-r20, sy);
+    z = std::atan2(r10, r00);
+  }
+
+  pose.pitch = static_cast<float>(x);
+  pose.yaw = static_cast<float>(y);
+  pose.roll = static_cast<float>(z);
+  pose.valid = std::isfinite(pose.pitch) && std::isfinite(pose.yaw) &&
+               std::isfinite(pose.roll);
+  return pose;
+}
+
 int angleToSlot(float angle, int slots) {
   const float twoPi = 2.0f * static_cast<float>(CV_PI);
   float angleNorm = std::fmod(angle, twoPi);
@@ -138,8 +257,10 @@ int angleToSlot(float angle, int slots) {
   return slot;
 }
 
-PoseEstimate estimatePoseSlot(const FaceEmbedding::FaceData &data, int slots,
-                              float minMagnitude) {
+PoseEstimate estimatePoseSlot(const FaceEmbedding::FaceData &data,
+                              const cv::Size &frameSize, int slots,
+                              float minMagnitude, float yawMax,
+                              float pitchMax) {
   PoseEstimate estimate;
   if (data.landmarks.size() < 68) {
     return estimate;
@@ -156,14 +277,46 @@ PoseEstimate estimatePoseSlot(const FaceEmbedding::FaceData &data, int slots,
 
   const float distL = nose.x - leftEye.x;
   const float distR = rightEye.x - nose.x;
-  const float yaw = (distR - distL) / (distR + distL + 1e-6f);
+  const float yawRaw = (distR - distL) / (distR + distL + 1e-6f);
 
-  const float pitch = (nose.y - eyeMid.y) / (mouthMid.y - eyeMid.y + 1e-6f);
-  float pitchNorm = (pitch - 0.5f) / 0.25f;
-  pitchNorm = clampf(pitchNorm, -1.0f, 1.0f);
+  const float pitchRaw =
+      (nose.y - eyeMid.y) / (mouthMid.y - eyeMid.y + 1e-6f);
+  float pitchNormFallback = (pitchRaw - 0.5f) / 0.25f;
+  pitchNormFallback = clampf(pitchNormFallback, -1.0f, 1.0f);
 
-  const float magnitude = std::sqrt(yaw * yaw + pitchNorm * pitchNorm);
-  float angle = std::atan2(-pitchNorm, yaw);
+  const float yawScreenFallback = clampf(-yawRaw, -1.0f, 1.0f);
+  const float pitchScreenFallback = pitchNormFallback;
+
+  float yawNorm = yawScreenFallback;
+  float pitchNorm = pitchScreenFallback;
+
+  const HeadPose pose = estimateHeadPose(data, frameSize);
+  if (pose.valid) {
+    float yawSolve = clampf(pose.yaw / yawMax, -1.0f, 1.0f);
+    float pitchSolve = clampf(pose.pitch / pitchMax, -1.0f, 1.0f);
+    yawSolve = -yawSolve;
+
+    const float yawAlignThreshold = 0.12f;
+    if (std::abs(yawScreenFallback) > yawAlignThreshold &&
+        yawSolve * yawScreenFallback < 0.0f) {
+      yawSolve = -yawSolve;
+    }
+
+    const float pitchAlignThreshold = 0.12f;
+    if (std::abs(pitchScreenFallback) > pitchAlignThreshold &&
+        pitchSolve * pitchScreenFallback < 0.0f) {
+      pitchSolve = -pitchSolve;
+    }
+
+    yawNorm = yawSolve;
+    pitchNorm = pitchSolve;
+  }
+
+  estimate.yawNorm = yawNorm;
+  estimate.pitchNorm = pitchNorm;
+
+  const float magnitude = std::sqrt(yawNorm * yawNorm + pitchNorm * pitchNorm);
+  float angle = std::atan2(pitchNorm, yawNorm) - kRingStartAngle;
   if (!std::isfinite(angle)) {
     angle = 0.0f;
   }
@@ -200,19 +353,26 @@ PoseBucket *bucketAt(std::vector<PoseBucket> &buckets, int slot) {
   return &buckets[slot];
 }
 
-int nextSlotFrom(const std::vector<PoseBucket> &buckets, int startSlot,
-                 int targetPerSlot) {
+int closestUnfilledSlot(const std::vector<PoseBucket> &buckets, int currentSlot,
+                        int targetPerSlot) {
   const int slots = static_cast<int>(buckets.size());
-  if (slots == 0) {
+  if (slots == 0 || currentSlot < 0) {
     return -1;
   }
-  for (int offset = 0; offset < slots; ++offset) {
-    const int idx = (startSlot + offset) % slots;
-    if (static_cast<int>(buckets[idx].samples.size()) < targetPerSlot) {
-      return idx;
+  int bestSlot = -1;
+  int bestDistance = slots + 1;
+  for (int i = 0; i < slots; ++i) {
+    if (static_cast<int>(buckets[i].samples.size()) >= targetPerSlot) {
+      continue;
+    }
+    const int diff = std::min((i - currentSlot + slots) % slots,
+                              (currentSlot - i + slots) % slots);
+    if (diff < bestDistance) {
+      bestDistance = diff;
+      bestSlot = i;
     }
   }
-  return -1;
+  return bestSlot;
 }
 
 int collectedSamples(const std::vector<PoseBucket> &buckets) {
@@ -231,6 +391,14 @@ int filledSlots(const std::vector<PoseBucket> &buckets, int targetPerPose) {
     }
   }
   return total;
+}
+
+bool isSlotFilled(const std::vector<PoseBucket> &buckets, int slot,
+                  int targetPerSlot) {
+  if (slot < 0 || slot >= static_cast<int>(buckets.size())) {
+    return false;
+  }
+  return static_cast<int>(buckets[slot].samples.size()) >= targetPerSlot;
 }
 
 bool slotMatches(int slot, int active, int slots, int tolerance) {
@@ -259,19 +427,19 @@ void drawFaceIdOverlay(cv::Mat &frame, const cv::Point &center, int radius,
   const int slots = static_cast<int>(buckets.size());
   const int ticksPerSlot = 4;
   const int totalTicks = slots * ticksPerSlot;
-  const float startAngle = -static_cast<float>(CV_PI) / 2.0f;
+  const float startAngle = kRingStartAngle;
   const float step = 2.0f * static_cast<float>(CV_PI) / totalTicks;
-  const cv::Scalar activeColor(0, 200, 0);
-  const cv::Scalar pendingColor(170, 170, 170);
-  const cv::Scalar highlightColor(230, 230, 230);
+  const cv::Scalar filledColor(80, 170, 80);
+  const cv::Scalar missingColor(210, 210, 210);
+  const cv::Scalar highlightSoft(240, 240, 240);
+  const cv::Scalar highlightCore(255, 255, 255);
 
   for (int slot = 0; slot < slots; ++slot) {
     const bool filled =
         static_cast<int>(buckets[slot].samples.size()) >= targetPerSlot;
-    cv::Scalar color = filled ? activeColor : pendingColor;
-    if (slot == neededSlot && !filled) {
-      color = highlightColor;
-    }
+    const bool isTarget = (slot == neededSlot && !filled);
+    const cv::Scalar baseColor = filled ? filledColor : missingColor;
+    const int baseThickness = filled ? 2 : 3;
     for (int t = 0; t < ticksPerSlot; ++t) {
       const int tickIndex = slot * ticksPerSlot + t;
       const float angle = startAngle + tickIndex * step;
@@ -279,7 +447,12 @@ void drawFaceIdOverlay(cv::Mat &frame, const cv::Point &center, int radius,
           circlePoint(cv::Point2f(center), radius - 4.0f, angle);
       const cv::Point2f p2 =
           circlePoint(cv::Point2f(center), radius + 4.0f, angle);
-      cv::line(frame, p1, p2, color, 2, cv::LINE_AA);
+      if (isTarget) {
+        cv::line(frame, p1, p2, highlightSoft, 6, cv::LINE_AA);
+        cv::line(frame, p1, p2, highlightCore, 3, cv::LINE_AA);
+      } else {
+        cv::line(frame, p1, p2, baseColor, baseThickness, cv::LINE_AA);
+      }
     }
   }
 
@@ -296,15 +469,6 @@ void drawFaceIdOverlay(cv::Mat &frame, const cv::Point &center, int radius,
               cv::Size(faceRadius / 3, faceRadius / 4), 0, 0, 180,
               cv::Scalar(200, 200, 200), 2, cv::LINE_AA);
 
-  if (neededSlot >= 0 && neededSlot < slots) {
-    const float slotAngle =
-        startAngle +
-        (neededSlot + 0.5f) * (2.0f * static_cast<float>(CV_PI) / slots);
-    const cv::Point arrowEnd =
-        circlePoint(cv::Point2f(center), radius * 0.55f, slotAngle);
-    cv::arrowedLine(frame, center, arrowEnd, highlightColor, 2, cv::LINE_AA, 0,
-                    0.2);
-  }
 }
 // namespace
 
@@ -357,15 +521,30 @@ int main() {
   int activeSlot = -1;
   const int kPoseSlots = 12;
   const int kSamplesPerSlot = 3;
-  const auto kEnrollInterval = std::chrono::milliseconds(350);
+  const auto kEnrollInterval = std::chrono::milliseconds(250);
   const float kPoseMagnitudeMin = 0.18f;
+  const float kYawMax = 0.55f;
+  const float kPitchMax = 0.45f;
+  const float kPoseSmoothing = 0.22f;
+  const int kSlotStableFrames = 4;
+  const int kTargetHoldFrames = 10;
   const int kSlotTolerance = 1;
   const int kMaxNameLength = 32;
   const float kThresholdMin = 0.35f;
   const float kThresholdMax = 0.75f;
   const float kThresholdStep = 0.02f;
-  const int kMinFaceSize = 50;
-  const double kBlurThreshold = 15.0;
+  const int kMinFaceSize = 45;
+  const double kBlurThreshold = 10.0;
+  const int kHintStableFrames = 6;
+  const auto kHintHold = std::chrono::milliseconds(450);
+  std::string hintText;
+  std::string pendingHint;
+  int pendingHintFrames = 0;
+  auto hintLastChange = std::chrono::steady_clock::now();
+  cv::Point2f smoothedPose(0.0f, 0.0f);
+  bool hasSmoothedPose = false;
+  int slotMatchFrames = 0;
+  int targetHoldFrames = 0;
 
   while (true) {
     cv::Mat frame;
@@ -390,6 +569,14 @@ int main() {
           enrollName = nameBuffer;
           uiMode = UiMode::Enrolling;
           nameBuffer.clear();
+          hintText.clear();
+          pendingHint.clear();
+          pendingHintFrames = 0;
+          hintLastChange = std::chrono::steady_clock::now();
+          smoothedPose = cv::Point2f(0.0f, 0.0f);
+          hasSmoothedPose = false;
+          slotMatchFrames = 0;
+          targetHoldFrames = 0;
 
           const auto now = std::chrono::steady_clock::now();
           poseBuckets.clear();
@@ -397,7 +584,7 @@ int main() {
           for (int i = 0; i < kPoseSlots; ++i) {
             poseBuckets.push_back({{}, now - kEnrollInterval});
           }
-          activeSlot = 0;
+          activeSlot = -1;
           spdlog::info("Collecting samples for {}", enrollName);
         }
       } else if (key == 8 || key == 127) { // Backspace
@@ -414,6 +601,14 @@ int main() {
         uiMode = UiMode::Idle;
         poseBuckets.clear();
         activeSlot = -1;
+        hintText.clear();
+        pendingHint.clear();
+        pendingHintFrames = 0;
+        hintLastChange = std::chrono::steady_clock::now();
+        smoothedPose = cv::Point2f(0.0f, 0.0f);
+        hasSmoothedPose = false;
+        slotMatchFrames = 0;
+        targetHoldFrames = 0;
         spdlog::info("Enrollment canceled.");
       }
 
@@ -494,33 +689,90 @@ int main() {
           if (!faceEmbedding.getFaceData(frame, target, data)) {
             enrollHint = "No landmarks";
           } else {
-            const PoseEstimate pose =
-                estimatePoseSlot(data, kPoseSlots, kPoseMagnitudeMin);
+            const PoseEstimate rawPose =
+                estimatePoseSlot(data, frame.size(), kPoseSlots,
+                                 kPoseMagnitudeMin, kYawMax, kPitchMax);
+            PoseEstimate pose = rawPose;
+            if (rawPose.valid) {
+              const cv::Point2f rawVec(rawPose.yawNorm, rawPose.pitchNorm);
+              if (!hasSmoothedPose) {
+                smoothedPose = rawVec;
+                hasSmoothedPose = true;
+              } else {
+                smoothedPose = rawVec * kPoseSmoothing +
+                               smoothedPose * (1.0f - kPoseSmoothing);
+              }
+
+              pose.yawNorm = smoothedPose.x;
+              pose.pitchNorm = smoothedPose.y;
+              pose.magnitude = std::sqrt(pose.yawNorm * pose.yawNorm +
+                                         pose.pitchNorm * pose.pitchNorm);
+              pose.angle =
+                  std::atan2(pose.pitchNorm, pose.yawNorm) - kRingStartAngle;
+              if (!std::isfinite(pose.angle)) {
+                pose.angle = 0.0f;
+              }
+              pose.slot = angleToSlot(pose.angle, kPoseSlots);
+              if (pose.magnitude < kPoseMagnitudeMin) {
+                pose.slot = 0;
+              }
+              pose.valid = true;
+            }
             if (!pose.valid) {
               enrollHint = "Hold face steady";
+              slotMatchFrames = 0;
             } else {
-              PoseBucket *bucket = bucketAt(poseBuckets, pose.slot);
               if (pose.magnitude < kPoseMagnitudeMin) {
                 enrollHint = "Rotate head around the ring";
+                slotMatchFrames = 0;
               } else {
-                if (activeSlot >= 0 && bucket &&
-                    slotMatches(pose.slot, activeSlot,
-                                static_cast<int>(poseBuckets.size()),
-                                kSlotTolerance) &&
+                const int proposedSlot =
+                    closestUnfilledSlot(poseBuckets, pose.slot,
+                                        kSamplesPerSlot);
+                if (proposedSlot < 0) {
+                  activeSlot = -1;
+                  targetHoldFrames = 0;
+                } else {
+                  if (activeSlot < 0 ||
+                      isSlotFilled(poseBuckets, activeSlot, kSamplesPerSlot) ||
+                      targetHoldFrames <= 0) {
+                    activeSlot = proposedSlot;
+                    targetHoldFrames = kTargetHoldFrames;
+                  } else if (proposedSlot == activeSlot) {
+                    targetHoldFrames = kTargetHoldFrames;
+                  } else {
+                    targetHoldFrames--;
+                  }
+                }
+
+                const bool matches = slotMatches(
+                    pose.slot, activeSlot,
+                    static_cast<int>(poseBuckets.size()), kSlotTolerance);
+                if (matches) {
+                  slotMatchFrames++;
+                } else {
+                  slotMatchFrames = 0;
+                }
+
+                PoseBucket *bucket = bucketAt(poseBuckets, activeSlot);
+                if (activeSlot >= 0 && matches &&
+                    slotMatchFrames >= kSlotStableFrames && bucket &&
                     static_cast<int>(bucket->samples.size()) <
                         kSamplesPerSlot &&
                     now - bucket->lastCapture >= kEnrollInterval) {
                   bucket->samples.push_back(data.embedding);
                   bucket->lastCapture = now;
+                  slotMatchFrames = 0;
                   if (static_cast<int>(bucket->samples.size()) >=
                       kSamplesPerSlot) {
-                    activeSlot = nextSlotFrom(poseBuckets, activeSlot + 1,
-                                              kSamplesPerSlot);
+                    targetHoldFrames = 0;
                   }
                 }
 
                 if (activeSlot >= 0) {
-                  enrollHint = "Follow the ring clockwise";
+                  enrollHint = matches ? "Hold steady" : "Move along the ring";
+                } else {
+                  enrollHint = "Hold steady";
                 }
               }
             }
@@ -551,10 +803,20 @@ int main() {
         uiMode = UiMode::Idle;
         poseBuckets.clear();
         activeSlot = -1;
+        hintText.clear();
+        pendingHint.clear();
+        pendingHintFrames = 0;
+        hintLastChange = std::chrono::steady_clock::now();
+        smoothedPose = cv::Point2f(0.0f, 0.0f);
+        hasSmoothedPose = false;
+        slotMatchFrames = 0;
+        targetHoldFrames = 0;
       }
     }
 
     if (uiMode == UiMode::Enrolling) {
+      updateHintText(enrollHint, hintText, pendingHint, pendingHintFrames,
+                     hintLastChange, kHintStableFrames, kHintHold);
       const int collected = collectedSamples(poseBuckets);
       const int total = static_cast<int>(poseBuckets.size()) * kSamplesPerSlot;
 
@@ -668,8 +930,8 @@ int main() {
                           line);
         }
       }
-      if (!enrollHint.empty()) {
-        drawOverlayLine(frame, enrollHint, line);
+      if (!hintText.empty()) {
+        drawOverlayLine(frame, hintText, line);
       }
     }
 
