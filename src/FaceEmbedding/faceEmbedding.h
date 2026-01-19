@@ -4,6 +4,7 @@
 #include <dlib/image_processing.h>
 #include <dlib/image_processing/frontal_face_detector.h>
 #include <dlib/opencv.h>
+#include <opencv2/dnn.hpp>
 #include <opencv2/opencv.hpp>
 #include <vector>
 
@@ -57,16 +58,30 @@ using anet_type = loss_metric<fc_no_bias<128,avg_pool_everything<
 
 class FaceEmbedding {
 public:
-    FaceEmbedding(const std::string &model_path);
-    std::vector<dlib::matrix<float, 0, 1>> getFaceDescriptor(const cv::Mat &frame);
-
-        struct FaceData {
+    struct FaceData {
         dlib::matrix<float,0,1> embedding;
         std::vector<dlib::point> landmarks;
     };
+
+    FaceEmbedding(const std::string &model_path);
+    std::vector<dlib::matrix<float, 0, 1>> getFaceDescriptor(const cv::Mat &frame);
+    bool getFaceDescriptor(const cv::Mat &frame, const cv::Rect &faceRect,
+                           dlib::matrix<float, 0, 1> &descriptor);
+    int embeddingDim() const;
+
     std::vector<FaceData> getFaceData(const cv::Mat& frame);
+    bool getFaceData(const cv::Mat &frame, const cv::Rect &faceRect,
+                     FaceData &data);
 private:
+    enum class EmbedderType {
+        DlibResNet,
+        ArcFaceOnnx
+    };
+
     dlib::frontal_face_detector detector;
     dlib::shape_predictor sp;
     anet_type net; // Используем anet_type для эмбеддингов
+    EmbedderType embedder_type_ = EmbedderType::DlibResNet;
+    cv::dnn::Net arcface_net_;
+    int embedding_dim_ = 0;
 };

@@ -13,9 +13,11 @@ add_executable(${PROJECT_NAME}
                 src/ImageProcessing/imageProcessing.h
                 src/FaceEmbedding/faceEmbedding.h
                 src/FaceEmbedding/faceEmbedding.cpp
+                src/FaceMemory/faceMemory.h
+                src/FaceMemory/faceMemory.cpp
                 )
 
-set(OpenCV_DIR ${CMAKE_SOURCE_DIR}/external/opencv/build/install/lib/cmake/opencv4) 
+set(OpenCV_DIR /opt/homebrew/opt/opencv/lib/cmake/opencv4)
 find_package(OpenCV REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 
@@ -33,3 +35,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAK
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                     COMMAND ${CMAKE_COMMAND} -E copy_directory
                     ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:${PROJECT_NAME}>/resources)
+
+# build
+# first step: cmake -S . -B build
+# second step: cmake --build build
