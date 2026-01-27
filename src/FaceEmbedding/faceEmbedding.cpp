@@ -133,7 +133,7 @@ FaceEmbedding::FaceEmbedding(const std::string &model_path) {
 
   const fs::path shape_predictor_path =
       fs::current_path() /
-      "bin/resources/dlib/shape_predictor_68_face_landmarks.dat";
+      "resources/dlib/shape_predictor_68_face_landmarks.dat";
   spdlog::info("Shape predictor path: {}", shape_predictor_path.string());
 
   if (!fs::exists(shape_predictor_path)) {

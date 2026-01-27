@@ -226,8 +226,8 @@ external/spdlog/clean: external/spdlog/CMakeFiles/spdlog.dir/clean
 # Target rules for target CMakeFiles/FaceID.dir
 
 # All Build rule for target.
-CMakeFiles/FaceID.dir/all: external/spdlog/CMakeFiles/spdlog.dir/all
 CMakeFiles/FaceID.dir/all: external/dlib/dlib/CMakeFiles/dlib.dir/all
+CMakeFiles/FaceID.dir/all: external/spdlog/CMakeFiles/spdlog.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target FaceID"

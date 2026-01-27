@@ -6,7 +6,5 @@ CXX_DEFINES = -DSPDLOG_COMPILED_LIB
 
 CXX_INCLUDES = -I/Users/vasili/Desktop/Tests/Face_opencv/external/spdlog/include
 
-CXX_FLAGSarm64 = -O3 -DNDEBUG -std=c++17 -arch arm64
-
-CXX_FLAGS = -O3 -DNDEBUG -std=c++17 -arch arm64
+CXX_FLAGS = -O3 -DNDEBUG -std=c++17
 

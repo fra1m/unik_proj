@@ -68,6 +68,77 @@ void updateHintText(
   }
 }
 
+struct LivenessState {
+  std::chrono::steady_clock::time_point lastPass{};
+  int openFrames = 0;
+  int closedFrames = 0;
+  bool mouthOpen = false;
+  bool sawClosed = false;
+  float lastMar = -1.0f;
+};
+
+void resetLiveness(LivenessState &state) { state = LivenessState{}; }
+
+float mouthAspectRatio(const std::vector<dlib::point> &landmarks) {
+  if (landmarks.size() < 68) {
+    return -1.0f;
+  }
+  const auto dist = [](const dlib::point &a, const dlib::point &b) {
+    const float dx = static_cast<float>(a.x() - b.x());
+    const float dy = static_cast<float>(a.y() - b.y());
+    return std::sqrt(dx * dx + dy * dy);
+  };
+
+  const float horizontal = dist(landmarks[60], landmarks[64]);
+  if (horizontal <= 1e-6f) {
+    return -1.0f;
+  }
+  const float v1 = dist(landmarks[61], landmarks[67]);
+  const float v2 = dist(landmarks[62], landmarks[66]);
+  const float v3 = dist(landmarks[63], landmarks[65]);
+  const float vertical = (v1 + v2 + v3) / 3.0f;
+  return vertical / horizontal;
+}
+
+bool updateMouthState(LivenessState &state,
+                      const std::vector<dlib::point> &landmarks,
+                      float openThreshold, float closeThreshold,
+                      int openFramesNeeded, int closeFramesNeeded) {
+  const float mar = mouthAspectRatio(landmarks);
+  state.lastMar = mar;
+  if (mar < 0.0f) {
+    state.openFrames = 0;
+    state.closedFrames = 0;
+    return false;
+  }
+
+  if (mar > openThreshold) {
+    state.openFrames++;
+    state.closedFrames = 0;
+  } else if (mar < closeThreshold) {
+    state.closedFrames++;
+    state.openFrames = 0;
+    if (state.closedFrames >= closeFramesNeeded) {
+      state.sawClosed = true;
+    }
+  } else {
+    state.openFrames = 0;
+    state.closedFrames = 0;
+  }
+
+  bool openedNow = false;
+  if (!state.mouthOpen && state.openFrames >= openFramesNeeded &&
+      state.sawClosed) {
+    state.mouthOpen = true;
+    state.sawClosed = false;
+    openedNow = true;
+  }
+  if (state.mouthOpen && state.closedFrames >= closeFramesNeeded) {
+    state.mouthOpen = false;
+  }
+  return openedNow;
+}
+
 dlib::matrix<float, 0, 1>
 averageEmbeddings(const std::vector<dlib::matrix<float, 0, 1>> &samples) {
   dlib::matrix<float, 0, 1> mean;
@@ -473,17 +544,17 @@ void drawFaceIdOverlay(cv::Mat &frame, const cv::Point &center, int radius,
 // namespace
 
 int main() {
-  const std::string arcface_path = "bin/resources/arcface/arcface.onnx";
+  const std::string arcface_path = "resources/arcface/arcface.onnx";
   const std::string dlib_path =
-      "bin/resources/dlib/dlib_face_recognition_resnet_model_v1.dat";
+      "resources/dlib/dlib_face_recognition_resnet_model_v1.dat";
   const std::filesystem::path arcface_full =
       std::filesystem::current_path() / arcface_path;
   const std::string embedder_path =
       std::filesystem::exists(arcface_full) ? arcface_path : dlib_path;
   FaceEmbedding faceEmbedding(embedder_path);
   FaceRecognition faceRecognition(
-      "../resources/dnn/deploy.prototxt",
-      "../resources/dnn/res10_300x300_ssd_iter_140000.caffemodel",
+      "resources/dnn/deploy.prototxt",
+      "resources/dnn/res10_300x300_ssd_iter_140000.caffemodel",
       faceEmbedding);
 
   const std::string face_db_path = "data/face_db.yml";
@@ -537,6 +608,11 @@ int main() {
   const double kBlurThreshold = 10.0;
   const int kHintStableFrames = 6;
   const auto kHintHold = std::chrono::milliseconds(450);
+  const auto kLivenessTtl = std::chrono::seconds(6);
+  const float kMouthOpenMar = 0.5f;
+  const float kMouthCloseMar = 0.35f;
+  const int kMouthOpenFrames = 2;
+  const int kMouthClosedFrames = 2;
   std::string hintText;
   std::string pendingHint;
   int pendingHintFrames = 0;
@@ -545,6 +621,7 @@ int main() {
   bool hasSmoothedPose = false;
   int slotMatchFrames = 0;
   int targetHoldFrames = 0;
+  LivenessState liveness;
 
   while (true) {
     cv::Mat frame;
@@ -577,6 +654,7 @@ int main() {
           hasSmoothedPose = false;
           slotMatchFrames = 0;
           targetHoldFrames = 0;
+          resetLiveness(liveness);
 
           const auto now = std::chrono::steady_clock::now();
           poseBuckets.clear();
@@ -609,6 +687,7 @@ int main() {
         hasSmoothedPose = false;
         slotMatchFrames = 0;
         targetHoldFrames = 0;
+        resetLiveness(liveness);
         spdlog::info("Enrollment canceled.");
       }
 
@@ -811,6 +890,7 @@ int main() {
         hasSmoothedPose = false;
         slotMatchFrames = 0;
         targetHoldFrames = 0;
+        resetLiveness(liveness);
       }
     }
 
@@ -831,38 +911,86 @@ int main() {
                         activeSlot);
     }
 
+    const bool needLiveness =
+        (uiMode == UiMode::Idle && faceMemory.size() > 0);
+    bool livenessOk = !needLiveness;
+    std::string livenessHint;
+    const bool singleFace = (faceRects.size() == 1);
+    const cv::Rect primaryRect = pickLargestFace(faceRects);
+    bool livenessUpdated = false;
+    if (needLiveness && !singleFace) {
+      resetLiveness(liveness);
+      livenessOk = false;
+      livenessHint = faceRects.empty() ? "Show your face" : "Only one face at a time";
+    }
+
     for (const auto &rect : faceRects) {
       const FaceQuality quality =
           evaluateFaceQuality(frame, rect, kMinFaceSize, kBlurThreshold);
       const bool qualityOk = quality.ok;
       const bool requireQuality = (uiMode == UiMode::Enrolling);
       const bool allowEmbedding = qualityOk || !requireQuality;
+      FaceEmbedding::FaceData data;
       dlib::matrix<float, 0, 1> embedding;
       bool hasEmbedding = false;
 
       if (allowEmbedding) {
-        if (showLandmarks) {
-          FaceEmbedding::FaceData data;
-          if (faceEmbedding.getFaceData(frame, rect, data)) {
-            embedding = data.embedding;
-            hasEmbedding = true;
+        if (faceEmbedding.getFaceData(frame, rect, data)) {
+          embedding = data.embedding;
+          hasEmbedding = true;
+          if (showLandmarks) {
             for (const auto &point : data.landmarks) {
               cv::circle(frame, cv::Point(point.x(), point.y()), 2,
                          cv::Scalar(0, 255, 255), -1);
             }
           }
+        }
+      }
+
+      if (needLiveness && singleFace && !livenessUpdated &&
+          rect == primaryRect) {
+        livenessUpdated = true;
+        if (!allowEmbedding || !hasEmbedding) {
+          resetLiveness(liveness);
+          livenessOk = false;
+          livenessHint = qualityOk ? "Hold face steady" : "Improve quality";
         } else {
-          if (faceEmbedding.getFaceDescriptor(frame, rect, embedding)) {
-            hasEmbedding = true;
+          const auto now = std::chrono::steady_clock::now();
+          const bool openedNow = updateMouthState(
+              liveness, data.landmarks, kMouthOpenMar, kMouthCloseMar,
+              kMouthOpenFrames, kMouthClosedFrames);
+          if (openedNow) {
+            liveness.lastPass = now;
+          }
+
+          livenessOk = (liveness.lastPass.time_since_epoch().count() > 0 &&
+                        now - liveness.lastPass <= kLivenessTtl);
+          if (!livenessOk) {
+            if (liveness.lastMar < 0.0f) {
+              livenessHint = "Show your mouth";
+            } else if (!liveness.sawClosed &&
+                       liveness.lastMar > kMouthOpenMar) {
+              livenessHint = "Close mouth then open";
+            } else if (liveness.openFrames > 0) {
+              livenessHint = "Hold mouth open";
+            } else {
+              livenessHint = "Open your mouth";
+            }
           }
         }
       }
 
       std::string label = "UNKNOWN";
       bool isMatch = false;
+      const bool isLiveness =
+          (needLiveness && rect == primaryRect && !livenessOk &&
+           uiMode == UiMode::Idle);
       if (uiMode == UiMode::Enrolling) {
         label = "ENROLLING";
-      } else if (hasEmbedding && faceMemory.size() > 0) {
+      } else if (isLiveness) {
+        label = "LIVENESS";
+      } else if (hasEmbedding && faceMemory.size() > 0 &&
+                 (!needLiveness || livenessOk)) {
         const auto match = faceMemory.match(embedding);
         if (!match.name.empty()) {
           label = match.name + cv::format(" (%.2f)", match.distance);
@@ -878,8 +1006,10 @@ int main() {
         label = "NO DB";
       }
 
-      const cv::Scalar color =
-          isMatch ? cv::Scalar(0, 255, 0) : cv::Scalar(0, 0, 255);
+      const cv::Scalar color = isMatch
+                                   ? cv::Scalar(0, 255, 0)
+                                   : (isLiveness ? cv::Scalar(0, 215, 255)
+                                                 : cv::Scalar(0, 0, 255));
       cv::rectangle(frame, rect, color, 2);
 
       int baseline = 0;
@@ -904,6 +1034,10 @@ int main() {
                     line);
     drawOverlayLine(frame, "Known users: " + std::to_string(faceMemory.size()),
                     line);
+    drawOverlayLine(frame, "Liveness: mouth-open", line);
+    if (needLiveness && !livenessOk && !livenessHint.empty()) {
+      drawOverlayLine(frame, "Liveness: " + livenessHint, line);
+    }
     if (uiMode == UiMode::TypingName) {
       drawOverlayLine(frame, "Name: " + nameBuffer + "_", line);
       drawOverlayLine(frame, "Enter to start, Esc to cancel", line);

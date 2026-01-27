@@ -1656,3 +1656,311 @@ events:
         
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libpng.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:449 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build"
+    buildResult:
+      variable: "test_for_libpng_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libpng_test.dir/libpng_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libpng_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/build
+        make[3]: Nothing to be done for `CMakeFiles/libpng_test.dir/build'.
+        [100%] Built target libpng_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles 0
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libjpeg.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:511 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build"
+    buildResult:
+      variable: "test_for_libjpeg_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libjpeg_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/build
+        make[3]: Nothing to be done for `CMakeFiles/libjpeg_test.dir/build'.
+        [100%] Built target libjpeg_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles 0
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libpng.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:449 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build"
+    buildResult:
+      variable: "test_for_libpng_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libpng_test.dir/libpng_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libpng_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/build
+        make[3]: Nothing to be done for `CMakeFiles/libpng_test.dir/build'.
+        [100%] Built target libpng_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles 0
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libjpeg.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:511 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build"
+    buildResult:
+      variable: "test_for_libjpeg_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libjpeg_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/build
+        make[3]: Nothing to be done for `CMakeFiles/libjpeg_test.dir/build'.
+        [100%] Built target libjpeg_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles 0
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libpng.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:449 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build"
+    buildResult:
+      variable: "test_for_libpng_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libpng_test.dir/libpng_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libpng_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/build
+        make[2]: Nothing to be done for `CMakeFiles/libpng_test.dir/build'.
+        [100%] Built target libpng_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles 0
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libjpeg.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:511 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build"
+    buildResult:
+      variable: "test_for_libjpeg_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libjpeg_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/build
+        make[2]: Nothing to be done for `CMakeFiles/libjpeg_test.dir/build'.
+        [100%] Built target libjpeg_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles 0
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libpng.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:449 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build"
+    buildResult:
+      variable: "test_for_libpng_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libpng_test.dir/libpng_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libpng_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/build
+        [ 50%] Building CXX object CMakeFiles/libpng_test.dir/libpng_test.cpp.o
+        /usr/bin/c++  -I/Library/Frameworks/GStreamer.framework/Headers  -MD -MT CMakeFiles/libpng_test.dir/libpng_test.cpp.o -MF CMakeFiles/libpng_test.dir/libpng_test.cpp.o.d -o CMakeFiles/libpng_test.dir/libpng_test.cpp.o -c /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng/libpng_test.cpp
+        [100%] Linking CXX executable libpng_test
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/libpng_test.dir/link.txt --verbose=1
+        /usr/bin/c++ -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/libpng_test.dir/libpng_test.cpp.o -o libpng_test  /opt/homebrew/lib/libpng.dylib /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libz.tbd
+        [100%] Built target libpng_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles 0
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libjpeg.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:511 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build"
+    buildResult:
+      variable: "test_for_libjpeg_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libjpeg_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/build
+        [ 50%] Building CXX object CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o
+        /usr/bin/c++  -I/Library/Frameworks/GStreamer.framework/Headers  -MD -MT CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o -MF CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o.d -o CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o -c /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg/libjpeg_test.cpp
+        [100%] Linking CXX executable libjpeg_test
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/libjpeg_test.dir/link.txt --verbose=1
+        /usr/bin/c++ -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o -o libjpeg_test  /opt/homebrew/lib/libjpeg.dylib
+        [100%] Built target libjpeg_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles 0
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libpng.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:449 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build"
+    buildResult:
+      variable: "test_for_libpng_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libpng /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libpng_test.dir/libpng_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles/libpng_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libpng_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libpng_test.dir/build.make CMakeFiles/libpng_test.dir/build
+        make[2]: Nothing to be done for `CMakeFiles/libpng_test.dir/build'.
+        [100%] Built target libpng_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libpng_build/CMakeFiles 0
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "external/dlib/dlib/cmake_utils/find_libjpeg.cmake:25 (try_compile)"
+      - "external/dlib/dlib/CMakeLists.txt:511 (include)"
+    directories:
+      source: "/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg"
+      binary: "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build"
+    buildResult:
+      variable: "test_for_libjpeg_worked"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build'
+        
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile
+        /opt/homebrew/bin/cmake -S/Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg -B/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build --check-build-system CMakeFiles/Makefile.cmake 0
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build//CMakeFiles/progress.marks
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/Makefile2 all
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/depend
+        cd /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build && /opt/homebrew/bin/cmake -E cmake_depends "Unix Makefiles" /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/external/dlib/dlib/cmake_utils/test_for_libjpeg /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/DependInfo.cmake
+        Dependencies file "CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o.d" is newer than depends file "/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles/libjpeg_test.dir/compiler_depend.internal".
+        Consolidate compiler generated dependencies of target libjpeg_test
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/libjpeg_test.dir/build.make CMakeFiles/libjpeg_test.dir/build
+        make[2]: Nothing to be done for `CMakeFiles/libjpeg_test.dir/build'.
+        [100%] Built target libjpeg_test
+        /opt/homebrew/bin/cmake -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/test_for_libjpeg_build/CMakeFiles 0
+        
+      exitCode: 0
+...

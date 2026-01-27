@@ -1,1 +1,1 @@
-/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o -o libjpeg_test  /opt/homebrew/lib/libjpeg.dylib
+/usr/bin/c++ -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/libjpeg_test.dir/libjpeg_test.cpp.o -o libjpeg_test  /opt/homebrew/lib/libjpeg.dylib
