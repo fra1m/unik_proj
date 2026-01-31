@@ -6,5 +6,7 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/Library/Frameworks/GStreamer.framework/Headers
 
-CXX_FLAGS = 
+CXX_FLAGSarm64 =  -arch arm64
+
+CXX_FLAGS =  -arch arm64
 

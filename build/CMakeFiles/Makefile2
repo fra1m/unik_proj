@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = /Users/vasili/Desktop/Tests/Face_opencv/build
 
 # The main recursive "all" target.
 all: CMakeFiles/FaceID.dir/all
+all: CMakeFiles/FaceIDCli.dir/all
 all: external/spdlog/all
 all: external/eigen/all
 all: external/dlib/all
@@ -71,6 +72,7 @@ all: external/dlib/all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/FaceID.dir/codegen
+codegen: CMakeFiles/FaceIDCli.dir/codegen
 codegen: external/spdlog/codegen
 codegen: external/eigen/codegen
 codegen: external/dlib/codegen
@@ -84,6 +86,7 @@ preinstall: external/dlib/preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/FaceID.dir/clean
+clean: CMakeFiles/FaceIDCli.dir/clean
 clean: external/spdlog/clean
 clean: external/eigen/clean
 clean: external/dlib/clean
@@ -226,8 +229,8 @@ external/spdlog/clean: external/spdlog/CMakeFiles/spdlog.dir/clean
 # Target rules for target CMakeFiles/FaceID.dir
 
 # All Build rule for target.
-CMakeFiles/FaceID.dir/all: external/dlib/dlib/CMakeFiles/dlib.dir/all
 CMakeFiles/FaceID.dir/all: external/spdlog/CMakeFiles/spdlog.dir/all
+CMakeFiles/FaceID.dir/all: external/dlib/dlib/CMakeFiles/dlib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceID.dir/build.make CMakeFiles/FaceID.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target FaceID"
@@ -256,13 +259,46 @@ CMakeFiles/FaceID.dir/clean:
 .PHONY : CMakeFiles/FaceID.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/FaceIDCli.dir
+
+# All Build rule for target.
+CMakeFiles/FaceIDCli.dir/all: external/spdlog/CMakeFiles/spdlog.dir/all
+CMakeFiles/FaceIDCli.dir/all: external/dlib/dlib/CMakeFiles/dlib.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceIDCli.dir/build.make CMakeFiles/FaceIDCli.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceIDCli.dir/build.make CMakeFiles/FaceIDCli.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=7,8,9,10,11 "Built target FaceIDCli"
+.PHONY : CMakeFiles/FaceIDCli.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/FaceIDCli.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles 74
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/FaceIDCli.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles 0
+.PHONY : CMakeFiles/FaceIDCli.dir/rule
+
+# Convenience name for target.
+FaceIDCli: CMakeFiles/FaceIDCli.dir/rule
+.PHONY : FaceIDCli
+
+# codegen rule for target.
+CMakeFiles/FaceIDCli.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceIDCli.dir/build.make CMakeFiles/FaceIDCli.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=7,8,9,10,11 "Finished codegen for target FaceIDCli"
+.PHONY : CMakeFiles/FaceIDCli.dir/codegen
+
+# clean rule for target.
+CMakeFiles/FaceIDCli.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceIDCli.dir/build.make CMakeFiles/FaceIDCli.dir/clean
+.PHONY : CMakeFiles/FaceIDCli.dir/clean
+
+#=============================================================================
 # Target rules for target external/spdlog/CMakeFiles/spdlog.dir
 
 # All Build rule for target.
 external/spdlog/CMakeFiles/spdlog.dir/all:
 	$(MAKE) $(MAKESILENT) -f external/spdlog/CMakeFiles/spdlog.dir/build.make external/spdlog/CMakeFiles/spdlog.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/spdlog/CMakeFiles/spdlog.dir/build.make external/spdlog/CMakeFiles/spdlog.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=68,69,70,71,72,73,74,75 "Built target spdlog"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=73,74,75,76,77,78,79,80 "Built target spdlog"
 .PHONY : external/spdlog/CMakeFiles/spdlog.dir/all
 
 # Build rule for subdir invocation for target.
@@ -279,7 +315,7 @@ spdlog: external/spdlog/CMakeFiles/spdlog.dir/rule
 # codegen rule for target.
 external/spdlog/CMakeFiles/spdlog.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f external/spdlog/CMakeFiles/spdlog.dir/build.make external/spdlog/CMakeFiles/spdlog.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=68,69,70,71,72,73,74,75 "Finished codegen for target spdlog"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=73,74,75,76,77,78,79,80 "Finished codegen for target spdlog"
 .PHONY : external/spdlog/CMakeFiles/spdlog.dir/codegen
 
 # clean rule for target.
@@ -294,7 +330,7 @@ external/spdlog/CMakeFiles/spdlog.dir/clean:
 external/dlib/dlib/CMakeFiles/dlib.dir/all:
 	$(MAKE) $(MAKESILENT) -f external/dlib/dlib/CMakeFiles/dlib.dir/build.make external/dlib/dlib/CMakeFiles/dlib.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/dlib/dlib/CMakeFiles/dlib.dir/build.make external/dlib/dlib/CMakeFiles/dlib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67 "Built target dlib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72 "Built target dlib"
 .PHONY : external/dlib/dlib/CMakeFiles/dlib.dir/all
 
 # Build rule for subdir invocation for target.
@@ -311,7 +347,7 @@ dlib: external/dlib/dlib/CMakeFiles/dlib.dir/rule
 # codegen rule for target.
 external/dlib/dlib/CMakeFiles/dlib.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f external/dlib/dlib/CMakeFiles/dlib.dir/build.make external/dlib/dlib/CMakeFiles/dlib.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67 "Finished codegen for target dlib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles --progress-num=12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72 "Finished codegen for target dlib"
 .PHONY : external/dlib/dlib/CMakeFiles/dlib.dir/codegen
 
 # clean rule for target.

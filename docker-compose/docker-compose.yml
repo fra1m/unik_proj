@@ -1,0 +1,186 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: diplom-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RMQ_DEFAULT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RMQ_DEFAULT_PASS:-guest}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [appnet]
+
+  faceid-core:
+    build:
+      context: ..
+      dockerfile: faceid-core/Dockerfile
+    container_name: diplom-faceid-core
+    environment:
+      PORT: "3010"
+      DATA_PATH: /opt/faceid/bin/data/last_embedding.json
+      FACEID_CLI_PATH: /opt/faceid/bin/FaceIDCli
+      FACEID_CLI_CWD: /opt/faceid/bin
+    ports:
+      - "3010:3010"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"require('http').get('http://localhost:3010/health', r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))\"",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [appnet]
+
+  users-db:
+    image: postgres:16
+    container_name: diplom-users-db
+    env_file: ./users/.env
+    ports:
+      - "5433:5432"
+    volumes:
+      - users_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+    networks: [appnet]
+
+  auth-db:
+    image: postgres:16
+    container_name: diplom-auth-db
+    env_file: ./auth/.env
+    ports:
+      - "5434:5432"
+    volumes:
+      - auth_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+    networks: [appnet]
+
+  users:
+    build:
+      context: ../users
+      dockerfile: Dockerfile
+      args:
+        NPM_TOKEN: ${NPM_TOKEN:-}
+    container_name: diplom-users-svc
+    env_file:
+      - ./users/.env
+    environment:
+      POSTGRES_HOST: users-db
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://guest:guest@rabbitmq:5672}
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      users-db:
+        condition: service_healthy
+    ports:
+      - "3002:3002"
+    networks: [appnet]
+
+  auth:
+    build:
+      context: ../auth
+      dockerfile: Dockerfile
+      args:
+        NPM_TOKEN: ${NPM_TOKEN:-}
+    container_name: diplom-auth-svc
+    env_file:
+      - ./auth/.env
+    environment:
+      POSTGRES_HOST: auth-db
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://guest:guest@rabbitmq:5672}
+      JWT_PRIVATE_KEY_PATH: /run/secrets/jwt_access_key
+      JWT_PUBLIC_KEY_PATH: /run/secrets/jwt_access_pub
+      JWT_REFRESH_PRIVATE_KEY_PATH: /run/secrets/jwt_refresh_key
+      JWT_REFRESH_PUBLIC_KEY_PATH: /run/secrets/jwt_refresh_pub
+      FACE_MATCH_THRESHOLD: "0.55"
+      FACE_MAX_SAMPLES: "20"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      auth-db:
+        condition: service_healthy
+    secrets:
+      - jwt_access_key
+      - jwt_access_pub
+      - jwt_refresh_key
+      - jwt_refresh_pub
+    ports:
+      - "3003:3003"
+    networks: [appnet]
+
+  gateway:
+    build:
+      context: ../gateway
+      dockerfile: Dockerfile
+      args:
+        NPM_TOKEN: ${NPM_TOKEN:-}
+    container_name: diplom-gateway
+    env_file:
+      - ./gateway/.env
+    environment:
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://guest:guest@rabbitmq:5672}
+      RMQ_AUTH_QUEUE: auth
+      RMQ_USERS_QUEUE: users
+      CORS_ORIGIN: http://localhost:5173
+      PORT: "3000"
+      FACE_CORE_URL: http://faceid-core:3010
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      faceid-core:
+        condition: service_healthy
+      users:
+        condition: service_started
+      auth:
+        condition: service_started
+    ports:
+      - "3000:3000"
+    networks: [appnet]
+
+  client:
+    build:
+      context: ../client
+      dockerfile: Dockerfile
+      target: dev
+    container_name: diplom-faceid-client
+    environment:
+      DOCKERIZED: "1"
+      VITE_API_URL: http://localhost:3000/api/v1
+    depends_on:
+      gateway:
+        condition: service_started
+    ports:
+      - "5173:5173"
+    networks: [appnet]
+
+networks:
+  appnet:
+
+volumes:
+  users_pgdata:
+  auth_pgdata:
+
+secrets:
+  jwt_access_key:
+    file: ./.secrets/jwt_access.key
+  jwt_access_pub:
+    file: ./.secrets/jwt_access.pub
+  jwt_refresh_key:
+    file: ./.secrets/jwt_refresh.key
+  jwt_refresh_pub:
+    file: ./.secrets/jwt_refresh.pub
+
+name: diplom

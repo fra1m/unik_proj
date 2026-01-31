@@ -108,6 +108,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/FaceID.dir/DependInfo.cmake"
+  "CMakeFiles/FaceIDCli.dir/DependInfo.cmake"
   "external/spdlog/CMakeFiles/spdlog.dir/DependInfo.cmake"
   "external/dlib/dlib/CMakeFiles/dlib.dir/DependInfo.cmake"
   )

@@ -8,6 +8,8 @@
 #include <cmath>
 #include <dlib/matrix.h>
 #include <filesystem>
+#include <fstream>
+#include <iomanip>
 #include <opencv2/opencv.hpp>
 #include <spdlog/spdlog.h>
 
@@ -31,10 +33,10 @@ void drawOverlayLine(cv::Mat &frame, const std::string &text, int &line) {
   line++;
 }
 
-void updateHintText(
-    const std::string &raw, std::string &shown, std::string &pending,
-    int &pendingFrames, std::chrono::steady_clock::time_point &lastChange,
-    int stableFrames, std::chrono::milliseconds minHold) {
+void updateHintText(const std::string &raw, std::string &shown,
+                    std::string &pending, int &pendingFrames,
+                    std::chrono::steady_clock::time_point &lastChange,
+                    int stableFrames, std::chrono::milliseconds minHold) {
   const auto now = std::chrono::steady_clock::now();
 
   if (raw.empty()) {
@@ -169,6 +171,30 @@ float maxDistanceFromMean(const std::vector<dlib::matrix<float, 0, 1>> &samples,
   return maxDistance;
 }
 
+bool saveEmbeddingJson(const dlib::matrix<float, 0, 1> &embedding,
+                       const std::filesystem::path &path) {
+  if (embedding.size() == 0) {
+    return false;
+  }
+  std::error_code ec;
+  std::filesystem::create_directories(path.parent_path(), ec);
+
+  std::ofstream out(path);
+  if (!out.is_open()) {
+    return false;
+  }
+  out << "{\n  \"embedding\": [";
+  out << std::fixed << std::setprecision(6);
+  for (long i = 0; i < embedding.size(); ++i) {
+    if (i > 0) {
+      out << ", ";
+    }
+    out << embedding(i);
+  }
+  out << "]\n}\n";
+  return true;
+}
+
 double varianceOfLaplacian(const cv::Mat &gray) {
   cv::Mat lap;
   cv::Laplacian(gray, lap, CV_64F);
@@ -252,10 +278,10 @@ HeadPose estimateHeadPose(const FaceEmbedding::FaceData &data,
   }
 
   const std::vector<cv::Point3f> modelPoints = {
-      {0.0f, 0.0f, 0.0f},       // Nose tip
-      {0.0f, -330.0f, -65.0f},  // Chin
-      {-225.0f, 170.0f, -135.0f}, // Left eye left corner
-      {225.0f, 170.0f, -135.0f},  // Right eye right corner
+      {0.0f, 0.0f, 0.0f},          // Nose tip
+      {0.0f, -330.0f, -65.0f},     // Chin
+      {-225.0f, 170.0f, -135.0f},  // Left eye left corner
+      {225.0f, 170.0f, -135.0f},   // Right eye right corner
       {-150.0f, -150.0f, -125.0f}, // Left mouth corner
       {150.0f, -150.0f, -125.0f}   // Right mouth corner
   };
@@ -350,8 +376,7 @@ PoseEstimate estimatePoseSlot(const FaceEmbedding::FaceData &data,
   const float distR = rightEye.x - nose.x;
   const float yawRaw = (distR - distL) / (distR + distL + 1e-6f);
 
-  const float pitchRaw =
-      (nose.y - eyeMid.y) / (mouthMid.y - eyeMid.y + 1e-6f);
+  const float pitchRaw = (nose.y - eyeMid.y) / (mouthMid.y - eyeMid.y + 1e-6f);
   float pitchNormFallback = (pitchRaw - 0.5f) / 0.25f;
   pitchNormFallback = clampf(pitchNormFallback, -1.0f, 1.0f);
 
@@ -539,11 +564,55 @@ void drawFaceIdOverlay(cv::Mat &frame, const cv::Point &center, int radius,
   cv::ellipse(frame, cv::Point(center.x, center.y + faceRadius / 6),
               cv::Size(faceRadius / 3, faceRadius / 4), 0, 0, 180,
               cv::Scalar(200, 200, 200), 2, cv::LINE_AA);
-
 }
-// namespace
+struct AppConfig {
+  bool autoExport = false;
+  bool autoExportOnce = false;
+  int autoExportIntervalMs = 900;
+};
 
-int main() {
+AppConfig parseArgs(int argc, char **argv) {
+  AppConfig config;
+  const auto readPositiveInt = [&config](const std::string &value) {
+    try {
+      const int parsed = std::stoi(value);
+      if (parsed > 0) {
+        config.autoExportIntervalMs = parsed;
+      }
+    } catch (...) {
+    }
+  };
+  for (int i = 1; i < argc; ++i) {
+    const std::string arg = argv[i];
+    if (arg == "--auto-export") {
+      config.autoExport = true;
+      continue;
+    }
+    if (arg == "--auto-export-once") {
+      config.autoExport = true;
+      config.autoExportOnce = true;
+      continue;
+    }
+    const std::string prefix = "--auto-export-interval=";
+    if (arg.rfind(prefix, 0) == 0) {
+      const std::string value = arg.substr(prefix.size());
+      readPositiveInt(value);
+      continue;
+    }
+    if (arg == "--auto-export-interval" && i + 1 < argc) {
+      readPositiveInt(argv[i + 1]);
+      i++;
+    }
+  }
+
+  if (config.autoExportIntervalMs < 100) {
+    config.autoExportIntervalMs = 100;
+  }
+  return config;
+} // namespace
+
+int main(int argc, char **argv) {
+  const AppConfig appConfig = parseArgs(argc, argv);
   const std::string arcface_path = "resources/arcface/arcface.onnx";
   const std::string dlib_path =
       "resources/dlib/dlib_face_recognition_resnet_model_v1.dat";
@@ -554,8 +623,7 @@ int main() {
   FaceEmbedding faceEmbedding(embedder_path);
   FaceRecognition faceRecognition(
       "resources/dnn/deploy.prototxt",
-      "resources/dnn/res10_300x300_ssd_iter_140000.caffemodel",
-      faceEmbedding);
+      "resources/dnn/res10_300x300_ssd_iter_140000.caffemodel", faceEmbedding);
 
   const std::string face_db_path = "data/face_db.yml";
   FaceMemory faceMemory(0.5f);
@@ -608,7 +676,7 @@ int main() {
   const double kBlurThreshold = 10.0;
   const int kHintStableFrames = 6;
   const auto kHintHold = std::chrono::milliseconds(450);
-  const auto kLivenessTtl = std::chrono::seconds(6);
+  const auto kLivenessTtl = std::chrono::seconds(45);
   const float kMouthOpenMar = 0.5f;
   const float kMouthCloseMar = 0.35f;
   const int kMouthOpenFrames = 2;
@@ -622,6 +690,15 @@ int main() {
   int slotMatchFrames = 0;
   int targetHoldFrames = 0;
   LivenessState liveness;
+  dlib::matrix<float, 0, 1> lastPrimaryEmbedding;
+  bool hasLastPrimaryEmbedding = false;
+  const std::filesystem::path exportEmbeddingPath =
+      std::filesystem::path("data") / "last_embedding.json";
+  const bool autoExportEnabled = appConfig.autoExport;
+  const bool autoExportOnce = appConfig.autoExportOnce;
+  const auto autoExportInterval =
+      std::chrono::milliseconds(appConfig.autoExportIntervalMs);
+  auto lastAutoExport = std::chrono::steady_clock::time_point{};
 
   while (true) {
     cv::Mat frame;
@@ -737,6 +814,20 @@ int main() {
         ImageProcessing::saveFaceImage(frame, "data/snapshots", frameCount);
         break;
       }
+      case 'e': {
+        if (!hasLastPrimaryEmbedding) {
+          spdlog::warn("No embedding available to export yet.");
+          break;
+        }
+        if (saveEmbeddingJson(lastPrimaryEmbedding, exportEmbeddingPath)) {
+          spdlog::info("Embedding exported to {}",
+                       exportEmbeddingPath.string());
+        } else {
+          spdlog::error("Failed to export embedding to {}",
+                        exportEmbeddingPath.string());
+        }
+        break;
+      }
       case 'm': {
         showLandmarks = !showLandmarks;
         spdlog::info("Landmarks: {}", showLandmarks ? "ON" : "OFF");
@@ -805,9 +896,8 @@ int main() {
                 enrollHint = "Rotate head around the ring";
                 slotMatchFrames = 0;
               } else {
-                const int proposedSlot =
-                    closestUnfilledSlot(poseBuckets, pose.slot,
-                                        kSamplesPerSlot);
+                const int proposedSlot = closestUnfilledSlot(
+                    poseBuckets, pose.slot, kSamplesPerSlot);
                 if (proposedSlot < 0) {
                   activeSlot = -1;
                   targetHoldFrames = 0;
@@ -825,8 +915,8 @@ int main() {
                 }
 
                 const bool matches = slotMatches(
-                    pose.slot, activeSlot,
-                    static_cast<int>(poseBuckets.size()), kSlotTolerance);
+                    pose.slot, activeSlot, static_cast<int>(poseBuckets.size()),
+                    kSlotTolerance);
                 if (matches) {
                   slotMatchFrames++;
                 } else {
@@ -911,17 +1001,18 @@ int main() {
                         activeSlot);
     }
 
-    const bool needLiveness =
-        (uiMode == UiMode::Idle && faceMemory.size() > 0);
+    const bool needLiveness = (uiMode == UiMode::Idle && faceMemory.size() > 0);
     bool livenessOk = !needLiveness;
     std::string livenessHint;
     const bool singleFace = (faceRects.size() == 1);
     const cv::Rect primaryRect = pickLargestFace(faceRects);
     bool livenessUpdated = false;
+    bool primaryEmbeddingUpdated = false;
     if (needLiveness && !singleFace) {
       resetLiveness(liveness);
       livenessOk = false;
-      livenessHint = faceRects.empty() ? "Show your face" : "Only one face at a time";
+      livenessHint =
+          faceRects.empty() ? "Show your face" : "Only one face at a time";
     }
 
     for (const auto &rect : faceRects) {
@@ -945,6 +1036,12 @@ int main() {
             }
           }
         }
+      }
+
+      if (hasEmbedding && rect == primaryRect) {
+        lastPrimaryEmbedding = embedding;
+        hasLastPrimaryEmbedding = true;
+        primaryEmbeddingUpdated = true;
       }
 
       if (needLiveness && singleFace && !livenessUpdated &&
@@ -982,9 +1079,8 @@ int main() {
 
       std::string label = "UNKNOWN";
       bool isMatch = false;
-      const bool isLiveness =
-          (needLiveness && rect == primaryRect && !livenessOk &&
-           uiMode == UiMode::Idle);
+      const bool isLiveness = (needLiveness && rect == primaryRect &&
+                               !livenessOk && uiMode == UiMode::Idle);
       if (uiMode == UiMode::Enrolling) {
         label = "ENROLLING";
       } else if (isLiveness) {
@@ -1006,10 +1102,9 @@ int main() {
         label = "NO DB";
       }
 
-      const cv::Scalar color = isMatch
-                                   ? cv::Scalar(0, 255, 0)
-                                   : (isLiveness ? cv::Scalar(0, 215, 255)
-                                                 : cv::Scalar(0, 0, 255));
+      const cv::Scalar color = isMatch ? cv::Scalar(0, 255, 0)
+                                       : (isLiveness ? cv::Scalar(0, 215, 255)
+                                                     : cv::Scalar(0, 0, 255));
       cv::rectangle(frame, rect, color, 2);
 
       int baseline = 0;
@@ -1024,10 +1119,30 @@ int main() {
                   2);
     }
 
+    if (autoExportEnabled && primaryEmbeddingUpdated &&
+        uiMode == UiMode::Idle && (!needLiveness || livenessOk) && singleFace &&
+        hasLastPrimaryEmbedding) {
+      const auto now = std::chrono::steady_clock::now();
+      if (now - lastAutoExport >= autoExportInterval) {
+        if (saveEmbeddingJson(lastPrimaryEmbedding, exportEmbeddingPath)) {
+          spdlog::info("Embedding auto-exported to {}",
+                       exportEmbeddingPath.string());
+          lastAutoExport = now;
+          if (autoExportOnce) {
+            cap.release();
+            cv::destroyAllWindows();
+            return 0;
+          }
+        } else {
+          spdlog::warn("Failed to auto-export embedding.");
+        }
+      }
+    }
+
     int line = 0;
     drawOverlayLine(frame,
                     "Keys: [n] new [c] clear [r] reload [m] landmarks [s] "
-                    "snapshot [[/]] threshold [q] quit [ESC] cancel",
+                    "snapshot [e] export [[/]] threshold [q] quit [ESC] cancel",
                     line);
     drawOverlayLine(frame,
                     "Threshold: " + cv::format("%.2f", faceMemory.threshold()),

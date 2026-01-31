@@ -1,4 +1,5 @@
 /Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles/FaceID.dir
+/Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles/FaceIDCli.dir
 /Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles/edit_cache.dir
 /Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles/rebuild_cache.dir
 /Users/vasili/Desktop/Tests/Face_opencv/build/CMakeFiles/list_install_components.dir
