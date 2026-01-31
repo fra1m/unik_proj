@@ -29,5 +29,5 @@ private:
   cv::Rect faceRegion;
   const float CONFIDENCE_THRESHOLD = 0.5;
   cv::Ptr<cv::ml::SVM> svm;
-  FaceEmbedding faceEmbedding; // Добавляем объект FaceEmbedding
+  FaceEmbedding &faceEmbedding;
 };

@@ -1,0 +1,14 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/vasili/Desktop/Tests/Face_opencv/build/cmake_install.cmake",
+		"/Users/vasili/Desktop/Tests/Face_opencv/build/external/spdlog/cmake_install.cmake",
+		"/Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen/cmake_install.cmake",
+		"/Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen/unsupported/cmake_install.cmake",
+		"/Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen/unsupported/Eigen/cmake_install.cmake",
+		"/Users/vasili/Desktop/Tests/Face_opencv/build/external/eigen/unsupported/Eigen/CXX11/cmake_install.cmake",
+		"/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/cmake_install.cmake",
+		"/Users/vasili/Desktop/Tests/Face_opencv/build/external/dlib/dlib/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

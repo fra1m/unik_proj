@@ -1,0 +1,15 @@
+node_modules
+dist
+coverage
+.git
+*.log
+Dockerfile
+docker/
+/test
+/.gitignore
+/.prettierignore
+/.eslintrc.js
+/.vscode
+/.idea
+/.github
+todos.md

@@ -1,23 +1,645 @@
 #include "FaceEmbedding/faceEmbedding.h"
+#include "FaceMemory/faceMemory.h"
 #include "FaceRecognition/faceRecognition.h"
 #include "ImageProcessing/imageProcessing.h"
+
+#include <algorithm>
 #include <chrono>
+#include <cmath>
 #include <dlib/matrix.h>
+#include <filesystem>
+#include <fstream>
+#include <iomanip>
 #include <opencv2/opencv.hpp>
 #include <spdlog/spdlog.h>
-#include <thread>
 
-int main() {
-  // Инициализация faceEmbedding и faceRecognition
-  const std::string model_path =
-      "bin/resources/dlib/dlib_face_recognition_resnet_model_v1.dat";
-  FaceEmbedding faceEmbedding(model_path);
+namespace {
+constexpr float kRingStartAngle = -static_cast<float>(CV_PI) / 2.0f;
+
+cv::Rect pickLargestFace(const std::vector<cv::Rect> &faces) {
+  if (faces.empty()) {
+    return {};
+  }
+  return *std::max_element(
+      faces.begin(), faces.end(),
+      [](const cv::Rect &a, const cv::Rect &b) { return a.area() < b.area(); });
+}
+
+void drawOverlayLine(cv::Mat &frame, const std::string &text, int &line) {
+  const int x = 10;
+  const int y = 24 + line * 22;
+  cv::putText(frame, text, cv::Point(x, y), cv::FONT_HERSHEY_SIMPLEX, 0.6,
+              cv::Scalar(255, 255, 255), 2);
+  line++;
+}
+
+void updateHintText(const std::string &raw, std::string &shown,
+                    std::string &pending, int &pendingFrames,
+                    std::chrono::steady_clock::time_point &lastChange,
+                    int stableFrames, std::chrono::milliseconds minHold) {
+  const auto now = std::chrono::steady_clock::now();
+
+  if (raw.empty()) {
+    if (!shown.empty() && now - lastChange >= minHold) {
+      shown.clear();
+      lastChange = now;
+    }
+    pending.clear();
+    pendingFrames = 0;
+    return;
+  }
+
+  if (raw == shown) {
+    pending.clear();
+    pendingFrames = 0;
+    return;
+  }
+
+  if (raw == pending) {
+    pendingFrames++;
+  } else {
+    pending = raw;
+    pendingFrames = 1;
+  }
+
+  if (pendingFrames >= stableFrames && now - lastChange >= minHold) {
+    shown = raw;
+    pending.clear();
+    pendingFrames = 0;
+    lastChange = now;
+  }
+}
+
+struct LivenessState {
+  std::chrono::steady_clock::time_point lastPass{};
+  int openFrames = 0;
+  int closedFrames = 0;
+  bool mouthOpen = false;
+  bool sawClosed = false;
+  float lastMar = -1.0f;
+};
+
+void resetLiveness(LivenessState &state) { state = LivenessState{}; }
+
+float mouthAspectRatio(const std::vector<dlib::point> &landmarks) {
+  if (landmarks.size() < 68) {
+    return -1.0f;
+  }
+  const auto dist = [](const dlib::point &a, const dlib::point &b) {
+    const float dx = static_cast<float>(a.x() - b.x());
+    const float dy = static_cast<float>(a.y() - b.y());
+    return std::sqrt(dx * dx + dy * dy);
+  };
+
+  const float horizontal = dist(landmarks[60], landmarks[64]);
+  if (horizontal <= 1e-6f) {
+    return -1.0f;
+  }
+  const float v1 = dist(landmarks[61], landmarks[67]);
+  const float v2 = dist(landmarks[62], landmarks[66]);
+  const float v3 = dist(landmarks[63], landmarks[65]);
+  const float vertical = (v1 + v2 + v3) / 3.0f;
+  return vertical / horizontal;
+}
+
+bool updateMouthState(LivenessState &state,
+                      const std::vector<dlib::point> &landmarks,
+                      float openThreshold, float closeThreshold,
+                      int openFramesNeeded, int closeFramesNeeded) {
+  const float mar = mouthAspectRatio(landmarks);
+  state.lastMar = mar;
+  if (mar < 0.0f) {
+    state.openFrames = 0;
+    state.closedFrames = 0;
+    return false;
+  }
+
+  if (mar > openThreshold) {
+    state.openFrames++;
+    state.closedFrames = 0;
+  } else if (mar < closeThreshold) {
+    state.closedFrames++;
+    state.openFrames = 0;
+    if (state.closedFrames >= closeFramesNeeded) {
+      state.sawClosed = true;
+    }
+  } else {
+    state.openFrames = 0;
+    state.closedFrames = 0;
+  }
+
+  bool openedNow = false;
+  if (!state.mouthOpen && state.openFrames >= openFramesNeeded &&
+      state.sawClosed) {
+    state.mouthOpen = true;
+    state.sawClosed = false;
+    openedNow = true;
+  }
+  if (state.mouthOpen && state.closedFrames >= closeFramesNeeded) {
+    state.mouthOpen = false;
+  }
+  return openedNow;
+}
+
+dlib::matrix<float, 0, 1>
+averageEmbeddings(const std::vector<dlib::matrix<float, 0, 1>> &samples) {
+  dlib::matrix<float, 0, 1> mean;
+  if (samples.empty()) {
+    return mean;
+  }
+
+  mean.set_size(samples[0].size());
+  mean = 0;
+  for (const auto &sample : samples) {
+    mean += sample;
+  }
+  mean /= static_cast<float>(samples.size());
+  return mean;
+}
+
+float maxDistanceFromMean(const std::vector<dlib::matrix<float, 0, 1>> &samples,
+                          const dlib::matrix<float, 0, 1> &mean) {
+  if (samples.empty() || mean.size() == 0) {
+    return 0.0f;
+  }
+
+  float maxDistance = 0.0f;
+  for (const auto &sample : samples) {
+    maxDistance =
+        std::max(maxDistance, static_cast<float>(dlib::length(sample - mean)));
+  }
+  return maxDistance;
+}
+
+bool saveEmbeddingJson(const dlib::matrix<float, 0, 1> &embedding,
+                       const std::filesystem::path &path) {
+  if (embedding.size() == 0) {
+    return false;
+  }
+  std::error_code ec;
+  std::filesystem::create_directories(path.parent_path(), ec);
+
+  std::ofstream out(path);
+  if (!out.is_open()) {
+    return false;
+  }
+  out << "{\n  \"embedding\": [";
+  out << std::fixed << std::setprecision(6);
+  for (long i = 0; i < embedding.size(); ++i) {
+    if (i > 0) {
+      out << ", ";
+    }
+    out << embedding(i);
+  }
+  out << "]\n}\n";
+  return true;
+}
+
+double varianceOfLaplacian(const cv::Mat &gray) {
+  cv::Mat lap;
+  cv::Laplacian(gray, lap, CV_64F);
+  cv::Scalar mean;
+  cv::Scalar stddev;
+  cv::meanStdDev(lap, mean, stddev);
+  return stddev[0] * stddev[0];
+}
+
+struct FaceQuality {
+  int width = 0;
+  int height = 0;
+  double blur = 0.0;
+  bool ok = false;
+};
+
+FaceQuality evaluateFaceQuality(const cv::Mat &frame, const cv::Rect &rect,
+                                int minSize, double blurThreshold) {
+  FaceQuality quality;
+  const cv::Rect bounded = rect & cv::Rect(0, 0, frame.cols, frame.rows);
+  quality.width = bounded.width;
+  quality.height = bounded.height;
+  if (bounded.width < minSize || bounded.height < minSize) {
+    quality.ok = false;
+    return quality;
+  }
+
+  cv::Mat gray;
+  cv::cvtColor(frame(bounded), gray, cv::COLOR_BGR2GRAY);
+  quality.blur = varianceOfLaplacian(gray);
+  quality.ok = quality.blur >= blurThreshold;
+  return quality;
+}
+
+struct PoseBucket {
+  std::vector<dlib::matrix<float, 0, 1>> samples;
+  std::chrono::steady_clock::time_point lastCapture;
+};
+
+struct PoseEstimate {
+  int slot = -1;
+  float magnitude = 0.0f;
+  float angle = 0.0f;
+  float yawNorm = 0.0f;
+  float pitchNorm = 0.0f;
+  bool valid = false;
+};
+
+struct HeadPose {
+  float yaw = 0.0f;
+  float pitch = 0.0f;
+  float roll = 0.0f;
+  bool valid = false;
+};
+
+float clampf(float value, float minValue, float maxValue) {
+  return std::max(minValue, std::min(value, maxValue));
+}
+
+cv::Point2f toPoint(const dlib::point &pt) {
+  return cv::Point2f(static_cast<float>(pt.x()), static_cast<float>(pt.y()));
+}
+
+cv::Point2f meanPoints(const std::vector<dlib::point> &pts, int start,
+                       int end) {
+  float sumX = 0.0f;
+  float sumY = 0.0f;
+  const int count = end - start + 1;
+  for (int i = start; i <= end; ++i) {
+    sumX += static_cast<float>(pts[i].x());
+    sumY += static_cast<float>(pts[i].y());
+  }
+  return cv::Point2f(sumX / count, sumY / count);
+}
+
+HeadPose estimateHeadPose(const FaceEmbedding::FaceData &data,
+                          const cv::Size &frameSize) {
+  HeadPose pose;
+  if (data.landmarks.size() < 68) {
+    return pose;
+  }
+
+  const std::vector<cv::Point3f> modelPoints = {
+      {0.0f, 0.0f, 0.0f},          // Nose tip
+      {0.0f, -330.0f, -65.0f},     // Chin
+      {-225.0f, 170.0f, -135.0f},  // Left eye left corner
+      {225.0f, 170.0f, -135.0f},   // Right eye right corner
+      {-150.0f, -150.0f, -125.0f}, // Left mouth corner
+      {150.0f, -150.0f, -125.0f}   // Right mouth corner
+  };
+
+  const std::vector<cv::Point2f> imagePoints = {
+      toPoint(data.landmarks[30]), // Nose tip
+      toPoint(data.landmarks[8]),  // Chin
+      toPoint(data.landmarks[36]), // Left eye left corner
+      toPoint(data.landmarks[45]), // Right eye right corner
+      toPoint(data.landmarks[48]), // Left mouth corner
+      toPoint(data.landmarks[54])  // Right mouth corner
+  };
+
+  const double focalLength = static_cast<double>(frameSize.width);
+  const cv::Point2d center(frameSize.width / 2.0, frameSize.height / 2.0);
+  const cv::Mat cameraMatrix =
+      (cv::Mat_<double>(3, 3) << focalLength, 0.0, center.x, 0.0, focalLength,
+       center.y, 0.0, 0.0, 1.0);
+  const cv::Mat distCoeffs = cv::Mat::zeros(4, 1, CV_64F);
+
+  cv::Mat rvec;
+  cv::Mat tvec;
+  if (!cv::solvePnP(modelPoints, imagePoints, cameraMatrix, distCoeffs, rvec,
+                    tvec, false, cv::SOLVEPNP_ITERATIVE)) {
+    return pose;
+  }
+
+  cv::Mat rotMat;
+  cv::Rodrigues(rvec, rotMat);
+  const double r00 = rotMat.at<double>(0, 0);
+  const double r10 = rotMat.at<double>(1, 0);
+  const double r11 = rotMat.at<double>(1, 1);
+  const double r12 = rotMat.at<double>(1, 2);
+  const double r20 = rotMat.at<double>(2, 0);
+  const double r21 = rotMat.at<double>(2, 1);
+  const double r22 = rotMat.at<double>(2, 2);
+
+  const double sy = std::sqrt(r00 * r00 + r10 * r10);
+  double x = 0.0;
+  double y = 0.0;
+  double z = 0.0;
+  if (sy < 1e-6) {
+    x = std::atan2(-r12, r11);
+    y = std::atan2(-r20, sy);
+    z = 0.0;
+  } else {
+    x = std::atan2(r21, r22);
+    y = std::atan2(-r20, sy);
+    z = std::atan2(r10, r00);
+  }
+
+  pose.pitch = static_cast<float>(x);
+  pose.yaw = static_cast<float>(y);
+  pose.roll = static_cast<float>(z);
+  pose.valid = std::isfinite(pose.pitch) && std::isfinite(pose.yaw) &&
+               std::isfinite(pose.roll);
+  return pose;
+}
+
+int angleToSlot(float angle, int slots) {
+  const float twoPi = 2.0f * static_cast<float>(CV_PI);
+  float angleNorm = std::fmod(angle, twoPi);
+  if (angleNorm < 0.0f) {
+    angleNorm += twoPi;
+  }
+  int slot = static_cast<int>(std::floor(angleNorm / twoPi * slots));
+  if (slot >= slots) {
+    slot = slots - 1;
+  }
+  return slot;
+}
+
+PoseEstimate estimatePoseSlot(const FaceEmbedding::FaceData &data,
+                              const cv::Size &frameSize, int slots,
+                              float minMagnitude, float yawMax,
+                              float pitchMax) {
+  PoseEstimate estimate;
+  if (data.landmarks.size() < 68) {
+    return estimate;
+  }
+
+  const cv::Point2f leftEye = meanPoints(data.landmarks, 36, 41);
+  const cv::Point2f rightEye = meanPoints(data.landmarks, 42, 47);
+  const cv::Point2f nose = toPoint(data.landmarks[30]);
+  const cv::Point2f mouthLeft = toPoint(data.landmarks[48]);
+  const cv::Point2f mouthRight = toPoint(data.landmarks[54]);
+
+  const cv::Point2f eyeMid = (leftEye + rightEye) * 0.5f;
+  const cv::Point2f mouthMid = (mouthLeft + mouthRight) * 0.5f;
+
+  const float distL = nose.x - leftEye.x;
+  const float distR = rightEye.x - nose.x;
+  const float yawRaw = (distR - distL) / (distR + distL + 1e-6f);
+
+  const float pitchRaw = (nose.y - eyeMid.y) / (mouthMid.y - eyeMid.y + 1e-6f);
+  float pitchNormFallback = (pitchRaw - 0.5f) / 0.25f;
+  pitchNormFallback = clampf(pitchNormFallback, -1.0f, 1.0f);
+
+  const float yawScreenFallback = clampf(-yawRaw, -1.0f, 1.0f);
+  const float pitchScreenFallback = pitchNormFallback;
+
+  float yawNorm = yawScreenFallback;
+  float pitchNorm = pitchScreenFallback;
+
+  const HeadPose pose = estimateHeadPose(data, frameSize);
+  if (pose.valid) {
+    float yawSolve = clampf(pose.yaw / yawMax, -1.0f, 1.0f);
+    float pitchSolve = clampf(pose.pitch / pitchMax, -1.0f, 1.0f);
+    yawSolve = -yawSolve;
+
+    const float yawAlignThreshold = 0.12f;
+    if (std::abs(yawScreenFallback) > yawAlignThreshold &&
+        yawSolve * yawScreenFallback < 0.0f) {
+      yawSolve = -yawSolve;
+    }
+
+    const float pitchAlignThreshold = 0.12f;
+    if (std::abs(pitchScreenFallback) > pitchAlignThreshold &&
+        pitchSolve * pitchScreenFallback < 0.0f) {
+      pitchSolve = -pitchSolve;
+    }
+
+    yawNorm = yawSolve;
+    pitchNorm = pitchSolve;
+  }
+
+  estimate.yawNorm = yawNorm;
+  estimate.pitchNorm = pitchNorm;
+
+  const float magnitude = std::sqrt(yawNorm * yawNorm + pitchNorm * pitchNorm);
+  float angle = std::atan2(pitchNorm, yawNorm) - kRingStartAngle;
+  if (!std::isfinite(angle)) {
+    angle = 0.0f;
+  }
+
+  int slot = angleToSlot(angle, slots);
+  if (magnitude < minMagnitude) {
+    slot = 0;
+    angle = 0.0f;
+  }
+
+  estimate.slot = slot;
+  estimate.magnitude = magnitude;
+  estimate.angle = angle;
+  estimate.valid = true;
+  return estimate;
+}
+
+bool allBucketsFilled(const std::vector<PoseBucket> &buckets,
+                      int targetPerPose) {
+  if (buckets.empty()) {
+    return false;
+  }
+  return std::all_of(buckets.begin(), buckets.end(),
+                     [targetPerPose](const PoseBucket &bucket) {
+                       return static_cast<int>(bucket.samples.size()) >=
+                              targetPerPose;
+                     });
+}
+
+PoseBucket *bucketAt(std::vector<PoseBucket> &buckets, int slot) {
+  if (slot < 0 || slot >= static_cast<int>(buckets.size())) {
+    return nullptr;
+  }
+  return &buckets[slot];
+}
+
+int closestUnfilledSlot(const std::vector<PoseBucket> &buckets, int currentSlot,
+                        int targetPerSlot) {
+  const int slots = static_cast<int>(buckets.size());
+  if (slots == 0 || currentSlot < 0) {
+    return -1;
+  }
+  int bestSlot = -1;
+  int bestDistance = slots + 1;
+  for (int i = 0; i < slots; ++i) {
+    if (static_cast<int>(buckets[i].samples.size()) >= targetPerSlot) {
+      continue;
+    }
+    const int diff = std::min((i - currentSlot + slots) % slots,
+                              (currentSlot - i + slots) % slots);
+    if (diff < bestDistance) {
+      bestDistance = diff;
+      bestSlot = i;
+    }
+  }
+  return bestSlot;
+}
+
+int collectedSamples(const std::vector<PoseBucket> &buckets) {
+  int total = 0;
+  for (const auto &bucket : buckets) {
+    total += static_cast<int>(bucket.samples.size());
+  }
+  return total;
+}
+
+int filledSlots(const std::vector<PoseBucket> &buckets, int targetPerPose) {
+  int total = 0;
+  for (const auto &bucket : buckets) {
+    if (static_cast<int>(bucket.samples.size()) >= targetPerPose) {
+      total++;
+    }
+  }
+  return total;
+}
+
+bool isSlotFilled(const std::vector<PoseBucket> &buckets, int slot,
+                  int targetPerSlot) {
+  if (slot < 0 || slot >= static_cast<int>(buckets.size())) {
+    return false;
+  }
+  return static_cast<int>(buckets[slot].samples.size()) >= targetPerSlot;
+}
+
+bool slotMatches(int slot, int active, int slots, int tolerance) {
+  if (slots <= 0 || slot < 0 || active < 0) {
+    return false;
+  }
+  const int diff = std::min((slot - active + slots) % slots,
+                            (active - slot + slots) % slots);
+  return diff <= tolerance;
+}
+} // namespace
+
+cv::Point2f circlePoint(const cv::Point2f &center, float radius,
+                        float angleRad) {
+  return cv::Point2f(center.x + radius * std::cos(angleRad),
+                     center.y + radius * std::sin(angleRad));
+}
+
+void drawFaceIdOverlay(cv::Mat &frame, const cv::Point &center, int radius,
+                       const std::vector<PoseBucket> &buckets,
+                       int targetPerSlot, int neededSlot) {
+  if (buckets.empty()) {
+    return;
+  }
+
+  const int slots = static_cast<int>(buckets.size());
+  const int ticksPerSlot = 4;
+  const int totalTicks = slots * ticksPerSlot;
+  const float startAngle = kRingStartAngle;
+  const float step = 2.0f * static_cast<float>(CV_PI) / totalTicks;
+  const cv::Scalar filledColor(80, 170, 80);
+  const cv::Scalar missingColor(210, 210, 210);
+  const cv::Scalar highlightSoft(240, 240, 240);
+  const cv::Scalar highlightCore(255, 255, 255);
+
+  for (int slot = 0; slot < slots; ++slot) {
+    const bool filled =
+        static_cast<int>(buckets[slot].samples.size()) >= targetPerSlot;
+    const bool isTarget = (slot == neededSlot && !filled);
+    const cv::Scalar baseColor = filled ? filledColor : missingColor;
+    const int baseThickness = filled ? 2 : 3;
+    for (int t = 0; t < ticksPerSlot; ++t) {
+      const int tickIndex = slot * ticksPerSlot + t;
+      const float angle = startAngle + tickIndex * step;
+      const cv::Point2f p1 =
+          circlePoint(cv::Point2f(center), radius - 4.0f, angle);
+      const cv::Point2f p2 =
+          circlePoint(cv::Point2f(center), radius + 4.0f, angle);
+      if (isTarget) {
+        cv::line(frame, p1, p2, highlightSoft, 6, cv::LINE_AA);
+        cv::line(frame, p1, p2, highlightCore, 3, cv::LINE_AA);
+      } else {
+        cv::line(frame, p1, p2, baseColor, baseThickness, cv::LINE_AA);
+      }
+    }
+  }
+
+  const int faceRadius = static_cast<int>(radius * 0.35f);
+  cv::circle(frame, center, faceRadius, cv::Scalar(200, 200, 200), 2,
+             cv::LINE_AA);
+  cv::circle(frame,
+             cv::Point(center.x - faceRadius / 3, center.y - faceRadius / 5), 3,
+             cv::Scalar(200, 200, 200), cv::FILLED, cv::LINE_AA);
+  cv::circle(frame,
+             cv::Point(center.x + faceRadius / 3, center.y - faceRadius / 5), 3,
+             cv::Scalar(200, 200, 200), cv::FILLED, cv::LINE_AA);
+  cv::ellipse(frame, cv::Point(center.x, center.y + faceRadius / 6),
+              cv::Size(faceRadius / 3, faceRadius / 4), 0, 0, 180,
+              cv::Scalar(200, 200, 200), 2, cv::LINE_AA);
+}
+struct AppConfig {
+  bool autoExport = false;
+  bool autoExportOnce = false;
+  int autoExportIntervalMs = 900;
+};
+
+AppConfig parseArgs(int argc, char **argv) {
+  AppConfig config;
+  const auto readPositiveInt = [&config](const std::string &value) {
+    try {
+      const int parsed = std::stoi(value);
+      if (parsed > 0) {
+        config.autoExportIntervalMs = parsed;
+      }
+    } catch (...) {
+    }
+  };
+  for (int i = 1; i < argc; ++i) {
+    const std::string arg = argv[i];
+    if (arg == "--auto-export") {
+      config.autoExport = true;
+      continue;
+    }
+    if (arg == "--auto-export-once") {
+      config.autoExport = true;
+      config.autoExportOnce = true;
+      continue;
+    }
+    const std::string prefix = "--auto-export-interval=";
+    if (arg.rfind(prefix, 0) == 0) {
+      const std::string value = arg.substr(prefix.size());
+      readPositiveInt(value);
+      continue;
+    }
+    if (arg == "--auto-export-interval" && i + 1 < argc) {
+      readPositiveInt(argv[i + 1]);
+      i++;
+    }
+  }
+
+  if (config.autoExportIntervalMs < 100) {
+    config.autoExportIntervalMs = 100;
+  }
+  return config;
+} // namespace
+
+int main(int argc, char **argv) {
+  const AppConfig appConfig = parseArgs(argc, argv);
+  const std::string arcface_path = "resources/arcface/arcface.onnx";
+  const std::string dlib_path =
+      "resources/dlib/dlib_face_recognition_resnet_model_v1.dat";
+  const std::filesystem::path arcface_full =
+      std::filesystem::current_path() / arcface_path;
+  const std::string embedder_path =
+      std::filesystem::exists(arcface_full) ? arcface_path : dlib_path;
+  FaceEmbedding faceEmbedding(embedder_path);
   FaceRecognition faceRecognition(
-      "../resources/dnn/deploy.prototxt",
-      "../resources/dnn/res10_300x300_ssd_iter_140000.caffemodel",
-      faceEmbedding);
+      "resources/dnn/deploy.prototxt",
+      "resources/dnn/res10_300x300_ssd_iter_140000.caffemodel", faceEmbedding);
 
-  // Настройка видеозахвата
+  const std::string face_db_path = "data/face_db.yml";
+  FaceMemory faceMemory(0.5f);
+  if (faceMemory.load(face_db_path)) {
+    spdlog::info("Loaded faces: {}", faceMemory.size());
+  } else {
+    spdlog::info("Face database not found: {}", face_db_path);
+  }
+  if (faceMemory.embeddingDim() != 0 &&
+      faceMemory.embeddingDim() != faceEmbedding.embeddingDim()) {
+    spdlog::warn("Embedding dim mismatch (db={}, model={}). Clearing database.",
+                 faceMemory.embeddingDim(), faceEmbedding.embeddingDim());
+    faceMemory.clear();
+    faceMemory.save(face_db_path);
+  }
+
   cv::VideoCapture cap(0);
   cap.set(cv::CAP_PROP_FRAME_WIDTH, 1280);
   cap.set(cv::CAP_PROP_FRAME_HEIGHT, 720);
@@ -27,11 +649,56 @@ int main() {
     return -1;
   }
 
-  // Переменные для управления состоянием
-  int processFrameInterval = 1;
   int frameCount = 0;
-  std::string displayText = "NO FACE";
-  bool showLandmarks = false; // Флаг для отображения ключевых точек
+  bool showLandmarks = false;
+
+  enum class UiMode { Idle, TypingName, Enrolling };
+  UiMode uiMode = UiMode::Idle;
+  std::string nameBuffer;
+  std::string enrollName;
+  std::vector<PoseBucket> poseBuckets;
+  int activeSlot = -1;
+  const int kPoseSlots = 12;
+  const int kSamplesPerSlot = 3;
+  const auto kEnrollInterval = std::chrono::milliseconds(250);
+  const float kPoseMagnitudeMin = 0.18f;
+  const float kYawMax = 0.55f;
+  const float kPitchMax = 0.45f;
+  const float kPoseSmoothing = 0.22f;
+  const int kSlotStableFrames = 4;
+  const int kTargetHoldFrames = 10;
+  const int kSlotTolerance = 1;
+  const int kMaxNameLength = 32;
+  const float kThresholdMin = 0.35f;
+  const float kThresholdMax = 0.75f;
+  const float kThresholdStep = 0.02f;
+  const int kMinFaceSize = 45;
+  const double kBlurThreshold = 10.0;
+  const int kHintStableFrames = 6;
+  const auto kHintHold = std::chrono::milliseconds(450);
+  const auto kLivenessTtl = std::chrono::seconds(45);
+  const float kMouthOpenMar = 0.5f;
+  const float kMouthCloseMar = 0.35f;
+  const int kMouthOpenFrames = 2;
+  const int kMouthClosedFrames = 2;
+  std::string hintText;
+  std::string pendingHint;
+  int pendingHintFrames = 0;
+  auto hintLastChange = std::chrono::steady_clock::now();
+  cv::Point2f smoothedPose(0.0f, 0.0f);
+  bool hasSmoothedPose = false;
+  int slotMatchFrames = 0;
+  int targetHoldFrames = 0;
+  LivenessState liveness;
+  dlib::matrix<float, 0, 1> lastPrimaryEmbedding;
+  bool hasLastPrimaryEmbedding = false;
+  const std::filesystem::path exportEmbeddingPath =
+      std::filesystem::path("data") / "last_embedding.json";
+  const bool autoExportEnabled = appConfig.autoExport;
+  const bool autoExportOnce = appConfig.autoExportOnce;
+  const auto autoExportInterval =
+      std::chrono::milliseconds(appConfig.autoExportIntervalMs);
+  auto lastAutoExport = std::chrono::steady_clock::time_point{};
 
   while (true) {
     cv::Mat frame;
@@ -43,107 +710,481 @@ int main() {
 
     cv::flip(frame, frame, 1);
 
-    // Обработка клавиш
-    char key = cv::waitKey(1);
-    switch (key) {
-    case 't': { // Обучение модели
-      try {
-        faceRecognition.train("data/me", "data/not_me");
-        faceRecognition.loadSVM("face_svm.yml");
-        spdlog::info("Модель успешно обучена и загружена.");
-      } catch (const std::exception &e) {
-        spdlog::error("Ошибка при обучении модели: {}", e.what());
+    const int key = cv::waitKey(1);
+    if (uiMode == UiMode::TypingName) {
+      if (key == 27) { // ESC
+        uiMode = UiMode::Idle;
+        nameBuffer.clear();
+      } else if (key == 13 || key == 10) { // Enter
+        if (nameBuffer.empty()) {
+          spdlog::warn("Name is empty. Enrollment canceled.");
+          uiMode = UiMode::Idle;
+        } else {
+          enrollName = nameBuffer;
+          uiMode = UiMode::Enrolling;
+          nameBuffer.clear();
+          hintText.clear();
+          pendingHint.clear();
+          pendingHintFrames = 0;
+          hintLastChange = std::chrono::steady_clock::now();
+          smoothedPose = cv::Point2f(0.0f, 0.0f);
+          hasSmoothedPose = false;
+          slotMatchFrames = 0;
+          targetHoldFrames = 0;
+          resetLiveness(liveness);
+
+          const auto now = std::chrono::steady_clock::now();
+          poseBuckets.clear();
+          poseBuckets.reserve(kPoseSlots);
+          for (int i = 0; i < kPoseSlots; ++i) {
+            poseBuckets.push_back({{}, now - kEnrollInterval});
+          }
+          activeSlot = -1;
+          spdlog::info("Collecting samples for {}", enrollName);
+        }
+      } else if (key == 8 || key == 127) { // Backspace
+        if (!nameBuffer.empty()) {
+          nameBuffer.pop_back();
+        }
+      } else if (key >= 32 && key <= 126) {
+        if (static_cast<int>(nameBuffer.size()) < kMaxNameLength) {
+          nameBuffer.push_back(static_cast<char>(key));
+        }
       }
-      break;
-    }
-    case 'q': { // Выход
-      cap.release();
-      cv::destroyAllWindows();
-      return 0;
-    }
-    case 's': { // Сохранение изображения
-      ImageProcessing::saveFaceImage(frame, "data/not_me", frameCount);
-      break;
-    }
-    case 'm': { // Переключение отображения ключевых точек
-      showLandmarks = !showLandmarks;
-      spdlog::info("Отображение ключевых точек: {}",
-                   showLandmarks ? "ВКЛ" : "ВЫКЛ");
-      break;
-    }
-    default:
-      break; // Игнорируем другие клавиши
+    } else {
+      if (key == 27 && uiMode == UiMode::Enrolling) { // ESC cancels enroll
+        uiMode = UiMode::Idle;
+        poseBuckets.clear();
+        activeSlot = -1;
+        hintText.clear();
+        pendingHint.clear();
+        pendingHintFrames = 0;
+        hintLastChange = std::chrono::steady_clock::now();
+        smoothedPose = cv::Point2f(0.0f, 0.0f);
+        hasSmoothedPose = false;
+        slotMatchFrames = 0;
+        targetHoldFrames = 0;
+        resetLiveness(liveness);
+        spdlog::info("Enrollment canceled.");
+      }
+
+      switch (key) {
+      case 'n': {
+        uiMode = UiMode::TypingName;
+        nameBuffer.clear();
+        break;
+      }
+      case 'c': {
+        faceMemory.clear();
+        if (faceMemory.save(face_db_path)) {
+          spdlog::info("Face database cleared.");
+        } else {
+          spdlog::warn("Failed to save empty database.");
+        }
+        break;
+      }
+      case 'r': {
+        if (faceMemory.load(face_db_path)) {
+          spdlog::info("Reloaded faces: {}", faceMemory.size());
+        } else {
+          spdlog::warn("Failed to reload database.");
+        }
+        break;
+      }
+      case 'q': {
+        cap.release();
+        cv::destroyAllWindows();
+        return 0;
+      }
+      case '[': {
+        const float next =
+            std::max(kThresholdMin, faceMemory.threshold() - kThresholdStep);
+        faceMemory.setThreshold(next);
+        spdlog::info("Threshold set to {:.2f}", faceMemory.threshold());
+        break;
+      }
+      case ']': {
+        const float next =
+            std::min(kThresholdMax, faceMemory.threshold() + kThresholdStep);
+        faceMemory.setThreshold(next);
+        spdlog::info("Threshold set to {:.2f}", faceMemory.threshold());
+        break;
+      }
+      case 's': {
+        ImageProcessing::saveFaceImage(frame, "data/snapshots", frameCount);
+        break;
+      }
+      case 'e': {
+        if (!hasLastPrimaryEmbedding) {
+          spdlog::warn("No embedding available to export yet.");
+          break;
+        }
+        if (saveEmbeddingJson(lastPrimaryEmbedding, exportEmbeddingPath)) {
+          spdlog::info("Embedding exported to {}",
+                       exportEmbeddingPath.string());
+        } else {
+          spdlog::error("Failed to export embedding to {}",
+                        exportEmbeddingPath.string());
+        }
+        break;
+      }
+      case 'm': {
+        showLandmarks = !showLandmarks;
+        spdlog::info("Landmarks: {}", showLandmarks ? "ON" : "OFF");
+        break;
+      }
+      default:
+        break;
+      }
     }
 
     auto faceRects = faceRecognition.detectFaces(frame);
-    std::vector<bool> predictions;
 
-    // Обработка каждого лица
+    std::string enrollHint;
+    if (uiMode == UiMode::Enrolling) {
+      if (faceRects.empty()) {
+        enrollHint = "No face detected";
+      } else if (faceRects.size() > 1) {
+        enrollHint = "Only one face at a time";
+      } else {
+        const auto now = std::chrono::steady_clock::now();
+        const cv::Rect target = pickLargestFace(faceRects);
+        const FaceQuality quality =
+            evaluateFaceQuality(frame, target, kMinFaceSize, kBlurThreshold);
+        if (!quality.ok) {
+          enrollHint = cv::format("Improve quality (%dx%d,%.0f)", quality.width,
+                                  quality.height, quality.blur);
+        } else {
+          FaceEmbedding::FaceData data;
+          if (!faceEmbedding.getFaceData(frame, target, data)) {
+            enrollHint = "No landmarks";
+          } else {
+            const PoseEstimate rawPose =
+                estimatePoseSlot(data, frame.size(), kPoseSlots,
+                                 kPoseMagnitudeMin, kYawMax, kPitchMax);
+            PoseEstimate pose = rawPose;
+            if (rawPose.valid) {
+              const cv::Point2f rawVec(rawPose.yawNorm, rawPose.pitchNorm);
+              if (!hasSmoothedPose) {
+                smoothedPose = rawVec;
+                hasSmoothedPose = true;
+              } else {
+                smoothedPose = rawVec * kPoseSmoothing +
+                               smoothedPose * (1.0f - kPoseSmoothing);
+              }
+
+              pose.yawNorm = smoothedPose.x;
+              pose.pitchNorm = smoothedPose.y;
+              pose.magnitude = std::sqrt(pose.yawNorm * pose.yawNorm +
+                                         pose.pitchNorm * pose.pitchNorm);
+              pose.angle =
+                  std::atan2(pose.pitchNorm, pose.yawNorm) - kRingStartAngle;
+              if (!std::isfinite(pose.angle)) {
+                pose.angle = 0.0f;
+              }
+              pose.slot = angleToSlot(pose.angle, kPoseSlots);
+              if (pose.magnitude < kPoseMagnitudeMin) {
+                pose.slot = 0;
+              }
+              pose.valid = true;
+            }
+            if (!pose.valid) {
+              enrollHint = "Hold face steady";
+              slotMatchFrames = 0;
+            } else {
+              if (pose.magnitude < kPoseMagnitudeMin) {
+                enrollHint = "Rotate head around the ring";
+                slotMatchFrames = 0;
+              } else {
+                const int proposedSlot = closestUnfilledSlot(
+                    poseBuckets, pose.slot, kSamplesPerSlot);
+                if (proposedSlot < 0) {
+                  activeSlot = -1;
+                  targetHoldFrames = 0;
+                } else {
+                  if (activeSlot < 0 ||
+                      isSlotFilled(poseBuckets, activeSlot, kSamplesPerSlot) ||
+                      targetHoldFrames <= 0) {
+                    activeSlot = proposedSlot;
+                    targetHoldFrames = kTargetHoldFrames;
+                  } else if (proposedSlot == activeSlot) {
+                    targetHoldFrames = kTargetHoldFrames;
+                  } else {
+                    targetHoldFrames--;
+                  }
+                }
+
+                const bool matches = slotMatches(
+                    pose.slot, activeSlot, static_cast<int>(poseBuckets.size()),
+                    kSlotTolerance);
+                if (matches) {
+                  slotMatchFrames++;
+                } else {
+                  slotMatchFrames = 0;
+                }
+
+                PoseBucket *bucket = bucketAt(poseBuckets, activeSlot);
+                if (activeSlot >= 0 && matches &&
+                    slotMatchFrames >= kSlotStableFrames && bucket &&
+                    static_cast<int>(bucket->samples.size()) <
+                        kSamplesPerSlot &&
+                    now - bucket->lastCapture >= kEnrollInterval) {
+                  bucket->samples.push_back(data.embedding);
+                  bucket->lastCapture = now;
+                  slotMatchFrames = 0;
+                  if (static_cast<int>(bucket->samples.size()) >=
+                      kSamplesPerSlot) {
+                    targetHoldFrames = 0;
+                  }
+                }
+
+                if (activeSlot >= 0) {
+                  enrollHint = matches ? "Hold steady" : "Move along the ring";
+                } else {
+                  enrollHint = "Hold steady";
+                }
+              }
+            }
+          }
+        }
+      }
+
+      if (allBucketsFilled(poseBuckets, kSamplesPerSlot)) {
+        bool anySaved = false;
+        for (auto &bucket : poseBuckets) {
+          const auto meanEmbedding = averageEmbeddings(bucket.samples);
+          if (meanEmbedding.size() == faceEmbedding.embeddingDim()) {
+            const float radius =
+                maxDistanceFromMean(bucket.samples, meanEmbedding);
+            if (faceMemory.add(enrollName, meanEmbedding, radius)) {
+              anySaved = true;
+            }
+          }
+        }
+
+        if (anySaved && faceMemory.save(face_db_path)) {
+          spdlog::info("Saved face '{}'. Total: {}", enrollName,
+                       faceMemory.size());
+        } else {
+          spdlog::warn("Failed to save face {}", enrollName);
+        }
+
+        uiMode = UiMode::Idle;
+        poseBuckets.clear();
+        activeSlot = -1;
+        hintText.clear();
+        pendingHint.clear();
+        pendingHintFrames = 0;
+        hintLastChange = std::chrono::steady_clock::now();
+        smoothedPose = cv::Point2f(0.0f, 0.0f);
+        hasSmoothedPose = false;
+        slotMatchFrames = 0;
+        targetHoldFrames = 0;
+        resetLiveness(liveness);
+      }
+    }
+
+    if (uiMode == UiMode::Enrolling) {
+      updateHintText(enrollHint, hintText, pendingHint, pendingHintFrames,
+                     hintLastChange, kHintStableFrames, kHintHold);
+      const int collected = collectedSamples(poseBuckets);
+      const int total = static_cast<int>(poseBuckets.size()) * kSamplesPerSlot;
+
+      cv::Point center(frame.cols / 2, frame.rows / 2);
+      int radius = std::min(frame.cols, frame.rows) / 4;
+      if (!faceRects.empty()) {
+        const cv::Rect rect = pickLargestFace(faceRects);
+        center = cv::Point(rect.x + rect.width / 2, rect.y + rect.height / 2);
+        radius = std::max(std::min(rect.width, rect.height) / 2 + 20, 80);
+      }
+      drawFaceIdOverlay(frame, center, radius, poseBuckets, kSamplesPerSlot,
+                        activeSlot);
+    }
+
+    const bool needLiveness = (uiMode == UiMode::Idle && faceMemory.size() > 0);
+    bool livenessOk = !needLiveness;
+    std::string livenessHint;
+    const bool singleFace = (faceRects.size() == 1);
+    const cv::Rect primaryRect = pickLargestFace(faceRects);
+    bool livenessUpdated = false;
+    bool primaryEmbeddingUpdated = false;
+    if (needLiveness && !singleFace) {
+      resetLiveness(liveness);
+      livenessOk = false;
+      livenessHint =
+          faceRects.empty() ? "Show your face" : "Only one face at a time";
+    }
+
     for (const auto &rect : faceRects) {
-      cv::Mat faceROI = frame(rect).clone();
+      const FaceQuality quality =
+          evaluateFaceQuality(frame, rect, kMinFaceSize, kBlurThreshold);
+      const bool qualityOk = quality.ok;
+      const bool requireQuality = (uiMode == UiMode::Enrolling);
+      const bool allowEmbedding = qualityOk || !requireQuality;
+      FaceEmbedding::FaceData data;
+      dlib::matrix<float, 0, 1> embedding;
+      bool hasEmbedding = false;
 
-      // Классификация
-      int prediction = faceRecognition.predict(faceROI);
-      predictions.push_back(prediction == 1);
+      if (allowEmbedding) {
+        if (faceEmbedding.getFaceData(frame, rect, data)) {
+          embedding = data.embedding;
+          hasEmbedding = true;
+          if (showLandmarks) {
+            for (const auto &point : data.landmarks) {
+              cv::circle(frame, cv::Point(point.x(), point.y()), 2,
+                         cv::Scalar(0, 255, 255), -1);
+            }
+          }
+        }
+      }
 
-      // Рисуем рамку
-      cv::Scalar color =
-          prediction == 1 ? cv::Scalar(0, 255, 0) : cv::Scalar(0, 0, 255);
+      if (hasEmbedding && rect == primaryRect) {
+        lastPrimaryEmbedding = embedding;
+        hasLastPrimaryEmbedding = true;
+        primaryEmbeddingUpdated = true;
+      }
+
+      if (needLiveness && singleFace && !livenessUpdated &&
+          rect == primaryRect) {
+        livenessUpdated = true;
+        if (!allowEmbedding || !hasEmbedding) {
+          resetLiveness(liveness);
+          livenessOk = false;
+          livenessHint = qualityOk ? "Hold face steady" : "Improve quality";
+        } else {
+          const auto now = std::chrono::steady_clock::now();
+          const bool openedNow = updateMouthState(
+              liveness, data.landmarks, kMouthOpenMar, kMouthCloseMar,
+              kMouthOpenFrames, kMouthClosedFrames);
+          if (openedNow) {
+            liveness.lastPass = now;
+          }
+
+          livenessOk = (liveness.lastPass.time_since_epoch().count() > 0 &&
+                        now - liveness.lastPass <= kLivenessTtl);
+          if (!livenessOk) {
+            if (liveness.lastMar < 0.0f) {
+              livenessHint = "Show your mouth";
+            } else if (!liveness.sawClosed &&
+                       liveness.lastMar > kMouthOpenMar) {
+              livenessHint = "Close mouth then open";
+            } else if (liveness.openFrames > 0) {
+              livenessHint = "Hold mouth open";
+            } else {
+              livenessHint = "Open your mouth";
+            }
+          }
+        }
+      }
+
+      std::string label = "UNKNOWN";
+      bool isMatch = false;
+      const bool isLiveness = (needLiveness && rect == primaryRect &&
+                               !livenessOk && uiMode == UiMode::Idle);
+      if (uiMode == UiMode::Enrolling) {
+        label = "ENROLLING";
+      } else if (isLiveness) {
+        label = "LIVENESS";
+      } else if (hasEmbedding && faceMemory.size() > 0 &&
+                 (!needLiveness || livenessOk)) {
+        const auto match = faceMemory.match(embedding);
+        if (!match.name.empty()) {
+          label = match.name + cv::format(" (%.2f)", match.distance);
+          isMatch = true;
+        } else if (std::isfinite(match.distance)) {
+          label = "UNKNOWN" + cv::format(" (%.2f)", match.distance);
+        } else {
+          label = "UNKNOWN";
+        }
+      } else if (!hasEmbedding) {
+        label = "NO EMB";
+      } else if (faceMemory.size() == 0) {
+        label = "NO DB";
+      }
+
+      const cv::Scalar color = isMatch ? cv::Scalar(0, 255, 0)
+                                       : (isLiveness ? cv::Scalar(0, 215, 255)
+                                                     : cv::Scalar(0, 0, 255));
       cv::rectangle(frame, rect, color, 2);
 
-      // Рисуем текст рядом с лицом
-      std::string label = prediction == 1 ? "GOOD" : "BAD";
       int baseline = 0;
-      cv::Size textSize =
+      const cv::Size textSize =
           cv::getTextSize(label, cv::FONT_HERSHEY_SIMPLEX, 0.7, 2, &baseline);
-
       cv::Point textOrg(rect.x + 10, rect.y - textSize.height - 5);
-      if (textOrg.y < 20)
-        textOrg.y = rect.y + 20; // Если лицо в верхней части
+      if (textOrg.y < 20) {
+        textOrg.y = rect.y + 20;
+      }
 
       cv::putText(frame, label, textOrg, cv::FONT_HERSHEY_SIMPLEX, 0.7, color,
                   2);
     }
 
-    // Отрисовка ключевых точек, если включено
-    if (showLandmarks) {
-      auto facesData = faceEmbedding.getFaceData(frame);
-      for (const auto &faceData : facesData) {
-        // Все ключевые точки
-        for (const auto &point : faceData.landmarks) {
-          cv::circle(frame, cv::Point(point.x(), point.y()), 2,
-                     cv::Scalar(0, 255, 255), -1);
-        }
-
-        // Глаза
-        for (int i = 36; i <= 47; ++i) {
-          cv::circle(
-              frame,
-              cv::Point(faceData.landmarks[i].x(), faceData.landmarks[i].y()),
-              2, cv::Scalar(255, 0, 0), -1);
-        }
-
-        // Нос
-        for (int i = 27; i <= 35; ++i) {
-          cv::circle(
-              frame,
-              cv::Point(faceData.landmarks[i].x(), faceData.landmarks[i].y()),
-              2, cv::Scalar(0, 0, 255), -1);
-        }
-
-        // Рот
-        for (int i = 48; i <= 67; ++i) {
-          cv::circle(
-              frame,
-              cv::Point(faceData.landmarks[i].x(), faceData.landmarks[i].y()),
-              2, cv::Scalar(0, 255, 0), -1);
+    if (autoExportEnabled && primaryEmbeddingUpdated &&
+        uiMode == UiMode::Idle && (!needLiveness || livenessOk) && singleFace &&
+        hasLastPrimaryEmbedding) {
+      const auto now = std::chrono::steady_clock::now();
+      if (now - lastAutoExport >= autoExportInterval) {
+        if (saveEmbeddingJson(lastPrimaryEmbedding, exportEmbeddingPath)) {
+          spdlog::info("Embedding auto-exported to {}",
+                       exportEmbeddingPath.string());
+          lastAutoExport = now;
+          if (autoExportOnce) {
+            cap.release();
+            cv::destroyAllWindows();
+            return 0;
+          }
+        } else {
+          spdlog::warn("Failed to auto-export embedding.");
         }
       }
     }
 
-    // Отображение кадра
-    cv::imshow("Webcam", frame);
+    int line = 0;
+    drawOverlayLine(frame,
+                    "Keys: [n] new [c] clear [r] reload [m] landmarks [s] "
+                    "snapshot [e] export [[/]] threshold [q] quit [ESC] cancel",
+                    line);
+    drawOverlayLine(frame,
+                    "Threshold: " + cv::format("%.2f", faceMemory.threshold()),
+                    line);
+    drawOverlayLine(frame, "Known users: " + std::to_string(faceMemory.size()),
+                    line);
+    drawOverlayLine(frame, "Liveness: mouth-open", line);
+    if (needLiveness && !livenessOk && !livenessHint.empty()) {
+      drawOverlayLine(frame, "Liveness: " + livenessHint, line);
+    }
+    if (uiMode == UiMode::TypingName) {
+      drawOverlayLine(frame, "Name: " + nameBuffer + "_", line);
+      drawOverlayLine(frame, "Enter to start, Esc to cancel", line);
+    } else if (uiMode == UiMode::Enrolling) {
+      drawOverlayLine(frame, "Enrolling: " + enrollName, line);
+      if (!poseBuckets.empty()) {
+        const int segmentsFilled = filledSlots(poseBuckets, kSamplesPerSlot);
+        const int totalSegments = static_cast<int>(poseBuckets.size());
+        const int collected = collectedSamples(poseBuckets);
+        const int totalSamples = totalSegments * kSamplesPerSlot;
 
+        drawOverlayLine(frame,
+                        "Coverage: " + std::to_string(segmentsFilled) + "/" +
+                            std::to_string(totalSegments) + " segments",
+                        line);
+        drawOverlayLine(frame,
+                        "Samples: " + std::to_string(collected) + "/" +
+                            std::to_string(totalSamples),
+                        line);
+        if (activeSlot >= 0) {
+          drawOverlayLine(frame,
+                          "Target segment: " + std::to_string(activeSlot + 1) +
+                              "/" + std::to_string(totalSegments),
+                          line);
+        }
+      }
+      if (!hintText.empty()) {
+        drawOverlayLine(frame, hintText, line);
+      }
+    }
+
+    cv::imshow("Webcam", frame);
     frameCount++;
   }
 

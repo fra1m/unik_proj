@@ -3,3 +3,5 @@
 build/data/
 
 .DS_Store
+
+faceid/node_modules

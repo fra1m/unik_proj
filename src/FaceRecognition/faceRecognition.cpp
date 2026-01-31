@@ -1,6 +1,7 @@
 #include "faceRecognition.h"
 #include "../FaceEmbedding/faceEmbedding.h"
 
+#include <algorithm>
 #include <dlib/matrix.h>
 #include <filesystem>
 #include <iostream>
@@ -11,6 +12,14 @@
 
 cv::Rect lastFaceRegion; // Глобальная переменная для хранения координат
 cv::Rect FaceRecognition::getLastFaceRegion() { return faceRegion; }
+
+namespace {
+cv::Rect clampRect(const cv::Rect &rect, const cv::Size &size) {
+  const cv::Rect bounds(0, 0, size.width, size.height);
+  const cv::Rect clipped = rect & bounds;
+  return clipped;
+}
+} // namespace
 
 cv::Mat dlibMatrixToCvMat(const dlib::matrix<float, 0, 1> &dlibMat) {
   cv::Mat cvMat(1, dlibMat.size(), CV_32F); // Создаем однострочную матрицу
@@ -35,7 +44,7 @@ FaceRecognition::FaceRecognition(const std::string &modelConfig,
 }
 
 FaceRecognition::~FaceRecognition() {
-  if (!svm->empty()) {
+  if (svm && !svm->empty()) {
     svm->save("face_svm.yml");
     spdlog::info("Модель автоматически сохранена при выходе");
   }
@@ -75,8 +84,17 @@ bool FaceRecognition::detectFace(cv::Mat &frame) {
       int y1 = static_cast<int>(detectionMat.at<float>(i, 4) * frame.rows);
       int x2 = static_cast<int>(detectionMat.at<float>(i, 5) * frame.cols);
       int y2 = static_cast<int>(detectionMat.at<float>(i, 6) * frame.rows);
-      bestFace = cv::Rect(x1, y1, x2 - x1, y2 - y1);
-      maxConfidence = confidence;
+      const int left = std::min(x1, x2);
+      const int right = std::max(x1, x2);
+      const int top = std::min(y1, y2);
+      const int bottom = std::max(y1, y2);
+      const cv::Rect candidate =
+          clampRect(cv::Rect(cv::Point(left, top), cv::Point(right, bottom)),
+                    frame.size());
+      if (!candidate.empty()) {
+        bestFace = candidate;
+        maxConfidence = confidence;
+      }
     }
   }
 
@@ -162,7 +180,7 @@ void FaceRecognition::train(const std::string &positivePath,
   cv::Mat labelsMat(labels.size(), 1, CV_32SC1, labels.data());
 
   // Создание и обучение SVM
-  auto svm = cv::ml::SVM::create();
+  svm = cv::ml::SVM::create();
   svm->setType(cv::ml::SVM::C_SVC);
   svm->setKernel(cv::ml::SVM::LINEAR);
 
@@ -270,7 +288,16 @@ std::vector<cv::Rect> FaceRecognition::detectFaces(cv::Mat &frame) {
       int y1 = static_cast<int>(detectionMat.at<float>(i, 4) * frame.rows);
       int x2 = static_cast<int>(detectionMat.at<float>(i, 5) * frame.cols);
       int y2 = static_cast<int>(detectionMat.at<float>(i, 6) * frame.rows);
-      faces.emplace_back(x1, y1, x2 - x1, y2 - y1);
+      const int left = std::min(x1, x2);
+      const int right = std::max(x1, x2);
+      const int top = std::min(y1, y2);
+      const int bottom = std::max(y1, y2);
+      const cv::Rect candidate =
+          clampRect(cv::Rect(cv::Point(left, top), cv::Point(right, bottom)),
+                    frame.size());
+      if (!candidate.empty()) {
+        faces.emplace_back(candidate);
+      }
     }
   }
 
