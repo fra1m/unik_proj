@@ -137,6 +137,79 @@ flowchart TD
   DONE -- да --> SUBMIT[Отправить регистрацию/вход]
 ```
 
+## Схема БД (упрощённо)
+
+### auth-db
+
+```mermaid
+erDiagram
+  TOKEN {
+    int id PK
+    varchar token
+    int user_id "unique"
+    varchar password_hash
+    timestamptz created_at
+  }
+
+  FACE_TEMPLATES {
+    int id PK
+    int user_id
+    jsonb embedding
+    timestamptz created_at
+    timestamptz updated_at
+  }
+```
+
+### users-db
+
+```mermaid
+erDiagram
+  USERS {
+    int id PK
+    varchar name
+    varchar email "unique"
+    enum role
+    int specialization_id
+    int[] counter_agent_specialization_ids
+    varchar phone
+    date birth_date
+    varchar city
+    varchar address
+    text photo_url
+    timestamptz created_at
+    timestamptz updated_at
+    timestamptz archived_at
+  }
+
+  USER_STATS {
+    int id PK
+    int user_id "unique"
+    int courses_enrolled
+    int courses_authored
+    int lessons_total
+    int lessons_completed
+    int quizzes_total
+    int quizzes_passed
+    numeric average_score
+    int streak_days
+    timestamptz last_active_at
+  }
+
+  USER_HISTORY {
+    int id PK
+    int user_id
+    int actor_id
+    enum action
+    jsonb changes
+    timestamptz created_at
+  }
+
+  USERS ||--|| USER_STATS : "user_id"
+  USERS ||--o{ USER_HISTORY : "user_id"
+```
+
+Примечание: `user_id` в `auth-db` логически ссылается на `users-db.users.id`, но физически это разные базы, поэтому FK между ними не создаётся.
+
 ## Компоненты C++
 
 - `FaceID` — GUI/камера (используется локально, не в docker)
