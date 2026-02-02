@@ -257,6 +257,44 @@ docker compose -f docker-compose/docker-compose.yml up --build
 - Auth сервис: `auth/src/modules/auth/auth.service.ts`
 - UI: `client/src/App.tsx`
 
+## Тестирование (схема и отчёт)
+
+### Схема прогона
+
+```mermaid
+flowchart TD
+  S[Start] --> DC[docker compose up]
+  DC --> H[/health checks/]
+  H --> F1[Functional: capture]
+  F1 --> F2[Functional: register-with-embeddings]
+  F2 --> F3[Functional: login-with-embeddings]
+  F3 --> N1[Negative: чужое лицо/порог]
+  N1 --> L1[Load: capture scenario]
+  L1 --> L2[Load: login scenario]
+  L2 --> R[Report]
+```
+
+### Отчёт (пример, как после прогона)
+
+Функциональные тесты (API):
+- Пройдено: **18/18**
+- Критических ошибок: **0**
+- Основные сценарии:
+  - capture → register-with-embeddings → login-with-embeddings (успех)
+  - login с чужим лицом (ожидаемый отказ)
+  - неверный формат изображения (400)
+  - превышение размера кадра (413, корректная обработка на клиенте)
+
+Нагрузочные тесты (пример метрик):
+
+| Сценарий | Профиль | p95 | p99 | Ошибки |
+|---|---|---|---|---|
+| `/auth/face/capture` | 10 VU, 3 мин | 520 ms | 780 ms | 0.6% |
+| `/auth/face/login-with-embeddings` | 5 VU, 3 мин | 240 ms | 360 ms | 0% |
+| `/auth/face/register-with-embeddings` | 2 VU, 2 мин | 410 ms | 610 ms | 0% |
+
+Примечание: значения выше — шаблон отчёта и заполняются фактическими цифрами после реального прогона.
+
 ## Примечания
 
 - В docker контейнере **нет GUI**, поэтому используется только `FaceIDCli`.
